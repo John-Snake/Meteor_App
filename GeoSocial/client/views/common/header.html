@@ -1,4 +1,13 @@
 <template name="header">
-  <p>Welcome to GeoSocial.</p>
-  <hr />
+	<p>Welcome to GeoSocial.</p>
+
+	<a href="/">Home</a><br>
+	{{#if currentUser}}
+	<a href="#" class="logout">Log Out</a><br>
+	{{else}}
+	<a href="/register">Register</a><br>
+	<a href="/login">Login</a>
+	{{/if}}
+
+	<hr />
 </template>

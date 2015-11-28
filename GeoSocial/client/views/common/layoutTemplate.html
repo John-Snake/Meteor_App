@@ -1,0 +1,12 @@
+<template name='layoutTemplate'>
+	<header>
+		{{> header}}
+	</header>
+
+    <!-- Define where the content of a route should appear within the layout. -->
+    {{> yield}} 
+
+	<footer>
+		{{> footer}}
+	</footer>
+</template>
