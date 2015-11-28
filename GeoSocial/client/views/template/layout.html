@@ -1,0 +1,16 @@
+<template name='layout'>
+	<header>
+		{{> header}}
+	</header>
+
+    <a href="/">Home</a><br>
+    <a href="/register">Register</a><br>
+    <a href="/login">Login</a>
+
+    <!-- Define where the content of a route should appear within the layout. -->
+    {{> yield}} 
+
+	<footer>
+		{{> footer}}
+	</footer>
+</template>
