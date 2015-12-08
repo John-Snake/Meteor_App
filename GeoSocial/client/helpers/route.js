@@ -3,10 +3,11 @@ Router.configure({
     layoutTemplate: 'layoutTemplate'
 });
 
-/* Imposto il template principale */
+/* Imposto il route principale */
 Router.route('/', {
     template: 'home',
 });
 
-Router.route('/register');
-Router.route('/login');
+Router.route('/signUp');
+Router.route('/signIn');
+Router.route('/editProfile');

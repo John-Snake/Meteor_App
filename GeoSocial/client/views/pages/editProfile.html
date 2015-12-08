@@ -1,0 +1,13 @@
+<template name="editProfile">
+    <h2>Edit Profile</h2>
+
+     <form class="editProfile">
+        <div><input type="email" name="email" value="{{currentUser.emails.[0].address}}" required></div>
+        <div><input type="password" name="password" placeholder="Password" required></div>
+        <div><input type="text" name="username" value="{{currentUser.username}}" required></div>
+        <div><input type="text" name="name" value="{{currentUser.profile.name}}"></div>
+        <div><input type="text" name="surname" value="{{currentUser.profile.surname}}"></div>
+        <p><input type="submit" value="Edit Profile"></p>
+    </form>
+
+</template>

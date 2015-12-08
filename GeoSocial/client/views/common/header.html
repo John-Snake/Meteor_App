@@ -2,11 +2,14 @@
 	<p>Welcome to GeoSocial.</p>
 
 	<a href="/">Home</a><br>
+	
 	{{#if currentUser}}
-	<a href="#" class="logout">Log Out</a><br>
+		<p>You're logged in as <b>{{currentUser.username}}</b>.</p>
+		<a href="/editProfile">Edit Profile</a><br>
+		<a href="#" class="logout">Log Out</a><br>
 	{{else}}
-	<a href="/register">Register</a><br>
-	<a href="/login">Login</a>
+		<a href="/signUp">Sign Up</a><br>
+		<a href="/signIn">Sign In</a>
 	{{/if}}
 
 	<hr />

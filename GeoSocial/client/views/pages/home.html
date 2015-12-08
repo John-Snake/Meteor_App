@@ -1,3 +1,10 @@
 <template name="home">
-	<h2>Home</h2>
+	{{#if currentUser}}
+		<p>Username: {{currentUser.username}}</p>
+		<p>Email: {{currentUser.emails.[0].address}}</p>
+		<p>Name: {{currentUser.profile.name}}</p>
+		<p>Surname: {{currentUser.profile.username}}</p>
+	{{else}}
+		<h2>Home</h2>
+	{{/if}}
 </template>
