@@ -13,13 +13,11 @@ Template.editProfile.events({
         var gender = $('[name=gender]:checked').val();
         var privacy = $('[name=privacy]').val();
 
-        console.log(gender);
-
         Meteor.users.update({
             _id: Meteor.userId()
             }, 
             { $set: {
-                /*
+                    /*
                     email: email,
                     password: password,
                     username: username,
@@ -41,5 +39,51 @@ Template.editProfile.events({
             } 
         );
 
+    }
+});
+
+/* 
+ * Extract the 'gender' of the current user and set 'checked' attriubute for the right radio button.
+ */ 
+Template.editProfile.helpers({
+    isMale: function() {
+        if (Meteor.user()) {  // use Meteor.user() since it's available
+            var check = Meteor.user().profile.gender;
+            
+            if (check === "Male"){
+                return 'checked';
+            }
+        }
+        return '';
+    },
+    isFemale: function() {
+        if (Meteor.user()) {  // use Meteor.user() since it's available
+            var check = Meteor.user().profile.gender;
+            
+            if (check === "Female"){
+                return 'checked';
+            }
+        }
+        return '';
+    },
+    isUnknown: function() {
+        if (Meteor.user()) {  // use Meteor.user() since it's available
+            var check = Meteor.user().profile.gender;
+            
+            if (check === "Unknown"){
+                return 'checked';
+            }
+        }
+        return '';
+    },
+    isTransgender: function() {
+        if (Meteor.user()) {  // use Meteor.user() since it's available
+            var check = Meteor.user().profile.gender;
+            
+            if (check === "Transgender"){
+                return 'checked';
+            }
+        }
+        return '';
     }
 });

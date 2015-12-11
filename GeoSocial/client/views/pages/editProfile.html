@@ -15,13 +15,13 @@
         <br>
         <div>Gender :
             <br>
-            <input type="radio" value="Male" name="gender" id="user_gender_male" />
+            <input type="radio" value="Male" name="gender" {{isMale}}/>
             <label for="user_Male">Male</label>
-            <input type="radio" value="Female" name="gender" id="user_gender_female" />
+            <input type="radio" value="Female" name="gender" {{isFemale}}/>
             <label for="user_Female">Female</label>
-            <input type="radio" value="Unknown" name="gender" id="user_gender_unknown" />
+            <input type="radio" value="Unknown" name="gender" {{isUnknown}}/>
             <label for="user_Unknows">Unknows</label>
-            <input type="radio" value="Transgender" name="gender" id="user_gender_transgender" />
+            <input type="radio" value="Transgender" name="gender" {{isTransgender}}/>
             <label for="user_Transgender">Transgender</label>
             <br>
         </div>
