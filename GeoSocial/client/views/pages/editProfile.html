@@ -2,11 +2,36 @@
     <h2>Edit Profile</h2>
 
      <form class="editProfile">
-        <div><input type="email" name="email" value="{{currentUser.emails.[0].address}}" required></div>
-        <div><input type="password" name="password" placeholder="Password" required></div>
-        <div><input type="text" name="username" value="{{currentUser.username}}" required></div>
-        <div><input type="text" name="name" value="{{currentUser.profile.name}}"></div>
-        <div><input type="text" name="surname" value="{{currentUser.profile.surname}}"></div>
+     	<!--
+        <div><input type="email" name="email" value="{{currentUser.emails.[0].address}}"></div>
+        <div><input type="password" name="password" placeholder="Password"></div>
+        <div><input type="text" name="username" value="{{currentUser.username}}"></div>
+        -->
+        <div>Nome : <input type="text" name="name" value="{{currentUser.profile.name}}"></div>
+        <div>Cognome :<input type="text" name="surname" value="{{currentUser.profile.surname}}"></div>
+        <div>Telegram :<input type="text" name="telegram_username" value="{{currentUser.profile.telegram_username}}"></div>
+        <div>Birth :<input type="date" name="birth" value="{{currentUser.profile.birth}}"></div>
+        
+        <br>
+        <div>Gender :
+            <br>
+            <input type="radio" value="Male" name="gender" id="user_gender_male" />
+            <label for="user_Male">Male</label>
+            <input type="radio" value="Female" name="gender" id="user_gender_female" />
+            <label for="user_Female">Female</label>
+            <input type="radio" value="Unknown" name="gender" id="user_gender_unknown" />
+            <label for="user_Unknows">Unknows</label>
+            <input type="radio" value="Transgender" name="gender" id="user_gender_transgender" />
+            <label for="user_Transgender">Transgender</label>
+            <br>
+        </div>
+        <br>
+
+        <div id= "privacy">
+            <label for="user_privacy">Privacy</label>
+            <input min="0" max="2" type="range" name="privacy" id="user_privacy" value="{{currentUser.profile.privacy}}"/>
+        </div>
+
         <p><input type="submit" value="Edit Profile"></p>
     </form>
 

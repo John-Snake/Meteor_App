@@ -1,12 +1,34 @@
 <template name="signUp">
+
     <h2>Sign Up</h2>
 
      <form class="signUp">
-        <div><input type="email" name="email" placeholder="Email"></div>
-        <div><input type="password" name="password" placeholder="Password"></div>
-        <div><input type="text" name="username" placeholder="Username"></div>
+        <div><input type="email" name="email" placeholder="Email" required></div>
+        <div><input type="password" name="password" placeholder="Password" required></div>
+        <div><input type="password" name="password_confirmation" placeholder="Password confirmation" required></div>
+        <div><input type="text" name="username" placeholder="Username" required></div>
+        <br>
         <div><input type="text" name="name" placeholder="Name"></div>
         <div><input type="text" name="surname" placeholder="Surname"></div>
+        <div><input type="text" name="telegram_username" placeholder="Telegram username"></div>
+        <div><input type="date" name="birth" placeholder="Birth"></div>
+
+        <br>
+		<input type="radio" value="Male" name="gender" id="user_gender_male" />
+		<label for="user_Male">Male</label>
+		<input type="radio" value="Female" name="gender" id="user_gender_female" />
+		<label for="user_Female">Female</label>
+		<input type="radio" value="Unknown" name="gender" id="user_gender_unknown" />
+		<label for="user_Unknows">Unknows</label>
+		<input type="radio" value="Transgender" name="gender" id="user_gender_transgender" />
+		<label for="user_Transgender">Transgender</label>
+		<br>
+		<div id= "privacy">
+			<label for="user_privacy">Privacy</label>
+			<input min="0" max="2" type="range" name="privacy" id="user_privacy"/>
+		</div>
+        
+
         <p><input type="submit" value="Sign Up"></p>
     </form>
 

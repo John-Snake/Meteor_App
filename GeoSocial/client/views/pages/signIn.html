@@ -1,4 +1,37 @@
 <template name="signIn">
+
+	<div class="container" id="signin">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="wrap">
+					<!--<form class="login">-->
+					<form class="signIn" id="new_user">
+					<p class="form-title">Sign In</p>
+					<input autofocus="autofocus" placeholder="Email" type="email" name="email" id="user_email" />
+					<input autocomplete="off" placeholder="Password" type="password" name ="password" id="user_password" />
+					
+					<div class="remember-forgot">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="checkbox">
+									<input name="user[remember_me]" type="hidden" value="0" /><input type="checkbox" value="1" name="user[remember_me]" id="user_remember_me" />
+									<label for="user_remember_me">Remember me</label>
+								</div>
+							</div>
+							<div class="col-md-6 forgot-pass-content">
+								<a href="#">Forgot password?</a><br />
+							</div>
+						</div>
+					</div>
+					
+					<input type="submit" value="Sign in" class="btn btn-success btn-sm" />
+					</form> 
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--
     <h2>Sign In</h2>
 
     <form class="signIn">
@@ -6,4 +39,5 @@
         <div><input type="password" name="password" placeholder="Password"></div>
         <p><input type="submit" value="Sign In"></p>
     </form>
+    -->
 </template>
