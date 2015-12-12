@@ -54,7 +54,6 @@ Template.editProfile.helpers({
                 return 'checked';
             }
         }
-        return '';
     },
     isFemale: function() {
         if (Meteor.user()) {  // use Meteor.user() since it's available
@@ -64,7 +63,6 @@ Template.editProfile.helpers({
                 return 'checked';
             }
         }
-        return '';
     },
     isUnknown: function() {
         if (Meteor.user()) {  // use Meteor.user() since it's available
@@ -74,7 +72,6 @@ Template.editProfile.helpers({
                 return 'checked';
             }
         }
-        return '';
     },
     isTransgender: function() {
         if (Meteor.user()) {  // use Meteor.user() since it's available
@@ -84,6 +81,5 @@ Template.editProfile.helpers({
                 return 'checked';
             }
         }
-        return '';
     }
 });

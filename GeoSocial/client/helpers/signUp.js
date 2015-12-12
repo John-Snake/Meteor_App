@@ -2,7 +2,7 @@ Template.signUp.events({
     'submit form': function(event){
         event.preventDefault();
         var email = $('[name=email]').val();
-        var password = $('[name=password]').val();
+        var password = $('[name=password_confirmation]').val();
         var username = $('[name=username]').val();
         var name = $('[name=name]').val();
         var surname = $('[name=surname]').val();
@@ -33,5 +33,34 @@ Template.signUp.events({
 	        }  
 	    );
         
+    },
+    'change #email' : function() {  
+        Meteor.subscribe('usersEmail'); // vulnerabilità ?
+
+        var input = $('[name=email]').val();
+        var check =  Meteor.users.findOne({'emails.address': input });
+
+        if (check != null) {
+            console.log("Email già utilizzata.");
+        }
+    },
+    'change #password_confirmation' : function() {  
+
+        var input = $('[name=password]').val();
+        var check = $('[name=password_confirmation]').val();
+
+        if (input != check) {
+            console.log("Le due password devono coincidere");
+        }
+    },
+    'change #username' : function() {  
+        Meteor.subscribe('usersUsername'); // vulnerabilità ?
+
+        var input = $('[name=username]').val();
+        var check =  Meteor.users.findOne({'username': input });
+
+        if (check != null) {
+            console.log("Nickname già utilizzato.");
+        }
     }
 });

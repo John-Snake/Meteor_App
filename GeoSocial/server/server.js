@@ -7,3 +7,11 @@ Meteor.publish("userData", function () {
   }
 });
 */
+
+Meteor.publish("usersEmail", function () {
+    return Meteor.users.find({}, {fields: {"emails.address": 1}});
+});
+
+Meteor.publish("usersUsername", function () {
+    return Meteor.users.find({}, {fields: {"username": 1}});
+});
