@@ -2,7 +2,7 @@ Template.signUp.events({
     'submit form': function(event){
         event.preventDefault();
         var email = $('[name=email]').val();
-        var password = $('[name=password_confirmation]').val();
+        var password = $('[name=passwordConfirmation]').val();
         var username = $('[name=username]').val();
         var name = $('[name=name]').val();
         var surname = $('[name=surname]').val();
@@ -34,8 +34,8 @@ Template.signUp.events({
 	    );
         
     },
-    'change #email' : function() {  
-        Meteor.subscribe('usersEmail'); // vulnerabilità ?
+    'keyup #email' : function() {  
+        Meteor.subscribe('usersEmail');
 
         var input = $('[name=email]').val();
         var check =  Meteor.users.findOne({'emails.address': input });
@@ -44,17 +44,20 @@ Template.signUp.events({
             console.log("Email già utilizzata.");
         }
     },
-    'change #password_confirmation' : function() {  
+    'keyup #passwordConfirmation' : function() {  
 
         var input = $('[name=password]').val();
-        var check = $('[name=password_confirmation]').val();
+        var check = $('[name=passwordConfirmation]').val();
 
         if (input != check) {
             console.log("Le due password devono coincidere");
         }
+        else {
+            console.log("Le due password coincidono");
+        }
     },
-    'change #username' : function() {  
-        Meteor.subscribe('usersUsername'); // vulnerabilità ?
+    'keyup #username' : function() {  
+        Meteor.subscribe('usersUsername');
 
         var input = $('[name=username]').val();
         var check =  Meteor.users.findOne({'username': input });

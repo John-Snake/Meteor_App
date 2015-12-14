@@ -1,13 +1,235 @@
-/*
 #temporaneo{
     color: white;
 }
 
 body 
 {
-    /background: url('/images/World.jpg') no-repeat;
+    background: url('/images/World.jpg') no-repeat;
     background-size: cover;
     margin: 0;
     padding: 0;
 }
+
+.navbar-inverse
+{
+    background-color: rgba(0, 0, 0, 0.7);
+    /*opacity: 0.7;*/
+}
+
+.navbar-inverse .navbar-brand
+{
+   color: rgba(92, 184, 92, 1);
+}
+
+.navbar-inverse .navbar-nav > li > a
+{
+    color: rgba(92, 184, 92, 1);
+}
+
+.navbar-inverse .pie
+{
+    color: rgba(92, 184, 92, 1);
+}
+
+/* Aggiunto per il dropdown */
+.dropdown-menu 
+{
+    background-color: rgba(0, 0, 0, 0.7);
+
+}
+
+/* Aggiunto per il dropdown */
+.dropdown-menu > li > a
+{
+    color: rgba(92, 184, 92, 1);
+}
+
+/* ----------------------- */
+
+.wrap
+{
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99;
+}
+
+p.form-title
+{
+    font-family: 'Open Sans' , sans-serif;
+    font-size: 2.5em;
+    font-weight: 600;
+    text-align: center;
+    color: #FFFFFF;
+    margin-top: 5%;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+form
+{
+    width: 35%;
+    margin: 0 auto;
+}
+
+form.signIn input[type="text"], form.signIn input[type="email"], form.signIn input[type="password"],
+form.signUp input[type="text"], form.signUp input[type="email"], form.signUp input[type="password"]
+{
+    width: 100%;
+    margin: 0;
+    padding: 5px 10px;
+    background: 0;
+    border: 0;
+    border-bottom: 1px solid #FFFFFF;
+    outline: 0;
+    font-style: italic;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    color: #FFFFFF;
+    outline: 0;
+}
+
+form.signIn input[type="submit"], form.signUp input[type="submit"]
+{
+    width: 100%;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-top: 16px;
+    outline: 0;
+    cursor: pointer;
+    letter-spacing: 1px;
+}
+
+form.signIn input[type="submit"]:hover, form.signUp input[type="submit"]:hover
+{
+    transition: background-color 0.5s ease;
+}
+
+form.signIn .remember-forgot
+{
+    float: left;
+    width: 100%;
+    margin: 10px 0 0 0;
+    padding-left: 2%;
+}
+
+form.signIn .forgot-pass-content
+{
+    min-height: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+}
+
+form.signIn label, form.signIn a, form.signUp label, form.signUp a
+{
+    font-size: 120%;
+    font-weight: 400;
+    color: #FFFFFF;
+}
+
+form.signIn a, form.signUp a
+{
+    transition: color 0.5s ease;
+}
+
+form.signIn a:hover, form.signUp a:hover
+{
+    color: #2ecc71;
+}
+
+.pr-wrap
+{
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    display: none;
+}
+
+.show-pass-reset
+{
+    display: block !important;
+}
+
+.pass-reset
+{
+    margin: 0 auto;
+    width: 250px;
+    position: relative;
+    margin-top: 22%;
+    z-index: 999;
+    background: #FFFFFF;
+    padding: 20px 15px;
+}
+
+.pass-reset label
+{
+    font-size: 12px;
+    font-weight: 400;
+    margin-bottom: 15px;
+}
+
+.pass-reset input[type="email"]
+{
+    width: 100%;
+    margin: 5px 0 0 0;
+    padding: 5px 10px;
+    background: 0;
+    border: 0;
+    border-bottom: 1px solid #000000;
+    outline: 0;
+    font-style: italic;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    color: #000000;
+    outline: 0;
+}
+
+.pass-reset input[type="submit"]
+{
+    width: 100%;
+    border: 0;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-top: 10px;
+    outline: 0;
+    cursor: pointer;
+    letter-spacing: 1px;
+}
+
+.pass-reset input[type="submit"]:hover
+{
+    transition: background-color 0.5s ease;
+}
+
+/* -------------------- 
+
+.pie
+{
+    padding-top: 1%;
+}
+
 */
+
+.alert
+{
+    background-color: rgba(0, 0, 0, 0.7);
+    border : 1px solid black;
+    color: red;
+    text-align: center;
+    width: 20%;
+    padding: 40%;
+}

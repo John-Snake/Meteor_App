@@ -1,12 +1,11 @@
 <template name="editProfile">
-    <h2>Edit Profile</h2>
 
-     <form class="editProfile">
-     	<!--
-        <div><input type="email" name="email" value="{{currentUser.emails.[0].address}}"></div>
-        <div><input type="password" name="password" placeholder="Password"></div>
-        <div><input type="text" name="username" value="{{currentUser.username}}"></div>
-        -->
+    {{>changePassword}}
+
+    <form class="editProfile">
+        <p class="form-title">Edit Profile</p>
+        <div>Email :<input type="email" name="email" id="email" value="{{currentUser.emails.[0].address}}"></div>
+        <div>Username: <input type="text" name="username" id="username" value="{{currentUser.username}}"></div>
         <div>Nome : <input type="text" name="name" value="{{currentUser.profile.name}}"></div>
         <div>Cognome :<input type="text" name="surname" value="{{currentUser.profile.surname}}"></div>
         <div>Telegram :<input type="text" name="telegram_username" value="{{currentUser.profile.telegram_username}}"></div>
@@ -32,7 +31,7 @@
             <input min="0" max="2" type="range" name="privacy" id="user_privacy" value="{{currentUser.profile.privacy}}"/>
         </div>
 
-        <p><input type="submit" value="Edit Profile"></p>
+        <input type="submit" value="Edit Profile">
     </form>
 
 </template>

@@ -1,5 +1,7 @@
 <template name="home">
+	
 	{{#if currentUser}}
+	<div id="temporaneo">
 		<p>Username: {{currentUser.username}}</p>
 		<p>Email: {{currentUser.emails.[0].address}}</p>
 		<p>Name: {{currentUser.profile.name}}</p>
@@ -8,8 +10,9 @@
 		<p>Birth: {{currentUser.profile.birth}}</p>
 		<p>Gender: {{currentUser.profile.gender}}</p>
 		<p>Privacy: {{currentUser.profile.privacy}}</p>
-
+	</div>
 	{{else}}
 		{{> signIn}}
 	{{/if}}
+	
 </template>
