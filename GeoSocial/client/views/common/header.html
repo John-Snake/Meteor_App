@@ -13,14 +13,22 @@
 			<ul class="nav navbar-nav navbar-right collapse navbar-collapse">
 				{{#if currentUser}}
 					<li><a href="/">Home</a></li>
+
+					<!-- 
 					<li><a href="#" class="logout">Log Out</a></li>
+					-->
+
 					<li>
 						<a href='#' data-toggle="dropdown">Personal <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="#">Your profile</a></li>
+							<li><a href="#">Your rofile</a></li>
 							<li><a href="#">Your posts</a></li>
 							<li class="divider"></li>
-							<li><a href="/editProfile">Edit Profile</a></li>
+							<li><a href="/editProfile">Edit profile</a></li>
+
+							<li class="divider"></li>
+							<li><a href="#" class="logout">Log out</a></li>
+
 						</ul>
 					</li>
 				{{else}}

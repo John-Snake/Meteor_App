@@ -1,8 +1,6 @@
 Template.editProfile.events({
-    'submit form': function(event){
+    'submit #editProfile': function(event){
         event.preventDefault();
-        var email = $('[name=email]').val();
-        var username = $('[name=username]').val();
         var name = $('[name=name]').val();
         var surname = $('[name=surname]').val();
         var telegram_username = $('[name=telegram_username]').val();
@@ -12,22 +10,6 @@ Template.editProfile.events({
 
         var _id = Meteor.userId();
 
-        var oldEmail = Meteor.user().emails[0].address;
-        
-        // Asynchronous call with a callback on the client
-        Meteor.call('changeUsername', username, function (error) {
-            if(error){
-                    console.log(error.reason);
-            }
-        });
-
-        // Asynchronous call with a callback on the client
-        Meteor.call('changeEmail', oldEmail, email, function (error) {
-            if(error){
-                    console.log(error.reason);
-            }
-        });
-        
         Meteor.users.update( _id, 
             { $set: {
                     "profile.name": name,
@@ -48,6 +30,64 @@ Template.editProfile.events({
         );
 
     },
+    'submit #changeEmail': function(event){
+        event.preventDefault();
+        var email = $('[name=email]').val();
+        var oldEmail = Meteor.user().emails[0].address;
+
+        if (email != oldEmail){
+            // Asynchronous call with a callback on the client
+            Meteor.call('changeEmail', oldEmail, email, function (error) {
+                if(error){
+                        console.log(error.reason);
+                }
+                else {
+                    Router.go("/");
+                }
+            });
+        }
+        else {
+            console.log("Email già utilizzata.");
+        }
+    },
+    'submit #changeUsername': function(event){
+        event.preventDefault();
+        var username = $('[name=username]').val();
+        var oldUsername = Meteor.user().username;
+
+        if(username != oldUsername){
+            // Asynchronous call with a callback on the client
+            Meteor.call('changeUsername', username, function (error) {
+                if(error){
+                        console.log(error.reason);
+                }
+                else {
+                    Router.go("/");
+                }
+            });
+        }
+        else {
+            console.log("Nickname già utilizzato.");
+        }
+    },
+    'submit #changePassword': function(event){ // controllo vecchia password sul keyup?
+        event.preventDefault();
+        var oldPassword = $('[name=oldPassword]').val();
+        var newPassword = $('[name=passwordConfirmation]').val();
+        
+
+        Accounts.changePassword(oldPassword, newPassword,
+            function(error){
+               if(error){
+                    console.log(error.reason);
+                } else {
+                    Router.go("/");
+                }
+            }
+        );
+    },
+
+    //Check existing email address when a key is released.
     'keyup #email' : function() {
         Meteor.subscribe('usersEmail');
 
@@ -62,6 +102,8 @@ Template.editProfile.events({
             }
         }
     },
+
+    //Check existing username when a key is released.
     'keyup #username' : function() {  
         Meteor.subscribe('usersUsername');
 
@@ -75,12 +117,23 @@ Template.editProfile.events({
                 console.log("Nickname già utilizzato.");
             }
         }
-    }
+    },
+
+    //Verify password confirmation when a key is released.
+    'keyup #passwordConfirmation' : function() {
+        var input = $('[name=newPassword]').val();
+        var check = $('[name=passwordConfirmation]').val();
+
+        if (input != check) {
+            console.log("Le due password devono coincidere");
+        }
+        else {
+            console.log("Le due password coincidono");
+        }
+    },
 });
 
-/* 
- * Extract the 'gender' of the current user and set 'checked' attriubute for the right radio button.
- */ 
+//Extract the 'gender' of the current user and set 'checked' attriubute for the right radio button. 
 Template.editProfile.helpers({
     isMale: function() {
         if (Meteor.user()) {  // use Meteor.user() since it's available
