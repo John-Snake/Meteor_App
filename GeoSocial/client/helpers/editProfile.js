@@ -8,6 +8,10 @@ Template.editProfile.events({
         var gender = $('[name=gender]:checked').val();
         var privacy = $('[name=privacy]').val();
 
+        // cambiare formato data da inserire nel db, oppure cambiare formato solo per la visualizzazione?
+        //var date = new Date($('[name=birth]').val())
+        //console.log(date);
+
         var _id = Meteor.userId();
 
         Meteor.users.update( _id, 
@@ -24,7 +28,7 @@ Template.editProfile.events({
                if(error){
                     console.log(error.reason);
                 } else {
-                    Router.go("/");
+                    Router.go("/profile");
                 }
             } 
         );
@@ -42,7 +46,7 @@ Template.editProfile.events({
                         console.log(error.reason);
                 }
                 else {
-                    Router.go("/");
+                    Router.go("/profile");
                 }
             });
         }
@@ -50,7 +54,7 @@ Template.editProfile.events({
             console.log("Email già utilizzata.");
         }
     },
-    'submit #changeUsername': function(event){
+    'submit #changeUsername': function(event){ 
         event.preventDefault();
         var username = $('[name=username]').val();
         var oldUsername = Meteor.user().username;
@@ -62,7 +66,7 @@ Template.editProfile.events({
                         console.log(error.reason);
                 }
                 else {
-                    Router.go("/");
+                    Router.go("/profile");
                 }
             });
         }
@@ -70,21 +74,28 @@ Template.editProfile.events({
             console.log("Nickname già utilizzato.");
         }
     },
-    'submit #changePassword': function(event){ // controllo vecchia password sul keyup?
+    'submit #changePassword': function(event){
         event.preventDefault();
         var oldPassword = $('[name=oldPassword]').val();
         var newPassword = $('[name=passwordConfirmation]').val();
         
-
-        Accounts.changePassword(oldPassword, newPassword,
-            function(error){
-               if(error){
-                    console.log(error.reason);
-                } else {
-                    Router.go("/");
+        if( oldPassword != newPassword) {
+            Accounts.changePassword(oldPassword, newPassword,
+                function(error){
+                    if(error){
+                        if(error.reason == 'Incorrect password') {
+                            console.log("Password corrente sbagliata.")
+                            //console.log(error.reason);
+                        }
+                    } else {
+                        Router.go("/profile");
+                    }
                 }
-            }
-        );
+            );
+        }
+        else {
+            console.log("Password già utilizzata.");
+        }
     },
 
     //Check existing email address when a key is released.

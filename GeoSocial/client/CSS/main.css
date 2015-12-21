@@ -1,3 +1,10 @@
+.map-container {
+  width: 800px;
+  max-width: 100%;
+  height: 500px;
+}
+
+/*
 #temporaneo{
     color: white;
 }
@@ -9,6 +16,7 @@ body
     margin: 0;
     padding: 0;
 }
+*/
 
 .navbar-inverse
 {
@@ -46,6 +54,7 @@ body
 
 /* ----------------------- */
 
+/*
 .wrap
 {
     width: 100%;
@@ -222,8 +231,6 @@ form.signIn a:hover, form.signUp a:hover
     padding-top: 1%;
 }
 
-*/
-
 .alert
 {
     background-color: rgba(0, 0, 0, 0.7);
@@ -233,3 +240,5 @@ form.signIn a:hover, form.signUp a:hover
     width: 20%;
     padding: 40%;
 }
+
+*/

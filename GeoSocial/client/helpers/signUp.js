@@ -34,6 +34,8 @@ Template.signUp.events({
 	    );
         
     },
+
+    //Check existing email address when a key is released.
     'keyup #email' : function() {  
         Meteor.subscribe('usersEmail');
 
@@ -44,6 +46,20 @@ Template.signUp.events({
             console.log("Email già utilizzata.");
         }
     },
+
+    //Check existing username when a key is released.
+    'keyup #username' : function() {  
+        Meteor.subscribe('usersUsername');
+
+        var input = $('[name=username]').val();
+        var check =  Meteor.users.findOne({'username': input });
+
+        if (check != null) {
+            console.log("Nickname già utilizzato.");
+        }
+    },
+
+    //Verify password confirmation when a key is released.
     'keyup #passwordConfirmation' : function() {  
 
         var input = $('[name=password]').val();
@@ -54,16 +70,6 @@ Template.signUp.events({
         }
         else {
             console.log("Le due password coincidono");
-        }
-    },
-    'keyup #username' : function() {  
-        Meteor.subscribe('usersUsername');
-
-        var input = $('[name=username]').val();
-        var check =  Meteor.users.findOne({'username': input });
-
-        if (check != null) {
-            console.log("Nickname già utilizzato.");
         }
     }
 });
