@@ -1,5 +1,9 @@
 <template name="signUp">
 
+    <div class="confirmation" id="confirmation">Confirmation!</div>
+    <div class="alert" id="alert">Error.</div>
+    <div class="info" id="info">Info here.</div>
+
  	<form class="signUp">
     	<p class="form-title">Sign Up</p>
         <div><input type="email" name="email" placeholder="Email" id="email" required></div>
@@ -8,10 +12,10 @@
         <div><input type="text" name="username" placeholder="Username" id="username" required></div>
         
         <br>
-        <div><input type="text" name="name" placeholder="Name"></div>
-        <div><input type="text" name="surname" placeholder="Surname"></div>
-        <div><input type="text" name="telegram_username" placeholder="Telegram username"></div>
-        <div><input type="date" name="birth" placeholder="Birth"></div>
+        <div><input type="text" name="name" id="name" placeholder="Name"></div>
+        <div><input type="text" name="surname" id="surname" placeholder="Surname"></div>
+        <div><input type="text" name="telegram_username" id="telegram_username" placeholder="Telegram username"></div>
+        <div><input type="date" name="birth" id="birth" placeholder="Birth"></div>
         
         <br>
         <label>Gender</label>
@@ -27,7 +31,7 @@
 		
 		<br>
 		<div id= "privacy">
-			<label for="user_privacy">Privacy</label>
+			<label for="user_privacy" id="label_user_privacy">Privacy: livello 1</label>
 			<input min="0" max="2" type="range" name="privacy" id="user_privacy"/>
 		</div>
 

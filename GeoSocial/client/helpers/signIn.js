@@ -5,11 +5,12 @@ Template.signIn.events({
         var password = $('[name=password]').val();
         Meteor.loginWithPassword(email, password, function(error){
 		    if(error){
-		        console.log(error.reason);
+		        //console.log(error.reason);
+		        $('#alert').show();
+            	$('#alert').html(error.reason);
 		    } else {
 		        Router.go("/");
 		    }
 		});
-
     }
 });

@@ -8,9 +8,12 @@ Template.editProfile.events({
         var gender = $('[name=gender]:checked').val();
         var privacy = $('[name=privacy]').val();
 
-        // cambiare formato data da inserire nel db, oppure cambiare formato solo per la visualizzazione?
-        //var date = new Date($('[name=birth]').val())
-        //console.log(date);
+        // cambiare formato data da inserire nel db (ERRORE NEL FORMAT HTML5), oppure cambiare formato solo per la visualizzazione?
+        //var date = new Date($('[name=birth]').val());
+        //var dateBirth = date.getDate()+"-"+date.getMonth()+"-"+date.getFullYear();
+        //console.log(dateBirth);
+
+        console.log(birth);
 
         var _id = Meteor.userId();
 
@@ -99,6 +102,8 @@ Template.editProfile.events({
     },
 
     //Check existing email address when a key is released.
+
+    //CASE SENSITIVE?! controllati dopo submit
     'keyup #email' : function() {
         Meteor.subscribe('usersEmail');
 
@@ -108,13 +113,15 @@ Template.editProfile.events({
         if (Meteor.user()) { // use Meteor.user() since it's available
             var session = Meteor.user().emails[0].address;
 
-            if (check != null && input === session) {
+            if (check != null || input === session) {
                 console.log("Email già utilizzata.");
             }
         }
     },
 
-    //Check existing username when a key is released.
+    //Check existing username when a key is released. 
+
+    //CASE SENSITIVE?! controllati dopo submit
     'keyup #username' : function() {  
         Meteor.subscribe('usersUsername');
 
@@ -124,7 +131,7 @@ Template.editProfile.events({
         if (Meteor.user()) { // use Meteor.user() since it's available
             var session = Meteor.user().username;
 
-            if (check != null && input === session) {
+            if (check != null || input === session) {
                 console.log("Nickname già utilizzato.");
             }
         }
