@@ -154,13 +154,21 @@ Template.signUp.events({
         $('#info').hide();
     },
 
+    'mouseover #gender' : function() { 
+        $('#info').show();
+        $('#info').html("Choose your gender.");
+    },
+
+    'mouseout #gender': function() { 
+        $('#info').hide();
+    },
+
     'mouseover #privacy' : function() { 
         $('#info').show();
-        $('#info').html("Select your level of privacy.");
+        $('#info').html("Select your level of privacy.<br>0 = low level, 2 = max level");
     },
 
     'mouseout #privacy': function() { 
         $('#info').hide();
     }
-
 });

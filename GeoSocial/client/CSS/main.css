@@ -1,9 +1,3 @@
-.map-container {
-  width: 800px;
-  max-width: 100%;
-  height: 500px;
-}
-
 /*
 #temporaneo{
     color: white;
@@ -89,13 +83,26 @@ form
     padding-top: 1%;
 }
 
-form.signIn 
+form.signIn input[type="text"], form.signIn input[type="email"], form.signIn input[type="password"]
 {
-    width: 20%;
+    width: 90%;
+    margin-left: 5%;
+    padding: 5px 10px;
+    background: 0;
+    border: 0;
+    border-bottom: 1px solid #FFFFFF;
+    outline: 0;
+    font-style: italic;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    color: #FFFFFF;
+    outline: 0;
 }
 
-form.signIn input[type="text"], form.signIn input[type="email"], form.signIn input[type="password"],
-form.signUp input[type="text"], form.signUp input[type="email"], form.signUp input[type="password"]
+form.signUp input[type="text"], form.signUp input[type="email"], form.signUp input[type="password"],
+input[type="date"] 
 {
     width: 100%;
     margin: 0;
@@ -111,6 +118,11 @@ form.signUp input[type="text"], form.signUp input[type="email"], form.signUp inp
     margin-bottom: 5px;
     color: #FFFFFF;
     outline: 0;
+}
+
+form.signIn input[type="checkbox"]
+{
+    margin-left: 0;
 }
 
 form.signIn input[type="submit"], form.signUp input[type="submit"]
@@ -130,8 +142,6 @@ form.signIn input[type="submit"]:hover, form.signUp input[type="submit"]:hover
     transition: background-color 0.5s ease;
 }
 
-/* sistemare ---- */
-
 form.signIn .remember-forgot
 {
     float: left;
@@ -148,9 +158,9 @@ form.signIn .forgot-pass-content
 
 }
 
-form.signIn label, form.signIn a, form.signUp label, form.signUp a
+form.signIn a, form.signUp a,form.signIn label,form.signUp label
 {
-    font-size: 120%;
+    font-size: 110%;
     font-weight: 400;
     color: #FFFFFF;
 }
@@ -164,8 +174,6 @@ form.signIn a:hover, form.signUp a:hover
 {
     color: #2ecc71;
 }
-
-/*   -----*/
 
 input[type=range] 
 {
@@ -184,7 +192,7 @@ input[type=range]::-webkit-slider-runnable-track
   width: 100%;
   height: 2px;
   cursor: pointer;
-  animate: 0.2s;
+  animation: 0.2s;
   box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
   background: #3071a9;
   border-radius: 1.3px;
@@ -214,7 +222,7 @@ input[type=range]::-moz-range-track
   width: 100%;
   height: 2px;
   cursor: pointer;
-  animate: 0.2s;
+  animation: 0.2s;
   box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
   background: #3071a9;
   border-radius: 1.3px;
@@ -403,6 +411,14 @@ input[type=range]:focus::-ms-fill-upper
     margin-left: 2%;
     margin-top: 12%;
     display: none;
+}
+
+/* Map ------------------- */
+
+.map-container {
+  width: 800px;
+  max-width: 100%;
+  height: 500px;
 }
 
 /* ----------------------- */

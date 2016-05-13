@@ -1,4 +1,5 @@
 <template name="profile">
+	<!--
 	<div>
 		<p>Username: {{currentUser.username}}</p>
 		<p>Email: {{currentUser.emails.[0].address}}</p>
@@ -9,4 +10,65 @@
 		<p>Gender: {{currentUser.profile.gender}}</p>
 		<p>Privacy: {{currentUser.profile.privacy}}</p>
 	</div>
+	-->
+
+	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+		<!-- Indicators -->
+		<ol class="carousel-indicators">
+			<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+			<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+			<li data-target="#carousel-example-generic" data-slide-to="2"></li>
+		</ol>
+
+		<!-- Wrapper for slides -->
+		<div class="carousel-inner">
+			<div class="item active">
+				<img class="sfondo" src="/images/1.jpg" alt="1" />
+				<div class="container">
+					<div class="carousel-caption">
+						Nome e cognome
+						<h1>{{currentUser.profile.name}} {{currentUser.profile.surname}}</h1>
+						Data di nascita<p class="lead">Hidden</p>
+						Nickname<p class="lead">{{currentUser.username}}</p>
+						<a href="" target="_blank">Contattami</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="item">
+				<img class="sfondo" src="/images/2.jpg" alt="2" />
+				<div class="container">
+					<div class="carousel-caption">
+						Nome e cognome
+						<h1>{{currentUser.profile.name}} {{currentUser.profile.surname}}</h1>
+						Data di nascita<p class="lead">Hidden</p>
+						Nickname<p class="lead">{{currentUser.username}}</p>
+						<a href="" target="_blank">Contattami</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="item">
+				<img class="sfondo" src="/images/3.jpg" alt="3" />
+				<div class="container">
+					<div class="carousel-caption">
+						Nome e cognome
+						<h1>{{currentUser.profile.name}} {{currentUser.profile.surname}}</h1>
+						Data di nascita<p class="lead">Hidden</p>
+						Nickname<p class="lead">{{currentUser.username}}</p>
+						<a href="" target="_blank">Contattami</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Controls -->
+	<a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+	<span class="glyphicon glyphicon-chevron-left"></span>
+	</a>
+	<a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+	<span class="glyphicon glyphicon-chevron-right"></span>
+	</a>
+
 </template>
