@@ -13,7 +13,7 @@ Template.editProfile.events({
         //var dateBirth = date.getDate()+"-"+date.getMonth()+"-"+date.getFullYear();
         //console.log(dateBirth);
 
-        console.log(birth);
+        //console.log(birth);
 
         var _id = Meteor.userId();
 
