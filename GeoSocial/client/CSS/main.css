@@ -35,6 +35,16 @@ body
     color: rgba(92, 184, 92, 1);
 }
 
+/* Ho cambiato navbar-static-top in navbar-fixed-top
+   nell'header per sistemare il carousel, incasinando i margin-top
+   di tutte le altre pagine!
+   (ex-navbar height: 50px, margin-bot: 20px, border: 1px)
+*/
+.navbar-fixed-margin
+{
+    margin-top: 71px;
+}
+
 /* Aggiunto per il dropdown */
 .dropdown-menu 
 {
@@ -425,10 +435,10 @@ input[type=range]:focus::-ms-fill-upper
 /* Carousel--------------- */
 
 .carousel-caption
-{
+{   
     text-shadow: 2px 2px 9px black;
-   /* background-color: rgba(41, 41, 41, 0.8);    
-    border-radius: 50px;*/
+    background-color: rgba(41, 41, 41, 0.8);    
+    border-radius: 50px;
     bottom: 10%;
 }
 
