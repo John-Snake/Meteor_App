@@ -427,9 +427,23 @@ input[type=range]:focus::-ms-fill-upper
 /* Map ------------------- */
 
 .map-container {
-  width: 800px;
-  max-width: 100%;
-  height: 500px;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  padding-bottom: 2%;
+  padding-left: 10%;
+  padding-right: 10%;
+  
+ 
+}
+
+.google-maps {
+    text-align: center;
+    position: relative;
+    padding-bottom: 30%; 
+    height: 0;
+    overflow: hidden;
 }
 
 /* Carousel--------------- */
@@ -452,6 +466,88 @@ input[type=range]:focus::-ms-fill-upper
     right: 0px;
     padding-right: 0px;
     position: fixed;
+}
+
+/* Choice--------------- */
+
+.choicebody 
+{
+    color: white;
+}
+
+.choicebody input[type="submit"] , .choicebody input[type="number"]
+{
+    color: black;
+
+}
+
+.choicebody form
+{
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.choicebody input[type="submit"]
+{
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100%;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: red;
+    cursor: inherit;
+    display: block;
+}
+
+.choicebody input[type="number"]
+{
+    margin: 0;
+    padding: 5px 10px;
+    background: 0;
+    border: 0;
+    border-bottom: 1px solid #FFFFFF;
+    outline: 0;
+    font-style: italic;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    color: white;
+    outline: 0;
+}
+
+.choicebody .well
+{
+    background-color: rgba(0, 0, 0, 0.7);
+    border: none;
+}
+
+.navbar .dropdown-menu
+{
+    background-color: rgba(0, 0, 0, 0.7);  
+}
+
+.dropdown-menu li a
+{
+       color: rgba(255, 255, 255, 0.8);
+       
+}
+
+#new_comment
+{
+
+    width: 80%;
+}
+
+#displaynot
+{
+    display: none;
 }
 
 /* ----------------------- */
