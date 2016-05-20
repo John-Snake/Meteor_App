@@ -300,6 +300,31 @@ input[type=range]:focus::-ms-fill-upper
   background: #367ebd;
 }
 
+input[type="file"]
+{
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: red;
+    cursor: inherit;
+    display: block;
+}
+
+.btn-file 
+{
+    position: relative;
+    overflow: hidden;
+    background: #006dcc;
+    border: none;
+}
+
 .pr-wrap
 {
     width: 100%;
@@ -451,8 +476,10 @@ input[type=range]:focus::-ms-fill-upper
 .carousel-caption
 {   
     text-shadow: 2px 2px 9px black;
+    /*
     background-color: rgba(41, 41, 41, 0.8);    
     border-radius: 50px;
+    */
     bottom: 10%;
 }
 
@@ -528,26 +555,84 @@ input[type=range]:focus::-ms-fill-upper
     border: none;
 }
 
-.navbar .dropdown-menu
+/* NewPost -------------------- */
+
+.newpost
 {
-    background-color: rgba(0, 0, 0, 0.7);  
+    padding-top: 5%;
+    color: white;
 }
 
-.dropdown-menu li a
+
+.container form.new_post #post_text, #post_address
 {
-       color: rgba(255, 255, 255, 0.8);
-       
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 5px 10px;
+    background: 0;
+    border: 0;
+    border-bottom: 1px solid #FFFFFF;
+    outline: 0;
+    font-style: italic;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    color: white;
+    outline: 0;
 }
 
-#new_comment
+.container form.new_post label, h3
 {
-
-    width: 80%;
+    font-size: 1.2em;
+    font-weight: 400;
+    color: #FFFFFF;
 }
 
-#displaynot
+form.new_post 
 {
-    display: none;
+    width: 50%;
+    background-color: rgba(0, 0, 0, 0);
+    margin: 0 auto;
 }
 
-/* ----------------------- */
+.newpost .buttond
+{
+ padding-top: 5%;
+ padding-bottom: 5%;
+}
+
+.newpost .btn-file
+{
+    position: relative;
+    overflow: hidden;
+    background: #006dcc;
+    border: none;
+}
+
+.container form.new_post input[type="file"]
+{
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: red;
+    cursor: inherit;
+    display: block;
+}
+
+.field
+{
+    padding: 5%;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    margin: 5%;
+}

@@ -30,3 +30,4 @@ Router.onBeforeAction(requireLogin, {except: ['signUp']});
 Router.route('/signUp');
 Router.route('/profile');
 Router.route('/editProfile');
+Router.route('/newPost');

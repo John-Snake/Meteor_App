@@ -13,6 +13,7 @@ Template.map.helpers({
 	},
 	mapOptions: function() {
 		var latLng = Geolocation.latLng();
+
 		// Initialize the map once we have the latLng.
 		if (GoogleMaps.loaded() && latLng) {
 	  		return {
@@ -33,6 +34,11 @@ Template.map.onCreated(function() {
 		// Create and move the marker when latLng changes.
 		self.autorun(function() {
 	  		var latLng = Geolocation.latLng();
+
+			// Create & update Session persistent variables for the currentUser position	
+			Session.setPersistent('currentUser_latitue', latLng.lat);
+			Session.setPersistent('currentUser_longitude', latLng.lng);
+
 		  	if (! latLng)
 		    	return;
 
@@ -40,7 +46,8 @@ Template.map.onCreated(function() {
 		  	if (! marker) {
 		    	marker = new google.maps.Marker({
 		      	position: new google.maps.LatLng(latLng.lat, latLng.lng),
-		      	map: map.instance
+		      	map: map.instance,
+		      	title: "You're here!"
 		    	});
 	  		}
 			// The marker already exists, so we'll just change its position.

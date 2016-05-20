@@ -1,0 +1,39 @@
+<template name="newPost">
+
+	<div class="navbar-fixed-margin"></div>
+
+	<div class="container newpost text-center">
+		<form class="new_post" id="new_post">
+
+			<div class="field">
+				<label for="post_text">Text</label><br>
+				<textarea name="post_text" id="post_text" oninput="autoGrow(this)"></textarea>
+			</div>
+
+			<div class="field">
+				<label for="post_anonymous">Anonymous</label>
+				<input type="checkbox" value="1" name="post_anonymous" id="post_anonymous" />
+			</div>
+
+			<div class="field">
+				<h3>Dove sei?</h3>
+				<textarea name="post_address" id="post_address" oninput="autoGrow(this)"></textarea>
+			</div>
+
+			<div class="field">
+				<div class="buttond col-md-12">
+					<span class="btn btn-default btn-file col-md-4 col-md-offset-4">
+						<label for="post_image">Image</label>
+						<input type="file" name="post_image" id="post_image"/>
+					</span>
+				</div>
+
+				<div>
+					<input type="submit" name="commit" value="Aggiungi post" class="btn btn-success btn-lg" />
+				</div>
+			</div>
+
+		</form>
+	</div> 
+
+</template>

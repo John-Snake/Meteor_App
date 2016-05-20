@@ -1,16 +1,4 @@
 <template name="profile">
-	<!--
-	<div style="color:white;">
-		<p>Username: {{currentUser.username}}</p>
-		<p>Email: {{currentUser.emails.[0].address}}</p>
-		<p>Name: {{currentUser.profile.name}}</p>
-		<p>Surname: {{currentUser.profile.surname}}</p>
-		<p>Telegram: {{currentUser.profile.telegram_username}}</p>
-		<p>Birth: {{currentUser.profile.birth}}</p>
-		<p>Gender: {{currentUser.profile.gender}}</p>
-		<p>Privacy: {{currentUser.profile.privacy}}</p>
-	</div>
-	-->
 
 	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 		<!-- Indicators -->
@@ -32,7 +20,7 @@
 						<h1>{{currentUser.profile.name}} {{currentUser.profile.surname}}</h1>
 						Email<p class="lead">{{currentUser.emails.[0].address}}</p>
 						Nickname<p class="lead">{{currentUser.username}}</p>
-						Birth<p class="lead">{{currentUser.profile.birth}}</p>
+						Birth<p class="lead">{{formatDate(currentUser.profile.birth)}}</p>
 						Gender<p class="lead">{{currentUser.profile.gender}}</p>
 						Privacy<p class="lead">{{currentUser.profile.privacy}}</p>
 						<a href="" target="_blank">Contattami</a>
@@ -50,7 +38,7 @@
 						<h1>{{currentUser.profile.name}} {{currentUser.profile.surname}}</h1>
 						Email<p class="lead">{{currentUser.emails.[0].address}}</p>
 						Nickname<p class="lead">{{currentUser.username}}</p>
-						Birth<p class="lead">{{currentUser.profile.birth}}</p>
+						Birth<p class="lead">{{formatDate(currentUser.profile.birth)}}</p>
 						Gender<p class="lead">{{currentUser.profile.gender}}</p>
 						Privacy<p class="lead">{{currentUser.profile.privacy}}</p>
 						<a href="" target="_blank">Contattami</a>
@@ -67,7 +55,7 @@
 						<h1>{{currentUser.profile.name}} {{currentUser.profile.surname}}</h1>
 						Email<p class="lead">{{currentUser.emails.[0].address}}</p>
 						Nickname<p class="lead">{{currentUser.username}}</p>
-						Birth<p class="lead">{{currentUser.profile.birth}}</p>
+						Birth<p class="lead">{{formatDate(currentUser.profile.birth)}}</p>
 						Gender<p class="lead">{{currentUser.profile.gender}}</p>
 						Privacy<p class="lead">{{currentUser.profile.privacy}}</p>
 						<a href="" target="_blank">Contattami</a>
@@ -84,7 +72,6 @@
 	<a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
 		<span class="glyphicon glyphicon-chevron-right"></span>
 	</a>
-
 
 	<script>
 		jQuery(document).ready(function() {

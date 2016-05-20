@@ -8,13 +8,6 @@ Template.editProfile.events({
         var gender = $('[name=gender]:checked').val();
         var privacy = $('[name=privacy]').val();
 
-        // cambiare formato data da inserire nel db (ERRORE NEL FORMAT HTML5), oppure cambiare formato solo per la visualizzazione?
-        //var date = new Date($('[name=birth]').val());
-        //var dateBirth = date.getDate()+"-"+date.getMonth()+"-"+date.getFullYear();
-        //console.log(dateBirth);
-
-        //console.log(birth);
-
         var _id = Meteor.userId();
 
         Meteor.users.update( _id, 
