@@ -1,9 +1,9 @@
 Template.signUp.events({
     'submit form': function(event){
         event.preventDefault();
-        var email = $('[name=email]').val();
+        var email = $('[name=email]').val().toLowerCase();
         var password = $('[name=passwordConfirmation]').val();
-        var username = $('[name=username]').val();
+        var username = $('[name=username]').val().toLowerCase();
         var name = $('[name=name]').val();
         var surname = $('[name=surname]').val();
         var telegram_username = $('[name=telegram_username]').val();

@@ -32,7 +32,7 @@ Template.editProfile.events({
     },
     'submit #changeEmail': function(event){
         event.preventDefault();
-        var email = $('[name=email]').val();
+        var email = $('[name=email]').val().toLowerCase();
         var oldEmail = Meteor.user().emails[0].address;
 
         if (email != oldEmail){
@@ -52,7 +52,7 @@ Template.editProfile.events({
     },
     'submit #changeUsername': function(event){ 
         event.preventDefault();
-        var username = $('[name=username]').val();
+        var username = $('[name=username]').val().toLowerCase();
         var oldUsername = Meteor.user().username;
 
         if(username != oldUsername){
@@ -95,8 +95,6 @@ Template.editProfile.events({
     },
 
     //Check existing email address when a key is released.
-
-    //CASE SENSITIVE?! controllati dopo submit
     'keyup #email' : function() {
         Meteor.subscribe('usersEmail');
 
@@ -113,8 +111,6 @@ Template.editProfile.events({
     },
 
     //Check existing username when a key is released. 
-
-    //CASE SENSITIVE?! controllati dopo submit
     'keyup #username' : function() {  
         Meteor.subscribe('usersUsername');
 

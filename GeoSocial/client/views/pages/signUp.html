@@ -55,8 +55,7 @@
 		<br>
 		<div id= "privacy">
 			<label for="user_privacy" id="label_user_privacy">Privacy: livello 1</label>
-			<input min="0" max="2" type="range" name="privacy" id="user_privacy" value="1" 
-                onchange="document.getElementById('label_user_privacy').innerHTML='Privacy: livello '+document.getElementById('user_privacy').value"/>
+			<input min="0" max="2" type="range" name="privacy" id="user_privacy" value="1" onchange="privacyInfoUpdate(this);"/>
 		</div>
 
         <input type="submit" value="Sign Up" class="btn btn-success btn-sm">

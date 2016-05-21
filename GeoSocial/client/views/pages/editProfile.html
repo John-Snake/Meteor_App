@@ -70,7 +70,7 @@
        <div id= "privacy">
             <label for="user_privacy" id="label_user_privacy">Privacy: livello {{currentUser.profile.privacy}}</label>
             <input min="0" max="2" type="range" name="privacy" id="user_privacy" value="{{currentUser.profile.privacy}}" 
-                onchange="document.getElementById('label_user_privacy').innerHTML='Privacy: livello '+document.getElementById('user_privacy').value"/>
+                onchange="privacyInfoUpdate(this);"/>
         </div>
 
         <input type="submit" value="Edit Profile" class="btn btn-success btn-sm">

@@ -1,20 +1,15 @@
-// Format date
+// Format date using Moment.js [Example: 1 Jenuary 2016]
 Template.registerHelper('formatDate', function (date) {
-	var date = new Date(date);
-	var monthNames = [
-	  "January", "February", "March",
-	  "April", "May", "June", "July",
-	  "August", "September", "October",
-	  "November", "December"
-	];
-	var dateString = date.getDate()+" "+monthNames[date.getMonth()]+" "+date.getFullYear();
-	return dateString;
+	return moment(date).format("DD MMMM YYYY");
 })
 
 // Auto grow text area
 autoGrow = function (element) {
-
     element.style.height = "auto";
     element.style.height = (element.scrollHeight+5)+"px";
+}
 
+// Change privacy input type range info
+privacyInfoUpdate = function (inputRange) {
+	document.getElementById('label_user_privacy').innerHTML='Privacy: livello '+inputRange.value;
 }
