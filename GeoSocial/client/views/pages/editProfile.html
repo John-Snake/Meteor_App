@@ -27,7 +27,7 @@
         <input type="submit" value="Change password" class="btn btn-success btn-sm">
     </form>
 
-    <form class="signUp" id="editProfile">
+    <form class="signUp" id="editProfile" style="margin-bottom:0;">
         <p class="form-title">Edit profile</p>
         <label for="name">Nome : </label>
         <div><input type="text" name="name" id="name" value="{{currentUser.profile.name}}"></div>
@@ -75,5 +75,10 @@
 
         <input type="submit" value="Edit Profile" class="btn btn-success btn-sm">
     </form>
+
+    <form class="button_to" id="cancelAccount">
+        <input class="btn btn-danger btn-sm" type="submit" value="Cancel my account" />
+    </form>
+                    
 
 </template>

@@ -1,0 +1,80 @@
+<template name="myPost">
+
+	<div class="navbar-fixed-margin"></div>
+
+	<div id="post">
+        <div class="container text-center">
+        	<a class="btn btn-lg btn-primary" href="/newPost">New post</a>
+        </div>
+	        
+		<div class="container-fluid">
+			<div class="row text-center well well-sm features">
+					  
+                <div class="col-md-2">
+              		<i class="glyphicon glyphicon-user"></i>
+              		<h3><a href="/profile">username autore post</a></h3>
+                  
+                	<a class="btn btn-primary btn-sm" href="">Edit post</a>
+               		<a class="btn btn-danger btn-sm" rel="nofollow" data-method="delete" href="">Delete post</a>
+                </div>
+	                
+                <div class="col-md-3 col-md-offset-1">
+              		<i class="glyphicon glyphicon-pencil"></i>
+                    <p class="lead">contenuto post</p>
+              		<div class="likes">
+	                    <i class="glyphicon glyphicon-chevron-up" id="like">1  </i>
+                    	<i class="glyphicon glyphicon-chevron-down" id="dislike">0 </i>
+                  	</div>
+                  
+                    <a class="btn btn-success btn-sm" data-remote="true" rel="nofollow" data-method="put" href="https://geosocial-alagaesia.c9users.io/posts/like?id=1005">Like</a> 
+                    <a class="btn btn-danger btn-sm" data-remote="true" rel="nofollow" data-method="put" href="https://geosocial-alagaesia.c9users.io/posts/dislike?id=1005">Dislike</a>
+
+                </div>
+	                
+                <div class="col-md-3">
+            	    <i class="glyphicon glyphicon-screenshot"></i>
+                  	<h3>Map</h3>
+                  	<p class="lead">DATA<br></p>
+                  	<div class="google-maps">
+              			{{> postMap lat="44.55619" lng="7.724729999999999"}}
+                  	</div>
+                </div>
+	                
+                <div class="col-md-3">
+	 	     		<i class="glyphicon glyphicon-comment"></i>
+				    <h3>People say</h3>
+		 	        <div class="divcomm" id="comm">
+                    </div>
+                    <form class="comment">
+                    </form>
+			    <!--
+
+                 	<div class="likes">
+
+	                    <form class="new_comment" id="new_comment" action="/users/104/posts/1005/comments" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="&#x2713;" />
+
+
+		  				<div class="row text-center commento">
+						    <textarea placeholder="Insert your comment" name="comment[body]" id="comment_body"></textarea>
+						  					        
+						    <div class="">
+					        	<label for="comment_anonymous">Anonymous</label>
+						        <input name="comment[anonymous]" type="hidden" value="0" /><input type="checkbox" value="1" name="comment[anonymous]" id="comment_anonymous" />
+					      	</div>
+					      	<div>
+					        	<input type="submit" name="commit" value="Create comment" class="btn btn-success btn-sm" id="comment_submit" />
+					      	</div>
+						  </div>
+						  
+						  
+						</form>
+                  	</div>
+                -->
+                </div>
+	              
+	                
+			</div>
+		</div>
+	</div>
+
+</template>

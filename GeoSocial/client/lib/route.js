@@ -31,3 +31,4 @@ Router.route('/signUp');
 Router.route('/profile');
 Router.route('/editProfile');
 Router.route('/newPost');
+Router.route('/myPost');

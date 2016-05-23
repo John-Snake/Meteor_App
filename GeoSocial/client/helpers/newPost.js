@@ -13,7 +13,6 @@ Template.newPost.events({
 		var latitue = Session.get('currentUser_latitue');
         var longitude = Session.get('currentUser_longitude');
 
-        
        	console.log(user_id);
        	console.log(dateTime);
         console.log(text);

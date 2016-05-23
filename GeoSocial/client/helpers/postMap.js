@@ -5,19 +5,22 @@ Meteor.startup(function() {
 	GoogleMaps.load();
 });
 
-// Create a non reactive version that will initialise the map centred on the current coordinates.
-Template.map.helpers({  
+// Create a non reactive version that will initialise the map centred on the coordinates.
+Template.postMap.helpers({  
 	geolocationError: function() {
 		var error = Geolocation.error();
 		return error && error.message;
 	},
-	mapOptions: function() {
-		var latLng = Geolocation.latLng();
+	mapOptions: function() { // non prende i parametri.. la inizializzo con valori 'casuali'
+		//var lat = $('[name=lat]').val();
+		//var lng = $('[name=lng]').val();
+		var lat = 110;
+		var lng = 110;
 
 		// Initialize the map once we have the latLng.
-		if (GoogleMaps.loaded() && latLng) {
+		if (GoogleMaps.loaded()) {
 	  		return {
-	    		center: new google.maps.LatLng(latLng.lat, latLng.lng),
+	    		center: new google.maps.LatLng(lat, lng),
 	    		zoom: MAP_ZOOM
 	  		};
 		}
@@ -25,29 +28,24 @@ Template.map.helpers({
 });
 
 // Reactively update both the marker position and map position
-Template.map.onCreated(function() {  
+Template.postMap.onCreated(function() {  
 	var self = this;
 
-	GoogleMaps.ready('map', function(map) {
+	GoogleMaps.ready('postMap', function(map) {
+		var lat = $('[name=lat]').val();
+		var lng = $('[name=lng]').val();
+
 		var marker;
 
 		// Create and move the marker when latLng changes.
 		self.autorun(function() {
-	  		var latLng = Geolocation.latLng();
-
-			// Create & update Session persistent variables for the currentUser position	
-			Session.setPersistent('currentUser_latitue', latLng.lat);
-			Session.setPersistent('currentUser_longitude', latLng.lng);
-
-		  	if (! latLng)
-		    	return;
 
 		  	// If the marker doesn't yet exist, create it.
 		  	if (! marker) {
 		    	marker = new google.maps.Marker({
-		      	position: new google.maps.LatLng(latLng.lat, latLng.lng),
+		      	position: new google.maps.LatLng(lat, lng),
 		      	map: map.instance,
-		      	title: "You're here!"
+		      	title: "Posted here!"
 		    	});
 	  		}
 			// The marker already exists, so we'll just change its position.
