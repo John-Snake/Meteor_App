@@ -6,8 +6,8 @@ Router.route('/', {
 // Imposto il layout generale di tutte le routes del progetto
 Router.configure({
     layoutTemplate: 'layoutTemplate',
-    notFoundTemplate: 'notFound'
-  	//loadingTemplate: 'loading'
+    notFoundTemplate: 'notFound',
+  	loadingTemplate: 'loadingTemplate'
 });
 
 Router.plugin('dataNotFound', {notFoundTemplate: 'notFound'});

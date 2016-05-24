@@ -36,7 +36,7 @@ Template.map.onCreated(function() {
 	  		var latLng = Geolocation.latLng();
 
 			// Create & update Session persistent variables for the currentUser position	
-			Session.setPersistent('currentUser_latitue', latLng.lat);
+			Session.setPersistent('currentUser_latitude', latLng.lat);
 			Session.setPersistent('currentUser_longitude', latLng.lng);
 
 		  	if (! latLng)
