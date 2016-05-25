@@ -7,7 +7,10 @@ Template.signUp.events({
         var name = $('[name=name]').val();
         var surname = $('[name=surname]').val();
         var telegram_username = $('[name=telegram_username]').val();
-        var birth = $('[name=birth]').val();
+        
+        var birth = new Date($('[name=birth]').val());
+        var formattedBirthDate = moment(birth).format("YYYY-MM-DD");
+        
         var gender = $('[name=gender]:checked').val();
         var privacy = $('[name=privacy]').val();
         
@@ -19,7 +22,7 @@ Template.signUp.events({
                 name: name,
                 surname: surname,
                 telegram_username: telegram_username,
-                birth: birth,
+                birth: formattedBirthDate,
                 gender: gender,
                 privacy: privacy
             },

@@ -1,64 +1,63 @@
 <template name="signUp">
 
-    <div class="navbar-fixed-margin"></div>
+    {{#unless currentUser}}
 
-    <div class="confirmation" id="confirmation">Confirmation!</div>
-    <div class="alert" id="alert">Error.</div>
-    <div class="info" id="info">Info here.</div>
+        <div class="confirmation" id="confirmation">Confirmation!</div>
+        <div class="alert" id="alert">Error.</div>
+        <div class="info" id="info">Info here.</div>
 
- 	<form class="signUp">
-    	<p class="form-title">Sign Up</p>
-        <div><input type="email" name="email" placeholder="Email" id="email" required></div>
-        <div><input type="password" name="password" placeholder="Password" id="password" required></div>
-        <div><input type="password" name="passwordConfirmation" placeholder="Password confirmation" id="passwordConfirmation" required></div>
-        <div><input type="text" name="username" placeholder="Username" id="username" required></div>
-        
-        <br>
-        <div><input type="text" name="name" id="name" placeholder="Name"></div>
-        <div><input type="text" name="surname" id="surname" placeholder="Surname"></div>
-        <div><input type="text" name="telegram_username" id="telegram_username" placeholder="Telegram username"></div>
-        <br>
-        <div>
-            <label for="birth">Birth</label>
+     	<form class="signUp">
+        	<p class="form-title">Sign Up</p>
+            <div><input type="email" name="email" placeholder="Email" id="email" required></div>
+            <div><input type="password" name="password" placeholder="Password" id="password" required></div>
+            <div><input type="password" name="passwordConfirmation" placeholder="Password confirmation" id="passwordConfirmation" required></div>
+            <div><input type="text" name="username" placeholder="Username" id="username" required></div>
+            
             <br>
-            <input type="date" name="birth" id="birth">
-        </div>
+            <div><input type="text" name="name" id="name" placeholder="Name"></div>
+            <div><input type="text" name="surname" id="surname" placeholder="Surname"></div>
+            <div><input type="text" name="telegram_username" id="telegram_username" placeholder="Telegram username"></div>
+            <div> {{> datePicker date=null}} </div>
 
-        
-        <br>
-        <label>Gender</label>
-        <div id="gender">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-2">
-                        <input type="radio" value="Male" name="gender" id="user_male"/>
-                        <label for="user_male">Male</label>
-                    </div>    
-                    <div class="col-md-2">
-                        <input type="radio" value="Female" name="gender" id="user_female"/>
-                        <label for="user_female">Female</label>
-                    </div>
-                    </div>
-                <div class="row">
-                    <div class="col-md-2">
-                        <input type="radio" value="Unknown" name="gender" id="user_unknown"/>
-                        <label for="user_unknown">Unknown</label>
-                    </div>
-                    <div class="col-md-2">
-                        <input type="radio" value="Transgender" name="gender" id="user_transgender"/>
-                        <label for="user_transgender">Transgender</label>
-                    </div>
-                </div>      
+            
+            <br>
+            <label>Gender</label>
+            <div id="gender">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <input type="radio" value="Male" name="gender" id="user_male"/>
+                            <label for="user_male">Male</label>
+                        </div>    
+                        <div class="col-md-2">
+                            <input type="radio" value="Female" name="gender" id="user_female"/>
+                            <label for="user_female">Female</label>
+                        </div>
+                        </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <input type="radio" value="Unknown" name="gender" id="user_unknown"/>
+                            <label for="user_unknown">Unknown</label>
+                        </div>
+                        <div class="col-md-2">
+                            <input type="radio" value="Transgender" name="gender" id="user_transgender"/>
+                            <label for="user_transgender">Transgender</label>
+                        </div>
+                    </div>      
+                </div>
             </div>
-        </div>
 
-		<br>
-		<div id= "privacy">
-			<label for="user_privacy" id="label_user_privacy">Privacy: livello 1</label>
-			<input min="0" max="2" type="range" name="privacy" id="user_privacy" value="1" onchange="privacyInfoUpdate(this);"/>
-		</div>
+    		<br>
+    		<div id= "privacy">
+    			<label for="user_privacy" id="label_user_privacy">Privacy: livello 1</label>
+    			<input min="0" max="2" type="range" name="privacy" id="user_privacy" value="1" onchange="privacyInfoUpdate(this);"/>
+    		</div>
 
-        <input type="submit" value="Sign Up" class="btn btn-success btn-sm">
-    </form>
+            <input type="submit" value="Sign Up" class="btn btn-success btn-sm">
+        </form>
+        
+    {{else}}
+        {{> notFound}}
+    {{/unless}}
 
 </template>

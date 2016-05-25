@@ -4,7 +4,10 @@ Template.editProfile.events({
         var name = $('[name=name]').val();
         var surname = $('[name=surname]').val();
         var telegram_username = $('[name=telegram_username]').val();
-        var birth = $('[name=birth]').val();
+        
+        var birth = new Date($('[name=birth]').val());
+        var formattedBirthDate = moment(birth).format("YYYY-MM-DD");
+        
         var gender = $('[name=gender]:checked').val();
         var privacy = $('[name=privacy]').val();
 
@@ -15,7 +18,7 @@ Template.editProfile.events({
                     "profile.name": name,
                     "profile.surname": surname,
                     "profile.telegram_username": telegram_username,
-                    "profile.birth": birth,
+                    "profile.birth": formattedBirthDate,
                     "profile.gender": gender,
                     "profile.privacy": privacy
                 }

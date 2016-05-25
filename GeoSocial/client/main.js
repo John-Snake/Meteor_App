@@ -5,7 +5,7 @@ Template.registerHelper('formatDateProfile', function (date) {
 
 // Format date using Moment.js [Example: 01/01/2016, 15:00]
 Template.registerHelper('formatDatePost', function (date) {
-	return moment(date).format("DD/MM/YYYY, hh:mm");
+	return moment(date).format("DD/MM/YYYY, HH:mm");
 })
 
 // Auto grow text area
@@ -19,56 +19,106 @@ privacyInfoUpdate = function (inputRange) {
 	document.getElementById('label_user_privacy').innerHTML='Privacy: livello '+inputRange.value;
 }
 
+/* Post -------------------- */
+
+Template.registerHelper('alreadyLiked', function () {
+	var post = Post.findOne({ _id: this._id });
+	
+	if(post) {
+		// Already liked the post
+		if (_.contains(post.votersLike, Meteor.userId())) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+});
+
+Template.registerHelper('alreadyDisliked', function () {
+	var post = Post.findOne({ _id: this._id });
+	
+	if(post) {
+		// Already disliked the post
+		if (_.contains(post.votersDislike, Meteor.userId())) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+});
+
 like = function(post_id, like, dislike, counter) {
 	var likeButton = document.getElementById("like_"+post_id);
 	var dislikeButton = document.getElementById("dislike_"+post_id);
 	var temp = counter;
 	var addLike = parseInt(like)+1;
+	var post = Post.findOne({ _id: post_id });
+	
+	if(post) {
 
-	if(temp === 0) { // Add 1 like
-				
-		Post.update({_id : post_id}, 
-			{$set: {like : addLike}},
- 		    function(error){
-               	if(error){
-                    console.log(error.reason);
-                }
-            	else{
-            		temp++;
+		// Already liked the post
+		if (_.contains(post.votersLike, Meteor.userId())) {
+			return;
+		}
+		else {
 
-            		// Like function will fail the first if and the like button is set to disabled
-            		likeButton.setAttribute("onclick","like('"+post_id+"',"+addLike+","+dislike+","+temp+")");
-            		likeButton.disabled = true;
+			if(temp === 0) { // Add 1 like
+			
+				Post.update( { _id : post_id },
+					{ 
+						$addToSet: { votersLike: Meteor.userId() } ,
+						$inc: { like: 1 } 
+					},
+		 		    function(error){
+		               	if(error){
+		                    console.log(error.invalidKeys);
+		                }
+		            	/*else{
+		            		temp++;
 
-        			// Dislike function will add 1 dislike and remove 1 like
-            		dislikeButton.setAttribute("onclick","dislike('"+post_id+"',"+addLike+","+dislike+",-1)");
-            		dislikeButton.disabled = false;
-            	}    
-            }
-        );
-	}
-	else if (temp === -1) { // Add 1 like, remove 1 dislike
-		var decreaseDislike = parseInt(dislike)-1;
+		            		// Like function will fail the first if and the like button is set to disabled
+		            		likeButton.setAttribute("onclick","like('"+post_id+"',"+addLike+","+dislike+","+temp+")");
+		            		likeButton.disabled = true;
 
-		Post.update({_id : post_id}, 
-			{$set: {like : addLike, dislike: decreaseDislike}},
- 		    function(error){
-               	if(error){
-                    console.log(error.reason);
-                }
-            	else{
-            		temp = 1;
+		        			// Dislike function will add 1 dislike and remove 1 like
+		            		dislikeButton.setAttribute("onclick","dislike('"+post_id+"',"+addLike+","+dislike+",-1)");
+		            		dislikeButton.disabled = false;
+		            	}*/  
+		            }
+		        );
+			}
+			else if (temp === -1) { // Add 1 like, remove 1 dislike
+				var decreaseDislike = parseInt(dislike)-1;
 
-            		// Like function will fail the first if and the like button is set to disabled
-            		likeButton.setAttribute("onclick","like('"+post_id+"',"+addLike+","+decreaseDislike+","+temp+")");
-            		likeButton.disabled = true;
+				Post.update( { _id : post_id },
+					{ 
+						$addToSet: { votersLike: Meteor.userId() },
+						$pull: { votersDislike: Meteor.userId() },
+						$inc: { like : 1, dislike: -1 } 
+					},
+		 		    function(error){
+		               	if(error){
+		                    console.log(error.invalidKeys);
+		                }
+		            	/*else{
+		            		temp = 1;
 
-            		// Dislike function will add 1 dislike and remove 1 like
-            		dislikeButton.setAttribute("onclick","dislike('"+post_id+"',"+addLike+","+decreaseDislike+", -1)");
-            		dislikeButton.disabled = false;
-            	}    
-            }
-        );
+		            		// Like function will fail the first if and the like button is set to disabled
+		            		likeButton.setAttribute("onclick","like('"+post_id+"',"+addLike+","+decreaseDislike+","+temp+")");
+		            		likeButton.disabled = true;
+
+		            		// Dislike function will add 1 dislike and remove 1 like
+		            		dislikeButton.setAttribute("onclick","dislike('"+post_id+"',"+addLike+","+decreaseDislike+", -1)");
+		            		dislikeButton.disabled = false;
+		            	}*/ 
+		            }
+		        );
+			}
+
+		}
+
 	}
 
 }
@@ -78,51 +128,70 @@ dislike = function(post_id, like, dislike, counter) {
 	var likeButton = document.getElementById("like_"+post_id);
 	var temp = counter;
 	var addDislike = parseInt(dislike)+1;
+	var post = Post.findOne({ _id: post_id });
 
-	if(temp === 0) { // Add 1 dislike
+	if(post) {
 
-		Post.update({_id : post_id}, 
-			{$set: {dislike : addDislike}},
- 		    function(error){
-               	if(error){
-                    console.log(error.reason);
-                }
-            	else{
-            		temp++;
+		// Already disliked the post
+		if (_.contains(post.votersDislike, Meteor.userId())) {
+			return;
+		}
+		else {
 
-            		// Dislike function will fail the first if and the dislike button is set to disabled
-            		dislikeButton.setAttribute("onclick","dislike('"+post_id+"',"+like+","+addDislike+","+temp+")");
-            		dislikeButton.disabled = true;
+			if(temp === 0) { // Add 1 dislike
 
-            		// Like function will add 1 like and remove 1 dislike
-            		likeButton.setAttribute("onclick","like('"+post_id+"',"+like+","+addDislike+", -1)");
-            		likeButton.disabled = false;
-            	}    
-            }
-        );
-	}
-	else if (temp === -1) { // Add 1 dislike, remove 1 like
-		var decreaselike = parseInt(like)-1;
+				Post.update( { _id : post_id }, 
+					{ 
+						$addToSet: { votersDislike: Meteor.userId() },
+						$inc: { dislike : 1 } 
+					},
+		 		    function(error){
+		               	if(error){
+		                    console.log(error.invalidKeys);
+		                }
+		            	/*else{
+		            		temp++;
 
-		Post.update({_id : post_id}, 
-			{$set: {like : decreaselike, dislike: addDislike}},
- 		    function(error){
-               	if(error){
-                    console.log(error.reason);
-                }
-            	else{
-            		temp = 1;
+		            		// Dislike function will fail the first if and the dislike button is set to disabled
+		            		dislikeButton.setAttribute("onclick","dislike('"+post_id+"',"+like+","+addDislike+","+temp+")");
+		            		dislikeButton.disabled = true;
 
-            		// Dislike function will fail the first if and the dislike button is set to disabled
-            		dislikeButton.setAttribute("onclick","dislike('"+post_id+"',"+decreaselike+","+addDislike+","+temp+")");
-            		dislikeButton.disabled = true;
+		            		// Like function will add 1 like and remove 1 dislike
+		            		likeButton.setAttribute("onclick","like('"+post_id+"',"+like+","+addDislike+", -1)");
+		            		likeButton.disabled = false;
+		            	}*/ 
+		            }
+		        );
+			}
+			else if (temp === -1) { // Add 1 dislike, remove 1 like
+				var decreaselike = parseInt(like)-1;
 
-            		// Like function will add 1 like and remove 1 dislike
-            		likeButton.setAttribute("onclick","like('"+post_id+"',"+decreaselike+","+addDislike+", -1)");
-            		likeButton.disabled = false;
-            	}    
-            }
-        );
+				Post.update( { _id : post_id },
+					{ 
+						$addToSet: { votersDislike: Meteor.userId() },
+						$pull: { votersLike: Meteor.userId() },
+						$inc: { like : -1, dislike: 1 } 
+					},
+		 		    function(error){
+		               	if(error){
+		                    console.log(error.invalidKeys);
+		                }
+		            	/*else{
+		            		temp = 1;
+
+		            		// Dislike function will fail the first if and the dislike button is set to disabled
+		            		dislikeButton.setAttribute("onclick","dislike('"+post_id+"',"+decreaselike+","+addDislike+","+temp+")");
+		            		dislikeButton.disabled = true;
+
+		            		// Like function will add 1 like and remove 1 dislike
+		            		likeButton.setAttribute("onclick","like('"+post_id+"',"+decreaselike+","+addDislike+", -1)");
+		            		likeButton.disabled = false;
+		            	}*/  
+		            }
+		        );
+			}
+
+		}
 	}
 
 }

@@ -1,7 +1,6 @@
 Template.newPost.events({
     'submit #new_post': function(event){
 		event.preventDefault();
-		var userId = Meteor.userId();
 		var dateTime = new Date();
         var text = $('[name=post_text]').val();
         var anonymous = $('[name=post_anonymous]:checked').val();
@@ -14,17 +13,14 @@ Template.newPost.events({
         var longitude = Session.get('currentUser_longitude');
 
         Post.insert({
-    		userId: userId,
     		anonymous: anonymous,
     		dateTime: dateTime,
     		latitude: latitude,
     		longitude: longitude,
-    		text: text,
-    		like: 0,
-    		dislike:0
+    		text: text
         }, function(error){
                if(error){
-                    console.log(error.reason);
+                    console.log(error.invalidKeys);
                 } else {
                     Router.go("/myPost");
                 }

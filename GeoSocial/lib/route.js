@@ -11,7 +11,6 @@ Router.configure({
 });
 
 Router.plugin('dataNotFound', {notFoundTemplate: 'notFound'});
-//Router.onBeforeAction('loading');
 
 // Blocco accesso alle pagine disponibili solo per gli utenti loggati
 var requireLogin = function() { 
@@ -23,6 +22,7 @@ var requireLogin = function() {
    this.next(); 
  }
 }
+
 // Per gli utenti non loggati sono disponibili solo signIn e singUp (eccezione)
 Router.onBeforeAction(requireLogin, {except: ['signUp']});
 

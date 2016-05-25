@@ -1,9 +1,3 @@
-/*
-#temporaneo{
-    color: white;
-}
-*/
-
 body 
 {
     background: url('/images/World.jpg') no-repeat;
@@ -12,48 +6,50 @@ body
     padding: 0;
 }
 
+.notFound 
+{  
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    text-align: center;
+    font-size: 2em;
+    padding: 3%;
+    margin-top: 5%;
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
 /* Navbar ------------------- */
 
-.navbar-inverse
+header .navbar-inverse
 {
     background-color: rgba(0, 0, 0, 0.7);
     /*opacity: 0.7;*/
 }
 
-.navbar-inverse .navbar-brand
+header .navbar-inverse .navbar-brand
 {
    color: rgba(92, 184, 92, 1);
 }
 
-.navbar-inverse .navbar-nav > li > a
+header .navbar-inverse .navbar-nav > li > a
 {
     color: rgba(92, 184, 92, 1);
 }
 
-.navbar-inverse .pie
+header .navbar-inverse .pie
 {
     color: rgba(92, 184, 92, 1);
-}
-
-/* Ho cambiato navbar-static-top in navbar-fixed-top
-   nell'header per sistemare il carousel, incasinando i margin-top
-   di tutte le altre pagine!
-   (ex-navbar height: 50px, margin-bot: 20px, border: 1px)
-*/
-.navbar-fixed-margin
-{
-    margin-top: 71px;
 }
 
 /* Aggiunto per il dropdown */
-.dropdown-menu 
+header .dropdown-menu 
 {
     background-color: rgba(0, 0, 0, 0.7);
 
 }
 
 /* Aggiunto per il dropdown */
-.dropdown-menu > li > a
+header .dropdown-menu > li > a
 {
     color: rgba(92, 184, 92, 1);
 }
@@ -112,8 +108,7 @@ form.signIn input[type="text"], form.signIn input[type="email"], form.signIn inp
     outline: 0;
 }
 
-form.signUp input[type="text"], form.signUp input[type="email"], form.signUp input[type="password"],
-input[type="date"] 
+form.signUp input[type="text"], form.signUp input[type="email"], form.signUp input[type="password"]
 {
     width: 100%;
     margin: 0;

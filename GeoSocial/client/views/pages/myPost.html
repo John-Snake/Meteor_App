@@ -1,7 +1,5 @@
 <template name="myPost">
 
-	<div class="navbar-fixed-margin"></div>
-
 	<div id="post">
         <div class="container text-center">
         	<a class="btn btn-lg btn-primary" href="/newPost">New post</a>
@@ -26,9 +24,19 @@
 		                    <i class="glyphicon glyphicon-chevron-up" id="like">{{like}}</i>
 	                    	<i class="glyphicon glyphicon-chevron-down" id="dislike">{{dislike}}</i>
 	                  	</div>
-	                  
-	                    <button class="btn btn-success btn-sm" id="like_{{_id}}" onclick="like('{{_id}}','{{like}}','{{dislike}}', 0)">Like</button> 
-	                    <button class="btn btn-danger btn-sm" id="dislike_{{_id}}" onclick="dislike('{{_id}}','{{like}}','{{dislike}}', 0)">Dislike</button>
+
+	                  	{{#if alreadyLiked}}
+		                    <button class="btn btn-success btn-sm" id="like_{{_id}}" onclick="like('{{_id}}','{{like}}','{{dislike}}', 1)" disabled="{{alreadyLiked}}">Like</button> 
+		                    <button class="btn btn-danger btn-sm" id="dislike_{{_id}}" onclick="dislike('{{_id}}','{{like}}','{{dislike}}', -1)" disabled="{{alreadyDisliked}}">Dislike</button>
+	                    {{else}}
+	                    	{{#if alreadyDisliked}}
+                    		<button class="btn btn-success btn-sm" id="like_{{_id}}" onclick="like('{{_id}}','{{like}}','{{dislike}}', -1)" disabled="{{alreadyLiked}}">Like</button> 
+	                    	<button class="btn btn-danger btn-sm" id="dislike_{{_id}}" onclick="dislike('{{_id}}','{{like}}','{{dislike}}', 1)" disabled="{{alreadyDisliked}}">Dislike</button>
+                    		{{else}}
+                    			<button class="btn btn-success btn-sm" id="like_{{_id}}" onclick="like('{{_id}}','{{like}}','{{dislike}}', 0)" disabled="{{alreadyLiked}}">Like</button> 
+	                    		<button class="btn btn-danger btn-sm" id="dislike_{{_id}}" onclick="dislike('{{_id}}','{{like}}','{{dislike}}', 0)" disabled="{{alreadyDisliked}}">Dislike</button>
+                    		{{/if}}
+	                    {{/if}}
 
 	                </div>
 		                
