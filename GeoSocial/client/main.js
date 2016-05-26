@@ -75,17 +75,6 @@ like = function(post_id, like, dislike, counter) {
 		               	if(error){
 		                    console.log(error.invalidKeys);
 		                }
-		            	/*else{
-		            		temp++;
-
-		            		// Like function will fail the first if and the like button is set to disabled
-		            		likeButton.setAttribute("onclick","like('"+post_id+"',"+addLike+","+dislike+","+temp+")");
-		            		likeButton.disabled = true;
-
-		        			// Dislike function will add 1 dislike and remove 1 like
-		            		dislikeButton.setAttribute("onclick","dislike('"+post_id+"',"+addLike+","+dislike+",-1)");
-		            		dislikeButton.disabled = false;
-		            	}*/  
 		            }
 		        );
 			}
@@ -102,17 +91,6 @@ like = function(post_id, like, dislike, counter) {
 		               	if(error){
 		                    console.log(error.invalidKeys);
 		                }
-		            	/*else{
-		            		temp = 1;
-
-		            		// Like function will fail the first if and the like button is set to disabled
-		            		likeButton.setAttribute("onclick","like('"+post_id+"',"+addLike+","+decreaseDislike+","+temp+")");
-		            		likeButton.disabled = true;
-
-		            		// Dislike function will add 1 dislike and remove 1 like
-		            		dislikeButton.setAttribute("onclick","dislike('"+post_id+"',"+addLike+","+decreaseDislike+", -1)");
-		            		dislikeButton.disabled = false;
-		            	}*/ 
 		            }
 		        );
 			}
@@ -149,17 +127,6 @@ dislike = function(post_id, like, dislike, counter) {
 		               	if(error){
 		                    console.log(error.invalidKeys);
 		                }
-		            	/*else{
-		            		temp++;
-
-		            		// Dislike function will fail the first if and the dislike button is set to disabled
-		            		dislikeButton.setAttribute("onclick","dislike('"+post_id+"',"+like+","+addDislike+","+temp+")");
-		            		dislikeButton.disabled = true;
-
-		            		// Like function will add 1 like and remove 1 dislike
-		            		likeButton.setAttribute("onclick","like('"+post_id+"',"+like+","+addDislike+", -1)");
-		            		likeButton.disabled = false;
-		            	}*/ 
 		            }
 		        );
 			}
@@ -176,17 +143,6 @@ dislike = function(post_id, like, dislike, counter) {
 		               	if(error){
 		                    console.log(error.invalidKeys);
 		                }
-		            	/*else{
-		            		temp = 1;
-
-		            		// Dislike function will fail the first if and the dislike button is set to disabled
-		            		dislikeButton.setAttribute("onclick","dislike('"+post_id+"',"+decreaselike+","+addDislike+","+temp+")");
-		            		dislikeButton.disabled = true;
-
-		            		// Like function will add 1 like and remove 1 dislike
-		            		likeButton.setAttribute("onclick","like('"+post_id+"',"+decreaselike+","+addDislike+", -1)");
-		            		likeButton.disabled = false;
-		            	}*/  
 		            }
 		        );
 			}
@@ -195,3 +151,5 @@ dislike = function(post_id, like, dislike, counter) {
 	}
 
 }
+
+/* -------------------------- */

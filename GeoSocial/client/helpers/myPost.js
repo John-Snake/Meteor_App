@@ -17,7 +17,7 @@ Template.myPost.helpers({
 		postMap_lat = this.latitude;
 		postMap_lng = this.longitude;
 		
-		var latLng = new google.maps.LatLng(postMap_lat, postMap_lng)
+		var latLng = new google.maps.LatLng(postMap_lat, postMap_lng);
 		var marker; 
 
 		// Initialize the map and the marker

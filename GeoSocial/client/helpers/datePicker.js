@@ -3,6 +3,5 @@ Template.datePicker.rendered = function() {
     	language: 'en-GB',
     	format: 'yyyy-mm-dd',
     	clearBtn: true,
-
 	  });
 }

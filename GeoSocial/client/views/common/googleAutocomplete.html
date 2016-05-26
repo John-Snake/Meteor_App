@@ -1,0 +1,18 @@
+<template name="googleAutocomplete">	
+	<label for="post_location">Use my current location</label>
+	<input type="checkbox" value="1" name="post_location" id="post_location" checked="true" />
+
+	<div class="google-maps-60">
+		<div class="map-container">
+			<div class="map_canvas"></div>
+		</div>
+	</div>
+
+	<h3>Or, use a custom location: </h3>
+	<input id="geocomplete" type="text" placeholder="Type in an address" class="googleAutocomplete" readonly >
+	<form class="googleAutocompleteForm">
+		<input name="lat" type="text" value="" hidden >
+		<input name="lng" type="text" value="" hidden >
+	</form>
+
+</template>

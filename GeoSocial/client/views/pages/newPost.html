@@ -5,7 +5,7 @@
 
 			<div class="field">
 				<label for="post_text">Text</label><br>
-				<textarea name="post_text" id="post_text" oninput="autoGrow(this)"></textarea>
+				<textarea name="post_text" id="post_text" oninput="autoGrow(this)" required></textarea>
 			</div>
 
 			<div class="field">
@@ -13,12 +13,11 @@
 				<input type="checkbox" value="1" name="post_anonymous" id="post_anonymous" />
 			</div>
 
-			<!--
+			
 			<div class="field">
-				<h3>Dove sei?</h3>
-				<textarea name="post_address" id="post_address" oninput="autoGrow(this)"></textarea>
+				{{> googleAutocomplete}}
 			</div>
-			-->
+			
 
 			<div class="field">
 				<div class="buttond col-md-12">
