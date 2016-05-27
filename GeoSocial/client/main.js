@@ -19,6 +19,7 @@ privacyInfoUpdate = function (inputRange) {
 	document.getElementById('label_user_privacy').innerHTML='Privacy: livello '+inputRange.value;
 }
 
+
 /* Post -------------------- */
 
 Template.registerHelper('alreadyLiked', function () {
@@ -50,10 +51,7 @@ Template.registerHelper('alreadyDisliked', function () {
 });
 
 like = function(post_id, like, dislike, counter) {
-	var likeButton = document.getElementById("like_"+post_id);
-	var dislikeButton = document.getElementById("dislike_"+post_id);
 	var temp = counter;
-	var addLike = parseInt(like)+1;
 	var post = Post.findOne({ _id: post_id });
 	
 	if(post) {
@@ -65,34 +63,18 @@ like = function(post_id, like, dislike, counter) {
 		else {
 
 			if(temp === 0) { // Add 1 like
-			
-				Post.update( { _id : post_id },
-					{ 
-						$addToSet: { votersLike: Meteor.userId() } ,
-						$inc: { like: 1 } 
-					},
-		 		    function(error){
-		               	if(error){
-		                    console.log(error.invalidKeys);
-		                }
-		            }
-		        );
+				Meteor.call('like', post_id, 1, function (error) {
+                	if(error){
+                        console.log(error.reason);
+                	}
+                });
 			}
 			else if (temp === -1) { // Add 1 like, remove 1 dislike
-				var decreaseDislike = parseInt(dislike)-1;
-
-				Post.update( { _id : post_id },
-					{ 
-						$addToSet: { votersLike: Meteor.userId() },
-						$pull: { votersDislike: Meteor.userId() },
-						$inc: { like : 1, dislike: -1 } 
-					},
-		 		    function(error){
-		               	if(error){
-		                    console.log(error.invalidKeys);
-		                }
-		            }
-		        );
+				Meteor.call('like', post_id, -1, function (error) {
+                	if(error){
+                        console.log(error.reason);
+                	}
+                });
 			}
 
 		}
@@ -102,10 +84,7 @@ like = function(post_id, like, dislike, counter) {
 }
 
 dislike = function(post_id, like, dislike, counter) {
-	var dislikeButton = document.getElementById("dislike_"+post_id);
-	var likeButton = document.getElementById("like_"+post_id);
 	var temp = counter;
-	var addDislike = parseInt(dislike)+1;
 	var post = Post.findOne({ _id: post_id });
 
 	if(post) {
@@ -117,34 +96,18 @@ dislike = function(post_id, like, dislike, counter) {
 		else {
 
 			if(temp === 0) { // Add 1 dislike
-
-				Post.update( { _id : post_id }, 
-					{ 
-						$addToSet: { votersDislike: Meteor.userId() },
-						$inc: { dislike : 1 } 
-					},
-		 		    function(error){
-		               	if(error){
-		                    console.log(error.invalidKeys);
-		                }
-		            }
-		        );
+				Meteor.call('dislike', post_id, 1, function (error) {
+                	if(error){
+                        console.log(error.reason);
+                	}
+                });
 			}
 			else if (temp === -1) { // Add 1 dislike, remove 1 like
-				var decreaselike = parseInt(like)-1;
-
-				Post.update( { _id : post_id },
-					{ 
-						$addToSet: { votersDislike: Meteor.userId() },
-						$pull: { votersLike: Meteor.userId() },
-						$inc: { like : -1, dislike: 1 } 
-					},
-		 		    function(error){
-		               	if(error){
-		                    console.log(error.invalidKeys);
-		                }
-		            }
-		        );
+				Meteor.call('dislike', post_id, -1, function (error) {
+                	if(error){
+                        console.log(error.reason);
+                	}
+                });
 			}
 
 		}

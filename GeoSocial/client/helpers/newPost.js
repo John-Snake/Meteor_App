@@ -61,7 +61,6 @@ Template.newPost.events({
         else if(choice===undefined) {
             $('#geocomplete').prop('readonly', false);
             $('#geocomplete').prop('required', true);
-            $('.google-maps').show();
         }
     }
 });

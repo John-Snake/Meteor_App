@@ -38,19 +38,19 @@ PostSchema = new SimpleSchema({
 		defaultValue: 0
 	},
 	votersLike: {
-      	type:Array,
+      	type: Array,
       	optional: true
   	},
   	'votersLike.$':{
-      	type:String,
+      	type: String,
       	regEx: SimpleSchema.RegEx.Id,
     },
     votersDislike: {
-      	type:Array,
+      	type: Array,
       	optional: true
   	},
   	'votersDislike.$':{
-      	type:String,
+      	type: String,
       	regEx: SimpleSchema.RegEx.Id,
     }
 });
@@ -58,12 +58,25 @@ PostSchema = new SimpleSchema({
 Post.attachSchema(PostSchema);
 
 Post.allow({
-	// Allow insert function for Post collection if userId exist
-	insert: function(userId) {
-		return !!userId;
+	insert: function (userId, doc) {
+	    // the user must be logged in, and the document must be owned by the current user
+	    return (userId && doc.userId === userId);
+ 	},
+	update: function (userId, doc, fields, modifier) { // it will only be possible to add like/dislike from server-side code
+	    // can only change your own documents
+	    return doc.userId === userId;
 	},
-	update: function(userId) {
-		return !!userId;
-	}
+	remove: function (userId, doc) {
+	    // can only remove your own documents
+	    return doc.userId === userId;
+	},
+	// fetch only the field that are actually used by your functions
+	fetch: ['userId']
+});
 
+Post.deny({
+	update: function (userId, doc, fields, modifier) { // it will only be possible to add like/dislike from server-side code
+    	// can't change owners
+    	return _.contains(fields, 'userId');
+  	}
 });

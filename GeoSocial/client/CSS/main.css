@@ -624,6 +624,11 @@ input[type="checkbox"]
     width: 100%;
     height: 100%;
 }
+
+.pac-container {
+    z-index: 10000;
+}
+
 /* Post -------------------- */
 
 #post .well{

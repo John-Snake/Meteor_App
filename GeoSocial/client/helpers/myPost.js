@@ -9,7 +9,7 @@ Template.myPost.created = function () {
 Template.myPost.helpers({
 	// Extract a row for each entry in the Post db
 	'post' : function (){
-		return Post.find();
+		return Post.find( {}, { sort: { dateTime: -1} } );
 	},
 	// Create a non reactive version that will initialise the map & the marker centred on the coordinates.
 	mapOptions: function() { 
@@ -40,4 +40,16 @@ Template.myPost.helpers({
 		var error = Geolocation.error();
 		return error && error.message;
 	}
+});
+
+Template.myPost.events({
+	'click #deletePost': function() {
+		Session.set('postId', this._id);
+		Modal.show('deletePost');
+	},
+	'click #editPost' : function() {
+		Session.set('postId', this._id);
+		Modal.show('editPost');
+	}
+
 });
