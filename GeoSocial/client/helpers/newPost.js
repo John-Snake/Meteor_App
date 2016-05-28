@@ -29,11 +29,11 @@ Template.newPost.events({
         		longitude: longitude,
         		text: text
         }, function(error){
-              if(error){
-                  console.log(error.invalidKeys);
-              } else {
-                  Router.go("/myPost");
-              }
+                if(error){
+                    console.log(error.invalidKeys);
+                } else {
+                    Router.go("/myPost");
+                }
           }
         );
 

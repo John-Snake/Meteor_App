@@ -73,10 +73,3 @@ Post.allow({
 	// fetch only the field that are actually used by your functions
 	fetch: ['userId']
 });
-
-Post.deny({
-	update: function (userId, doc, fields, modifier) { // it will only be possible to add like/dislike from server-side code
-    	// can't change owners
-    	return _.contains(fields, 'userId');
-  	}
-});

@@ -46,10 +46,11 @@ Template.myPost.events({
 	'click #deletePost': function() {
 		Session.set('postId', this._id);
 		Modal.show('deletePost');
-	},
+	}
+	/*,
 	'click #editPost' : function() {
 		Session.set('postId', this._id);
 		Modal.show('editPost');
-	}
+	}*/
 
 });

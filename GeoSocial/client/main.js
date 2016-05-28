@@ -8,10 +8,9 @@ Template.registerHelper('formatDatePost', function (date) {
 	return moment(date).format("DD/MM/YYYY, HH:mm");
 })
 
-// Auto grow text area
+// Auto grow text area with verron:autosize
 autoGrow = function (element) {
-    element.style.height = "auto";
-    element.style.height = (element.scrollHeight+5)+"px";
+    autosize(element);
 }
 
 // Change privacy input type range info

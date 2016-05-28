@@ -13,7 +13,7 @@
 	              		<i class="glyphicon glyphicon-user"></i>
 	              		<h3><a href="/profile">{{currentUser.username}}</a></h3>
 	                  
-	                	<button class="btn btn-primary btn-sm" id="editPost">Edit post</button>
+	                	<a class="btn btn-primary btn-sm" href="/editPost/{{_id}}">Edit post</a>
 	               		<button class="btn btn-danger btn-sm" id="deletePost">Delete post</button>
 	                </div>
 		                
@@ -88,6 +88,7 @@
 	                </div>
 		              
 				</div>
+
 			</div>
 		{{/each}}
 

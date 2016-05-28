@@ -32,3 +32,8 @@ Router.route('/profile');
 Router.route('/editProfile');
 Router.route('/newPost');
 Router.route('/myPost');
+
+Router.route('/editPost/:_id', function () {
+	var thisPost = Post.findOne({_id: this.params._id});
+	this.render('editPost', {data: thisPost});
+});
