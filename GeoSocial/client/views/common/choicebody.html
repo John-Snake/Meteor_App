@@ -1,0 +1,58 @@
+<template name="choicebody">
+
+	<div class= "choicebody" >
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<h1>Welcome to your choice page! </h1> 
+				</div>
+			</div>
+
+			<div class="row well well-lg">
+				<div class="col-md-6 ">
+					<h3>Around me</h3>
+					<p class=""> Check out what is happaning around you with just one click! </p>
+				</div>
+
+				<div class="col-md-6 ">
+					<form>
+						<h3> Distanza</h3>
+						<span class="col-md-6 ">
+					 		km <input type="number" name="distance" id="distance" value="1" />
+						</span>
+						<span class="btn btn-default btn-primary col-md-5 col-md-offset-1">
+							Around me
+							<input type="submit" name="aroundMe" id="aroundMe" />
+						</span>
+					</form>   
+				</div>
+			</div>
+
+			<div class="row well">
+				<h3>You're here</h3>
+				<div class="google-maps">
+				    {{> map}}
+				</div>
+			</div>
+
+			<div class="row text-center well">
+				<div class="col-md-4">
+					<h3> My Posts </h3>
+					<p> Check and edit all your old posts!</p>
+					<a class="btn btn-primary" href="/myPost">My posts</a>
+				</div>
+				<div class="col-md-4">
+					<h3> My Profile</h3>
+					<p>Enjoy your profile and see a preview of what the other users can see on your page!</p>
+					<a class="btn btn-primary" href="/profile">My profile</a>
+				</div>
+				<div class="col-md-4">
+					<h3> Write a post</h3>
+					<p>Geolocalize yoursel and let your neighbours find you!</p>
+					<a class="btn btn-primary" href="/newPost">Write post</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</template>

@@ -1,12 +1,24 @@
 Post = new Mongo.Collection('post');
 
+LocationSchema = new SimpleSchema({
+	type : {
+		type : String,
+		autoValue: function() {
+		  return "Point";
+		}
+	},
+	coordinates: {
+		type: [Number],
+	    decimal: true,
+	    minCount: 2,
+	    maxCount: 2
+	}
+});
+
 PostSchema = new SimpleSchema({
 	userId: {
 		type: String,
 		regEx: SimpleSchema.RegEx.Id,
-		autoValue: function () {
-			return this.userId
-		}
 	},
 	anonymous: {
 		type: Number,
@@ -16,13 +28,9 @@ PostSchema = new SimpleSchema({
 	dateTime: {
 		type: Date,
 	},
-	latitude: {
-		type: Number,
-		decimal: true
-	},
-	longitude: {
-		type: Number,
-		decimal: true
+	location: {
+		type: LocationSchema,
+		index: '2dsphere',
 	},
 	text: {
 		type: String
@@ -72,4 +80,11 @@ Post.allow({
 	},
 	// fetch only the field that are actually used by your functions
 	fetch: ['userId']
+});
+
+Post.deny({
+  update: function (userId, doc, fields, modifier) {
+    // can't change owners
+    return _.contains(fields, 'userId');
+  }
 });

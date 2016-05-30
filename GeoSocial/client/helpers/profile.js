@@ -1,5 +1,5 @@
 Template.profile.rendered = function() {
-
+	
 	$('.carousel').carousel({
     	pause: "false",
     	interval: 10000

@@ -157,6 +157,15 @@ Template.signUp.events({
         $('#info').hide();
     },
 
+    'mouseover #datePicker' : function() { 
+        $('#info').show();
+        $('#info').html("Insert your birth date.");
+    },
+
+    'mouseout #datePicker': function() { 
+        $('#info').hide();
+    },
+
     'mouseover #gender' : function() { 
         $('#info').show();
         $('#info').html("Choose your gender.");

@@ -7,7 +7,6 @@ Router.route('/', {
 Router.configure({
     layoutTemplate: 'layoutTemplate',
     notFoundTemplate: 'notFound',
-  	loadingTemplate: 'loadingTemplate'
 });
 
 Router.plugin('dataNotFound', {notFoundTemplate: 'notFound'});
@@ -26,14 +25,51 @@ var requireLogin = function() {
 // Per gli utenti non loggati sono disponibili solo signIn e singUp (eccezione)
 Router.onBeforeAction(requireLogin, {except: ['signUp']});
 
+
 // registro altre route
 Router.route('/signUp');
 Router.route('/profile');
 Router.route('/editProfile');
 Router.route('/newPost');
-Router.route('/myPost');
 
-Router.route('/editPost/:_id', function () {
-	var thisPost = Post.findOne({_id: this.params._id});
-	this.render('editPost', {data: thisPost});
+Router.route('/myPost', {
+    // this template will be rendered until the subscriptions are ready
+    loadingTemplate: 'loadingTemplate',
+
+    waitOn: function () {
+        // return one handle, a function, or an array
+        return Meteor.subscribe('myPost');
+    },
+
+    action: function () {
+        this.render('myPost');
+    }
+});
+
+Router.route('/editPost/:_id', {
+    // this template will be rendered until the subscriptions are ready
+    loadingTemplate: 'loadingTemplate',
+
+    waitOn: function () {
+        // return one handle, a function, or an array
+        return Meteor.subscribe('myPost');
+    },
+
+    action: function () {
+        var thisPost = Post.findOne({_id: this.params._id});
+        this.render('editPost', {data: thisPost});
+    }
+});
+
+Router.route('/allPosts/:distanceKm', {
+    // this template will be rendered until the subscriptions are ready
+    loadingTemplate: 'loadingTemplate',
+
+    waitOn: function () {
+        // return one handle, a function, or an array
+        return Meteor.subscribe('usersUsername');
+    },
+    action: function () {
+        this.render('allPosts');
+    }
 });

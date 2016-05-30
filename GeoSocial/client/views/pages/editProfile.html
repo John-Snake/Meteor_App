@@ -1,17 +1,14 @@
 <template name="editProfile">
 
+    <div class="confirmation" id="confirmation">Confirmation!</div>
+    <div class="alert" id="alert">Error.</div>
+    <div class="info" id="info">Info here.</div>
+    
     <form class="signUp" id="changeEmail">
         <p class="form-title">Change email</p>
         <label for="email">New Email : </label>
         <div><input type="email" name="email" id="email" value="{{currentUser.emails.[0].address}}" autocomplete="off"></div>
         <input type="submit" value="Change email" class="btn btn-success btn-sm">
-    </form>
-
-    <form class="signUp" id="changeUsername">
-        <p class="form-title">Change username</p>
-        <label for="text">New username : </label>
-        <div><input type="text" name="username" id="username" value="{{currentUser.username}}"></div>
-        <input type="submit" value="Change username" class="btn btn-success btn-sm">
     </form>
 
     <form class="signUp" id="changePassword">
@@ -23,6 +20,13 @@
         <div><input type="password" name="newPassword" id="newPassword" placeholder="New password"></div>
         <div><input type="password" name="passwordConfirmation" id="passwordConfirmation" placeholder="Confirm new password"></div>
         <input type="submit" value="Change password" class="btn btn-success btn-sm">
+    </form>
+
+    <form class="signUp" id="changeUsername">
+        <p class="form-title">Change username</p>
+        <label for="text">New username : </label>
+        <div><input type="text" name="username" id="username" value="{{currentUser.username}}"></div>
+        <input type="submit" value="Change username" class="btn btn-success btn-sm">
     </form>
 
     <form class="signUp" id="editProfile" style="margin-bottom:0;">

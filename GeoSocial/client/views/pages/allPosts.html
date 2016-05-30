@@ -1,4 +1,4 @@
-<template name="myPost">
+<template name="allPosts">
 
 	<div id="post">
         <div class="container text-center">
@@ -11,10 +11,11 @@
 						  
 	                <div class="col-md-2">
 	              		<i class="glyphicon glyphicon-user"></i>
-	              		<h3><a href="/profile">{{currentUser.username}}</a></h3>
-	                  
+	              		<h3><a href="/profile">{{username}}</a></h3>
+	                {{#if permission}} 
 	                	<a class="btn btn-primary btn-sm" href="/editPost/{{_id}}">Edit post</a>
 	               		<button class="btn btn-danger btn-sm" id="deletePost">Delete post</button>
+               		{{/if}}
 	                </div>
 		                
 	                <div class="col-md-3 col-md-offset-1">

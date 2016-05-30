@@ -9,3 +9,17 @@ Meteor.publish("usersUsername", function () {
 Meteor.publish('myPost', function(){
 	return Post.find({userId: this.userId});
 });
+
+Meteor.publish('allPostsAtDistance', function(distanceMeters, lng, lat){
+	return Post.find({
+		location: {
+	        $near: {
+	          	$geometry: {
+	           		type: "Point",
+		            coordinates: [lng,lat]
+	          	},
+	        	$maxDistance: distanceMeters   //meters
+	        }
+		}
+	});
+});

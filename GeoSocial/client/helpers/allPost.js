@@ -4,11 +4,27 @@ Template.myPost.created = function () {
 	GoogleMaps.load();
 };
 
-Template.myPost.helpers({
-	// Extract a row for each entry in the Post db
-	'post' : function (){
-		//Meteor.subscribe('myPost');
-		return Post.find( {}, { sort: { dateTime: -1} } );
+Template.allPosts.helpers({
+	// Extract a row for each entry in the Post db at a chosen distance
+	'post': function (){
+		var distanceKm = Router.current().params.distanceKm;
+		var distanceMeters = distanceKm*1000;
+		var lng = Session.get('currentUser_longitude');
+		var lat = Session.get('currentUser_latitude');
+		Meteor.subscribe('allPostsAtDistance', distanceMeters, lng, lat);
+	
+		return Post.find({}, {sort: {dateTime: -1}});
+	},
+	// Show the right username for every post
+	'username': function () {
+		//Meteor.subscribe('usersUsername');
+		var user = Meteor.users.findOne(this.userId);
+		return user.username;
+	},
+	// Show edit/remove buttons only in the current user's post 
+	'permission': function() {
+		var user = Meteor.users.findOne(this.userId);
+		return user._id == Meteor.userId();
 	},
 	// Create a non reactive version that will initialise the map & the marker centred on the coordinates.
 	mapOptions: function() { 
@@ -41,7 +57,7 @@ Template.myPost.helpers({
 	}
 });
 
-Template.myPost.events({
+Template.allPosts.events({
 	'click #deletePost': function() {
 		Session.set('postId', this._id);
 		Modal.show('deletePost');

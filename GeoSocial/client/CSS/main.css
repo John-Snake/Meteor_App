@@ -365,6 +365,7 @@ input[type="file"]
     margin-left: 2%;
     margin-top: 5%;
     display: none;
+    position: fixed;
 }
 
 .confirmation 
@@ -381,6 +382,7 @@ input[type="file"]
     margin-left: 2%;
     margin-top: 5%;
     display: none;
+    position: fixed;
 }
 
 .info 
@@ -397,6 +399,7 @@ input[type="file"]
     margin-left: 2%;
     margin-top: 12%;
     display: none;
+    position: fixed;
 }
 
 /* Map ------------------- */

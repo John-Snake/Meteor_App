@@ -16,14 +16,39 @@
 				
 				<div class="container">
 					<div class="carousel-caption">
-						Nome e cognome
-						<h1>{{currentUser.profile.name}} {{currentUser.profile.surname}}</h1>
+					
+						{{#if currentUser.profile.name}}
+							{{#if currentUser.profile.surname}}
+								Nome e cognome
+								<h1>{{currentUser.profile.name}} {{currentUser.profile.surname}}</h1>
+							{{else}}
+								Nome
+								<h1>{{currentUser.profile.name}}</h1>
+							{{/if}}
+						{{else}}
+							{{#if currentUser.profile.surname}}
+								cognome
+								<h1>{{currentUser.profile.surname}}</h1>
+							{{/if}}
+						{{/if}}
+					
 						Email<p class="lead">{{currentUser.emails.[0].address}}</p>
 						Nickname<p class="lead">{{currentUser.username}}</p>
-						Birth<p class="lead">{{formatDateProfile(currentUser.profile.birth)}}</p>
-						Gender<p class="lead">{{currentUser.profile.gender}}</p>
+
+						{{#if currentUser.profile.birth}}
+							Birth<p class="lead">{{formatDateProfile(currentUser.profile.birth)}}</p>
+						{{/if}}
+
+						{{#if currentUser.profile.gender}}
+							Gender<p class="lead">{{currentUser.profile.gender}}</p>
+						{{/if}}
+
 						Privacy<p class="lead">{{currentUser.profile.privacy}}</p>
-						<a href="" target="_blank">Contattami</a>
+						
+						{{#if currentUser.profile.telegram_username}}
+							<a href="https://telegram.me/{{currentUser.profile.telegram_username}}" target="_blank">Contattami</a>
+						{{/if}}
+				
 					</div>
 				</div>
 
@@ -34,14 +59,39 @@
 				<img class="sfondo" src="/images/2.jpg" alt="2" />
 				<div class="container">
 					<div class="carousel-caption">
-						Nome e cognome
-						<h1>{{currentUser.profile.name}} {{currentUser.profile.surname}}</h1>
+						
+						{{#if currentUser.profile.name}}
+							{{#if currentUser.profile.surname}}
+								Nome e cognome
+								<h1>{{currentUser.profile.name}} {{currentUser.profile.surname}}</h1>
+							{{else}}
+								Nome
+								<h1>{{currentUser.profile.name}}</h1>
+							{{/if}}
+						{{else}}
+							{{#if currentUser.profile.surname}}
+								cognome
+								<h1>{{currentUser.profile.surname}}</h1>
+							{{/if}}
+						{{/if}}
+					
 						Email<p class="lead">{{currentUser.emails.[0].address}}</p>
 						Nickname<p class="lead">{{currentUser.username}}</p>
-						Birth<p class="lead">{{formatDateProfile(currentUser.profile.birth)}}</p>
-						Gender<p class="lead">{{currentUser.profile.gender}}</p>
+
+						{{#if currentUser.profile.birth}}
+							Birth<p class="lead">{{formatDateProfile(currentUser.profile.birth)}}</p>
+						{{/if}}
+
+						{{#if currentUser.profile.gender}}
+							Gender<p class="lead">{{currentUser.profile.gender}}</p>
+						{{/if}}
+
 						Privacy<p class="lead">{{currentUser.profile.privacy}}</p>
-						<a href="" target="_blank">Contattami</a>
+						
+						{{#if currentUser.profile.telegram_username}}
+							<a href="https://telegram.me/{{currentUser.profile.telegram_username}}" target="_blank">Contattami</a>
+						{{/if}}
+
 					</div>
 				</div>
 
@@ -51,14 +101,39 @@
 				<img class="sfondo" src="/images/3.jpg" alt="3" />
 				<div class="container">
 					<div class="carousel-caption">
-						Nome e cognome
-						<h1>{{currentUser.profile.name}} {{currentUser.profile.surname}}</h1>
+						
+						{{#if currentUser.profile.name}}
+							{{#if currentUser.profile.surname}}
+								Nome e cognome
+								<h1>{{currentUser.profile.name}} {{currentUser.profile.surname}}</h1>
+							{{else}}
+								Nome
+								<h1>{{currentUser.profile.name}}</h1>
+							{{/if}}
+						{{else}}
+							{{#if currentUser.profile.surname}}
+								cognome
+								<h1>{{currentUser.profile.surname}}</h1>
+							{{/if}}
+						{{/if}}
+					
 						Email<p class="lead">{{currentUser.emails.[0].address}}</p>
 						Nickname<p class="lead">{{currentUser.username}}</p>
-						Birth<p class="lead">{{formatDateProfile(currentUser.profile.birth)}}</p>
-						Gender<p class="lead">{{currentUser.profile.gender}}</p>
+
+						{{#if currentUser.profile.birth}}
+							Birth<p class="lead">{{formatDateProfile(currentUser.profile.birth)}}</p>
+						{{/if}}
+
+						{{#if currentUser.profile.gender}}
+							Gender<p class="lead">{{currentUser.profile.gender}}</p>
+						{{/if}}
+
 						Privacy<p class="lead">{{currentUser.profile.privacy}}</p>
-						<a href="" target="_blank">Contattami</a>
+						
+						{{#if currentUser.profile.telegram_username}}
+							<a href="https://telegram.me/{{currentUser.profile.telegram_username}}" target="_blank">Contattami</a>
+						{{/if}}
+
 					</div>
 				</div>
 			</div>

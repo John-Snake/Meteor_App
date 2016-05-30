@@ -58,8 +58,10 @@ Template.editPost.events({
 							anonymous: anonymous,
 		                    dateTime: dateTime,
 		                    text: text,
-		                    latitude: latitude,
-		                    longitude: longitude
+		                    location: { 
+                                type: "Point",
+                                coordinates: [longitude,latitude] 
+                            }
                 		}
             		},
 		 		    function(error){
