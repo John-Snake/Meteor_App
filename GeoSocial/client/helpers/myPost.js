@@ -1,6 +1,6 @@
 var MAP_ZOOM = 10;
 
-Template.myPost.created = function () {
+Template.myPost.onRendered = function () {
 	GoogleMaps.load();
 };
 

@@ -5,9 +5,12 @@ Template.editProfile.events({
         var surname = $('[name=surname]').val();
         var telegram_username = $('[name=telegram_username]').val();
         
-        var birth = new Date($('[name=birth]').val());
-        var formattedBirthDate = moment(birth).format("YYYY-MM-DD");
-        
+        var date = $('[name=birth]').val();
+        var formattedBirthDate = '';
+        if (date != '') {
+            var birth = new Date(date);
+            formattedBirthDate = moment(birth).format("YYYY-MM-DD");
+        }
         var gender = $('[name=gender]:checked').val();
         var privacy = $('[name=privacy]').val();
 
