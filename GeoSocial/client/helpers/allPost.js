@@ -26,6 +26,11 @@ Template.allPosts.helpers({
 		var user = Meteor.users.findOne(this.userId);
 		return user._id == Meteor.userId();
 	},
+	// Show the author of the post: anonymous or username
+	'anonymous': function() {
+		var anonymous = this.anonymous;
+		return anonymous == 1;
+	},	
 	// Create a non reactive version that will initialise the map & the marker centred on the coordinates.
 	mapOptions: function() { 
 		post_id = this._id;

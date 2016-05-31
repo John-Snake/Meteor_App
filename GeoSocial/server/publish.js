@@ -23,3 +23,10 @@ Meteor.publish('allPostsAtDistance', function(distanceMeters, lng, lat){
 		}
 	});
 });
+
+// minimongo merge box problem!
+// Pubblico TUTTI i dati (dei campi 'fields') del user con id passato come parametro, filtro poi i contenuti da vedere dal lato client
+// non si rispetta il livello di privacy scelto dall'utente: tutti i suoi dati sono stati pubblicati e sono vulnerabili da altri client
+Meteor.publish('usersProfilesNoPrivacy', function(id){
+	return Meteor.users.find({_id: id}, {fields: {"profile": 1, "emails.address": 1, "username": 1}});
+});

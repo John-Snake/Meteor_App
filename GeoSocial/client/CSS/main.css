@@ -468,7 +468,7 @@ input[type="file"]
     color: white;
 }
 
-.choicebody input[type="submit"] , .choicebody input[type="number"]
+.choicebody input[type="button"] , .choicebody input[type="number"]
 {
     color: black;
 
@@ -480,7 +480,7 @@ input[type="file"]
     background-color: rgba(0, 0, 0, 0);
 }
 
-.choicebody input[type="submit"]
+.choicebody input[type="button"]
 {
 
     position: absolute;
@@ -639,7 +639,7 @@ input[type="checkbox"]
 
 #post p 
 {
-    word-break: break-all;
+    word-break: break-word;
 }
 
 #post .well
@@ -788,4 +788,10 @@ form.comment input[type="text"], form.login input[type="password"]
 .commento
 {
     margin-top: 5%;
+}
+
+.img-responsive {
+    display: block;
+    max-width: 100%;
+    height: auto;
 }

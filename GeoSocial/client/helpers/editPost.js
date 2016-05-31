@@ -18,7 +18,7 @@ Template.editPost.events({
         var longitude;
 
        	if(anonymous===undefined) {
-       		 anonymous = 0;
+       		anonymous = 0;
        	}
 
        	var oldPosition = $('[name=post_oldPosition]:checked').val();

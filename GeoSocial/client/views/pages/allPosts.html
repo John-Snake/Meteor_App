@@ -11,11 +11,19 @@
 						  
 	                <div class="col-md-2">
 	              		<i class="glyphicon glyphicon-user"></i>
-	              		<h3><a href="/profile">{{username}}</a></h3>
-	                {{#if permission}} 
-	                	<a class="btn btn-primary btn-sm" href="/editPost/{{_id}}">Edit post</a>
-	               		<button class="btn btn-danger btn-sm" id="deletePost">Delete post</button>
-               		{{/if}}
+
+	              		{{#if permission}}
+	              			<h3><a href="/profile">{{username}}</a></h3>
+		                	<a class="btn btn-primary btn-sm" href="/editPost/{{_id}}">Edit post</a>
+		               		<button class="btn btn-danger btn-sm" id="deletePost">Delete post</button>
+	               		{{else}}
+	               			{{#if anonymous}}
+		              			<h3><a href="">anonymous</a></h3>
+		          			{{else}}
+		          				<h3><a href="/profile/{{userId}}">{{username}}</a></h3>
+		          			{{/if}}
+	               		{{/if}}
+
 	                </div>
 		                
 	                <div class="col-md-3 col-md-offset-1">
@@ -55,7 +63,8 @@
 							</div>
 	                  	</div>
 	                </div>
-		                
+	                
+	                <!--
 	                <div class="col-md-3">
 		 	     		<i class="glyphicon glyphicon-comment"></i>
 					    <h3>People say</h3>
@@ -64,7 +73,7 @@
 	                    <form class="comment">
 	                    </form>
 				    
-				    <!--
+				    
 
 	                 	<div class="likes">
 
@@ -86,10 +95,10 @@
 							  
 							</form>
 	                  	</div>
-	                -->
+	                
 	                
 	                </div>
-		              
+		            -->
 				</div>
 
 			</div>

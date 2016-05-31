@@ -73,3 +73,19 @@ Router.route('/allPosts/:distanceKm', {
         this.render('allPosts');
     }
 });
+
+//---------------------------- subscribtion ? 
+
+Router.route('/profile/:_id', {
+    // this template will be rendered until the subscriptions are ready
+    loadingTemplate: 'loadingTemplate',
+
+    waitOn: function () {
+        // return one handle, a function, or an array
+        return Meteor.subscribe('usersProfilesNoPrivacy', this.params._id);
+    },
+    action: function () {
+        var usersProfile = Meteor.users.findOne({_id: this.params._id});
+        this.render('usersProfiles', {data: usersProfile});
+    }
+});
