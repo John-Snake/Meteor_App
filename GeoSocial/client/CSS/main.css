@@ -637,39 +637,93 @@ input[type="checkbox"]
 
 /* Post -------------------- */
 
-#post p 
-{
-    word-break: break-word;
-}
-
 #post .well
 {
     background-color: rgba(245, 245, 245, 0.7);
     border-radius: 0px;
+    margin-bottom: 0;
+    border: 0;
+    -webkit-box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.5);
+    -moz-box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.5);
+    box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.5);
 }
 
-.features .glyphicon
+#post .container 
 {
-    font-size: 32px;
-    color: #0066FF;
+    margin-bottom: 20px;
+    border: 1px solid #e3e3e3;
 }
 
-.features .glyphicon-chevron-up
+#post .newPost
 {
-    font-size: 28px;
+    padding: 2%;
+    border: 0;
+}
+
+#post .google-maps 
+{
+    margin-top: 2%;
+    padding-bottom: 60%;
+}
+
+#post .map-container 
+{
+    padding-left: 1%;
+    padding-right: 1%; 
+}
+
+#post p 
+{
+    word-break: break-word;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+#post .pre
+{
+    white-space: pre;
+    word-break: break-word;
+}
+
+#post h3 
+{
+    margin-top: 0;
+    margin-bottom: 0; 
+}
+
+#post .btn
+{
+    margin-right: 3%;
+}
+
+#post .fa 
+{
+    margin-right: 5%;
+}
+
+#post .fa-user
+{
+    margin-right: 1%;
+}
+
+#post .fa-calendar
+{
+    margin-right: 1%;
+}
+
+.fa-thumbs-up
+{
     color: green;
 }
-.features .glyphicon-chevron-down
+
+.fa-thumbs-down
 {
-    font-size: 28px;
     color: red;
 }
 
-.command .glyphicon 
+.fa-comments
 {
-    font-size: 100px;
-    color: rgba(25, 25, 25, 0.6);
-    left: 0px;
+    color: #337ab7;
 }
 
 #post h3
@@ -700,11 +754,6 @@ form.comment input[type="text"], form.login input[type="password"]
 .pie
 {
     padding-top: 1%;
-}
-
-#post .container
-{
-    padding: 2%;
 }
 
 .likes

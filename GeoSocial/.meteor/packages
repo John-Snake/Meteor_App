@@ -18,15 +18,15 @@ ecmascript              # Enable ECMAScript2015+ syntax in app code
 
 iron:router
 sacha:spin
-accounts-password
-
-meteortoys:allthings
 u2622:persistent-session
+meteortoys:allthings
+accounts-password
 aldeed:collection2
 
 twbs:bootstrap
 rajit:bootstrap3-datepicker-en-gb
 peppelg:bootstrap-3-modal
+fortawesome:fontawesome
 verron:autosize
 
 dburles:google-maps

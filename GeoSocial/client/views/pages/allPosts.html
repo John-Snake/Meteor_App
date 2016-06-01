@@ -1,37 +1,56 @@
 <template name="allPosts">
 
 	<div id="post">
-        <div class="container text-center">
-        	<a class="btn btn-lg btn-primary" href="/newPost">New post</a>
+		<div class="container text-center newPost">
+        	<a class="btn btn-lg btn-primary" href="/newPost"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>New post</a>
         </div>
 	    
         {{#each post}}
-			<div class="container-fluid">
-				<div class="row text-center well well-sm features">
-						  
-	                <div class="col-md-2">
-	              		<i class="glyphicon glyphicon-user"></i>
+			<div class="container">
+				<div class="row text-center well well-sm">
 
-	              		{{#if permission}}
-	              			<h3><a href="/profile">{{username}}</a></h3>
-		                	<a class="btn btn-primary btn-sm" href="/editPost/{{_id}}">Edit post</a>
-		               		<button class="btn btn-danger btn-sm" id="deletePost">Delete post</button>
-	               		{{else}}
-	               			{{#if anonymous}}
-		              			<h3><a href="">anonymous</a></h3>
-		          			{{else}}
-		          				<h3><a href="/profile/{{userId}}">{{username}}</a></h3>
-		          			{{/if}}
-	               		{{/if}}
+					<div class="col-md-1">
+						{{#if anonymous}}
+							<i class="fa fa-user-secret fa-4x" aria-hidden="true"></i>
+                    	{{else}}
+							<i class="fa fa-user fa-4x" aria-hidden="true"></i>
+                    	{{/if}}
+                    </div>
 
-	                </div>
-		                
-	                <div class="col-md-3 col-md-offset-1">
-	              		<i class="glyphicon glyphicon-pencil"></i>
-	                    <p class="lead">{{text}}</p>
+                    {{#if permission}}
+	                    <div class="col-md-5 text-left" style="padding-left: 0;"> 
+	                        <h3><a href="/profile">{{currentUser.username}}</a></h3>
+	                        <p class="lead"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i>{{formatDatePost(dateTime)}}<br></p>
+	                    </div>
+
+	                    <div class="col-md-6 text-right" style="padding-right: 0;">
+		                	  <a class="btn btn-primary btn-sm" href="/editPost/{{_id}}"><i class="fa fa-pencil" aria-hidden="true"></i>Edit post</a>
+		               		  <button class="btn btn-danger btn-sm" id="deletePost"><i class="fa fa-trash-o" title="Delete" aria-hidden="true"></i>Delete post</button>
+	                    </div>
+                    {{else}}
+            			<div class="col-md-5 text-left" style="padding-left: 0;"> 
+            				{{#if anonymous}}
+	                        	<h3><a href="">anonymous</a></h3>
+	                        {{else}}
+	                        	<h3><a href="/profile/{{userId}}">{{username}}</a></h3>
+                    		{{/if}}	
+	                        <p class="lead"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i>{{formatDatePost(dateTime)}}<br></p>
+                    	</div>
+                	{{/if}}
+
+            	</div>
+
+            	<div class="row text-center well well-sm">
+
+            		<div class="col-md-6">
+						<div class="text-left">
+							<span class="pre lead">{{text}}</span>
+						</div>
+
 	              		<div class="likes">
-		                    <i class="glyphicon glyphicon-chevron-up" id="like">{{like}}</i>
-	                    	<i class="glyphicon glyphicon-chevron-down" id="dislike">{{dislike}}</i>
+	                    	<i class="fa fa-thumbs-up fa-2x" aria-hidden="true">{{like}}</i>
+	                    	<i class="fa fa-thumbs-down fa-2x" aria-hidden="true">{{dislike}}</i>
+	                    	<i class="fa fa-comments fa-2x" aria-hidden="true">0</i>
 	                  	</div>
 
 	                  	{{#if alreadyLiked}}
@@ -47,12 +66,11 @@
                     		{{/if}}
 	                    {{/if}}
 
+	                    <button class="btn btn-primary btn-sm" id="comments_{{_id}}">Comments</button> 
+
 	                </div>
 		                
-	                <div class="col-md-3">
-	            	    <i class="glyphicon glyphicon-screenshot"></i>
-	                  	<h3>Map</h3>
-	                  	<p class="lead">{{formatDatePost(dateTime)}}<br></p>
+	                <div class="col-md-6">
 	                  	<div class="google-maps">
               				<div class="map-container">
 						    	{{#unless geolocationError}}
@@ -64,41 +82,7 @@
 	                  	</div>
 	                </div>
 	                
-	                <!--
-	                <div class="col-md-3">
-		 	     		<i class="glyphicon glyphicon-comment"></i>
-					    <h3>People say</h3>
-			 	        <div class="divcomm" id="comm">
-	                    </div>
-	                    <form class="comment">
-	                    </form>
-				    
-				    
-
-	                 	<div class="likes">
-
-		                    <form class="new_comment" id="new_comment" action="/users/104/posts/1005/comments" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="&#x2713;" />
-
-
-			  				<div class="row text-center commento">
-							    <textarea placeholder="Insert your comment" name="comment[body]" id="comment_body"></textarea>
-							  					        
-							    <div class="">
-						        	<label for="comment_anonymous">Anonymous</label>
-							        <input name="comment[anonymous]" type="hidden" value="0" /><input type="checkbox" value="1" name="comment[anonymous]" id="comment_anonymous" />
-						      	</div>
-						      	<div>
-						        	<input type="submit" name="commit" value="Create comment" class="btn btn-success btn-sm" id="comment_submit" />
-						      	</div>
-							  </div>
-							  
-							  
-							</form>
-	                  	</div>
 	                
-	                
-	                </div>
-		            -->
 				</div>
 
 			</div>
