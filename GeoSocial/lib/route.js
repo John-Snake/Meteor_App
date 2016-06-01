@@ -74,8 +74,6 @@ Router.route('/allPosts/:distanceKm', {
     }
 });
 
-//---------------------------- subscribtion ? 
-
 Router.route('/profile/:_id', {
     // this template will be rendered until the subscriptions are ready
     loadingTemplate: 'loadingTemplate',

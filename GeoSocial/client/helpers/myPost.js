@@ -10,6 +10,10 @@ Template.myPost.helpers({
 		//Meteor.subscribe('myPost');
 		return Post.find( {}, { sort: { dateTime: -1} } );
 	},
+	'anonymous': function() {
+		var anonymous = this.anonymous;
+		return anonymous == 1;
+	},
 	// Create a non reactive version that will initialise the map & the marker centred on the coordinates.
 	mapOptions: function() { 
 		post_id = this._id;
@@ -45,5 +49,13 @@ Template.myPost.events({
 	'click #deletePost': function() {
 		Session.set('postId', this._id);
 		Modal.show('deletePost');
+	},
+	'click #postDetail': function() {
+		Session.set('postId', this._id);
+		Modal.show('postDetail');
+	},
+	'click #comments': function() {
+		Session.set('postId', this._id);
+		Modal.show('postDetail');
 	}
 });

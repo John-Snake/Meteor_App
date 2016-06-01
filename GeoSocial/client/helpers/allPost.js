@@ -66,5 +66,13 @@ Template.allPosts.events({
 	'click #deletePost': function() {
 		Session.set('postId', this._id);
 		Modal.show('deletePost');
+	},
+	'click #postDetail': function() {
+		Session.set('postId', this._id);
+		Modal.show('postDetail');
+	},
+	'click #comments': function() {
+		Session.set('postId', this._id);
+		Modal.show('postDetail');
 	}
 });

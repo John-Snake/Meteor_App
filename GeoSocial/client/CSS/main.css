@@ -679,14 +679,17 @@ input[type="checkbox"]
     margin-bottom: 1%;
 }
 
-#post .pre
+.pre
 {
     white-space: pre;
     word-break: break-word;
 }
 
 #post h3 
-{
+{   
+    font-weight: bolder;
+    color: #0088CC;
+    font-size: 2em;
     margin-top: 0;
     margin-bottom: 0; 
 }
@@ -726,12 +729,36 @@ input[type="checkbox"]
     color: #337ab7;
 }
 
-#post h3
+.postDate
 {
-    font-weight: bolder;
-    color: #0088CC;
-    font-size: 2em;
+    color: black;
 }
+
+.postDate:hover
+{
+    color: black;
+}
+
+.postDate:visited
+{
+    color: black;
+}
+
+.img-responsive {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* postDetail -------------- */
+
+#postDetail h3 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bolder;
+}
+
+/* ?????????               */
 
 form.comment input[type="text"], form.login input[type="password"]
 {
@@ -787,6 +814,7 @@ form.comment input[type="text"], form.login input[type="password"]
     color: #0088CC;
 }
 
+
 .commenti
 {
     padding: 5%;
@@ -839,8 +867,4 @@ form.comment input[type="text"], form.login input[type="password"]
     margin-top: 5%;
 }
 
-.img-responsive {
-    display: block;
-    max-width: 100%;
-    height: auto;
-}
+/* -----------  */

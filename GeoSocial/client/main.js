@@ -39,8 +39,14 @@ privacyInfoUpdate = function (inputRange) {
 
 /* Post -------------------- */
 
-Template.registerHelper('alreadyLiked', function () {
-	var post = Post.findOne({ _id: this._id });
+Template.registerHelper('alreadyLiked', function (id) {
+	var post;
+	if (id === undefined) {
+		post = Post.findOne({ _id: this._id });
+	}
+	else {
+		post = Post.findOne({ _id: id });
+	}
 	
 	if(post) {
 		// Already liked the post
@@ -53,8 +59,14 @@ Template.registerHelper('alreadyLiked', function () {
 	}
 });
 
-Template.registerHelper('alreadyDisliked', function () {
-	var post = Post.findOne({ _id: this._id });
+Template.registerHelper('alreadyDisliked', function (id) {
+	var post;
+	if (id === undefined) {
+		post = Post.findOne({ _id: this._id });
+	}
+	else {
+		post = Post.findOne({ _id: id });
+	}
 	
 	if(post) {
 		// Already disliked the post

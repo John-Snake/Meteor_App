@@ -1,0 +1,79 @@
+<template name="postDetail">
+
+	<div class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content" id="postDetail">
+
+                <div class="modal-header">
+
+                	<input type="text" id="thisPostId" value="{{thisPost._id}}" hidden>
+
+                	<div class="row text-center">
+						  
+						<div class="col-md-2">
+	                        {{#if thisPost.anonymous}}
+								<i class="fa fa-user-secret fa-4x" aria-hidden="true"></i>
+	                    	{{else}}
+								<i class="fa fa-user fa-4x" aria-hidden="true"></i>
+	                    	{{/if}}
+	                    </div>
+
+	                    {{#if permission thisPost.userId}}
+	                    	<div class="col-md-6 text-left" style="padding-left: 0;"> 
+		                        <h3><a id="personalProfile" href="/profile">{{currentUser.username}}</a></h3>
+		                        <a class="postDate" href="" id="postDetail"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i>{{formatDatePost(thisPost.dateTime)}}</a>
+		                    </div>
+		                    <div class="col-md-4 text-right" style="padding-right: 0;">
+	            	  			<button class="btn btn-primary btn-sm" id="editPost"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</button>
+		               		 	<button class="btn btn-danger btn-sm" id="deletePost"><i class="fa fa-trash-o" title="Delete" aria-hidden="true"></i>Delete</button>
+		               			<button type="button" class="btn btn-default" data-dismiss="modal" id="close"><i class="fa fa-times" aria-hidden="true"></i></button>
+		                    </div>
+		                {{else}}
+	                    	<div class="col-md-6 text-left" style="padding-left: 0;"> 
+		                    	{{#if thisPost.anonymous}}
+		                    		<h3><a href="">anonymous</a></h3>
+		                    	{{else}}
+		                    		<h3><a id="usersProfile" href="/profile/{{thisPost.userId}}">{{username thisPost.userId}}</a></h3>
+		                    	{{/if}}
+	                    		<a class="postDate" href="" id="postDetail"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i>{{formatDatePost(thisPost.dateTime)}}</a>
+		                    </div>
+	                    {{/if}}
+
+					</div>
+
+                </div>
+
+                <div class="modal-body text-center">
+            		<div class="text-left">
+						<span class="pre">{{thisPost.text}}</span>
+					</div>
+
+					<div class="likes">
+                    	<i class="fa fa-thumbs-up fa-2x" aria-hidden="true">{{thisPost.like}}</i>
+                    	<i class="fa fa-thumbs-down fa-2x" aria-hidden="true">{{thisPost.dislike}}</i>
+                  	</div>
+                  	
+                  	{{#if alreadyLiked thisPost._id}}
+	                    <button class="btn btn-success btn-sm" id="like" onclick="like('{{thisPost._id}}','{{thisPost.like}}','{{thisPost.dislike}}', 1)" disabled="{{alreadyLiked thisPost._id}}">Like</button> 
+	                    <button class="btn btn-danger btn-sm" id="dislike" onclick="dislike('{{thisPost._id}}','{{thisPost.like}}','{{thisPost.dislike}}', -1)" disabled="{{alreadyDisliked thisPost._id}}">Dislike</button>
+                    {{else}}
+                    	{{#if alreadyDisliked thisPost._id}}
+                		<button class="btn btn-success btn-sm" id="like" onclick="like('{{thisPost._id}}','{{thisPost.like}}','{{thisPost.dislike}}', -1)" disabled="{{alreadyLiked thisPost._id}}">Like</button> 
+                    	<button class="btn btn-danger btn-sm" id="dislike" onclick="dislike('{{thisPost._id}}','{{thisPost.like}}','{{thisPost.dislike}}', 1)" disabled="{{alreadyDisliked thisPost._id}}">Dislike</button>
+                		{{else}}
+                			<button class="btn btn-success btn-sm" id="like" onclick="like('{{thisPost._id}}','{{thisPost.like}}','{{thisPost.dislike}}', 0)" disabled="{{alreadyLiked thisPost._id}}">Like</button> 
+                    		<button class="btn btn-danger btn-sm" id="dislike" onclick="dislike('{{thisPost._id}}','{{thisPost.like}}','{{thisPost.dislike}}', 0)" disabled="{{alreadyDisliked thisPost._id}}">Dislike</button>
+                		{{/if}}
+                    {{/if}}
+
+                </div>
+
+                <div class="modal-footer">
+                	ci metto i commenti qua in qualche modo!
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</template>

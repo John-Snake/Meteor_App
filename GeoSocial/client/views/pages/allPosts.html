@@ -20,12 +20,12 @@
                     {{#if permission}}
 	                    <div class="col-md-5 text-left" style="padding-left: 0;"> 
 	                        <h3><a href="/profile">{{currentUser.username}}</a></h3>
-	                        <p class="lead"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i>{{formatDatePost(dateTime)}}<br></p>
+	                        <a class="postDate" href="" id="postDetail"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i>{{formatDatePost(dateTime)}}</a>
 	                    </div>
 
 	                    <div class="col-md-6 text-right" style="padding-right: 0;">
-		                	  <a class="btn btn-primary btn-sm" href="/editPost/{{_id}}"><i class="fa fa-pencil" aria-hidden="true"></i>Edit post</a>
-		               		  <button class="btn btn-danger btn-sm" id="deletePost"><i class="fa fa-trash-o" title="Delete" aria-hidden="true"></i>Delete post</button>
+		                	  <a class="btn btn-primary btn-sm" href="/editPost/{{_id}}"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</a>
+		               		  <button class="btn btn-danger btn-sm" id="deletePost"><i class="fa fa-trash-o" title="Delete" aria-hidden="true"></i>Delete</button>
 	                    </div>
                     {{else}}
             			<div class="col-md-5 text-left" style="padding-left: 0;"> 
@@ -34,7 +34,7 @@
 	                        {{else}}
 	                        	<h3><a href="/profile/{{userId}}">{{username}}</a></h3>
                     		{{/if}}	
-	                        <p class="lead"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i>{{formatDatePost(dateTime)}}<br></p>
+	                        <a class="postDate" href="" id="postDetail"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i>{{formatDatePost(dateTime)}}</a>
                     	</div>
                 	{{/if}}
 
@@ -54,19 +54,19 @@
 	                  	</div>
 
 	                  	{{#if alreadyLiked}}
-		                    <button class="btn btn-success btn-sm" id="like_{{_id}}" onclick="like('{{_id}}','{{like}}','{{dislike}}', 1)" disabled="{{alreadyLiked}}">Like</button> 
-		                    <button class="btn btn-danger btn-sm" id="dislike_{{_id}}" onclick="dislike('{{_id}}','{{like}}','{{dislike}}', -1)" disabled="{{alreadyDisliked}}">Dislike</button>
+		                    <button class="btn btn-success btn-sm" id="like" onclick="like('{{_id}}','{{like}}','{{dislike}}', 1)" disabled="{{alreadyLiked}}">Like</button> 
+		                    <button class="btn btn-danger btn-sm" id="dislike" onclick="dislike('{{_id}}','{{like}}','{{dislike}}', -1)" disabled="{{alreadyDisliked}}">Dislike</button>
 	                    {{else}}
 	                    	{{#if alreadyDisliked}}
-                    		<button class="btn btn-success btn-sm" id="like_{{_id}}" onclick="like('{{_id}}','{{like}}','{{dislike}}', -1)" disabled="{{alreadyLiked}}">Like</button> 
-	                    	<button class="btn btn-danger btn-sm" id="dislike_{{_id}}" onclick="dislike('{{_id}}','{{like}}','{{dislike}}', 1)" disabled="{{alreadyDisliked}}">Dislike</button>
+                    		<button class="btn btn-success btn-sm" id="like" onclick="like('{{_id}}','{{like}}','{{dislike}}', -1)" disabled="{{alreadyLiked}}">Like</button> 
+	                    	<button class="btn btn-danger btn-sm" id="dislike" onclick="dislike('{{_id}}','{{like}}','{{dislike}}', 1)" disabled="{{alreadyDisliked}}">Dislike</button>
                     		{{else}}
-                    			<button class="btn btn-success btn-sm" id="like_{{_id}}" onclick="like('{{_id}}','{{like}}','{{dislike}}', 0)" disabled="{{alreadyLiked}}">Like</button> 
-	                    		<button class="btn btn-danger btn-sm" id="dislike_{{_id}}" onclick="dislike('{{_id}}','{{like}}','{{dislike}}', 0)" disabled="{{alreadyDisliked}}">Dislike</button>
+                    			<button class="btn btn-success btn-sm" id="like" onclick="like('{{_id}}','{{like}}','{{dislike}}', 0)" disabled="{{alreadyLiked}}">Like</button> 
+	                    		<button class="btn btn-danger btn-sm" id="dislike" onclick="dislike('{{_id}}','{{like}}','{{dislike}}', 0)" disabled="{{alreadyDisliked}}">Dislike</button>
                     		{{/if}}
 	                    {{/if}}
 
-	                    <button class="btn btn-primary btn-sm" id="comments_{{_id}}">Comments</button> 
+	                    <button class="btn btn-primary btn-sm" id="comments">Comments</button> 
 
 	                </div>
 		                
