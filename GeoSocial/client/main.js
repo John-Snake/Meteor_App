@@ -27,6 +27,11 @@ Template.registerHelper('formatDatePost', function (date) {
 	return moment(date).format("DD/MM/YYYY, HH:mm");
 })
 
+// Format date using Moment.js [Example: Posted here '2 h ago' ]
+Template.registerHelper('formatDatePostFromNow', function (date) {
+	return "Posted here "+moment(date).fromNow();
+})
+
 // Auto grow text area with verron:autosize
 autoGrow = function (element) {
     autosize(element);

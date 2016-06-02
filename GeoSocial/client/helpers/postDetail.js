@@ -54,6 +54,18 @@ Template.postDetail.events({
 	'click #usersProfile': function() {
 		delete Session.keys.postId;
 		Modal.hide('postDetail');
+	},
+	'click #comment_anonymous': function() {
+		var anonymous = $('#comment_anonymous:checked').val();
+		var icon = $('#commentProfileIcon');
+		if(anonymous==1) {
+			icon.removeClass('fa-user');
+			icon.addClass('fa-user-secret');
+		}
+		else if(anonymous===undefined) {
+			icon.removeClass('fa-user-secret');
+			icon.addClass('fa-user');
+		}
 	}
 });
 

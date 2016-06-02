@@ -4,7 +4,7 @@
         <div class="modal-dialog">
             <div class="modal-content" id="postDetail">
 
-                <div class="modal-header">
+                <div class="modal-header" id="postDetailHeader">
 
                 	<input type="text" id="thisPostId" value="{{thisPost._id}}" hidden>
 
@@ -43,7 +43,7 @@
 
                 </div>
 
-                <div class="modal-body text-center">
+                <div class="modal-body text-center" id="postDetailBody">
             		<div class="text-left">
 						<span class="pre">{{thisPost.text}}</span>
 					</div>
@@ -51,6 +51,7 @@
 					<div class="likes">
                     	<i class="fa fa-thumbs-up fa-2x" aria-hidden="true">{{thisPost.like}}</i>
                     	<i class="fa fa-thumbs-down fa-2x" aria-hidden="true">{{thisPost.dislike}}</i>
+                    	<i class="fa fa-comments fa-2x" aria-hidden="true">0</i>
                   	</div>
                   	
                   	{{#if alreadyLiked thisPost._id}}
@@ -68,8 +69,40 @@
 
                 </div>
 
-                <div class="modal-footer">
-                	ci metto i commenti qua in qualche modo!
+                <div id="postDetailFooter">
+
+                	<div class="modal-footer" id="insertComment">
+                
+	                	<div class="row text-center">
+	                		<div class="col-md-1">
+	                			<i class="fa fa-user fa-3x" id="commentProfileIcon" aria-hidden="true"></i>
+	                		</div>
+	                		<div class="col-md-11">
+	                		<textarea class="commentsTextarea" oninput="autoGrow(this)" required></textarea>
+	                		</div>
+	                	</div>
+	                	<div class="row text-right">
+	                		<div class="col-md-4 col-md-offset-6" style="padding-top: 1%;">
+	                			<label for="comment_anonymous">Anonymous</label>
+								<input type="checkbox" value="1" name="comment_anonymous" id="comment_anonymous" />
+							</div>
+	                		<div class="col-md-2" style="padding-left: 0;">
+	                			<button class="btn btn-success btn-sm" id="comment"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>Comment</button>
+	                		</div>
+	                	</div>
+                	</div>
+                
+
+	                <div class="modal-footer" id="showComments">
+	                	tutti i commenti qua stile twitter!
+	                	<div >
+	                		<div class="row text-center" id="commentsTop">
+
+	                		</div>
+
+	                	</div>
+	                	
+	                </div>
                 </div>
 
             </div>

@@ -654,6 +654,16 @@ input[type="checkbox"]
     border: 1px solid #e3e3e3;
 }
 
+.likes
+{
+    padding: 2%;
+    margin: 1%;
+    border-top: 1.5px solid rgba(0, 0, 0, 0.1);
+    margin-top: 4%;
+    padding-top: 4%;
+    font-size: 1.2em;
+}
+
 #post .newPost
 {
     padding: 2%;
@@ -680,9 +690,9 @@ input[type="checkbox"]
 }
 
 .pre
-{
-    white-space: pre;
-    word-break: break-word;
+{   
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
 
 #post h3 
@@ -699,7 +709,12 @@ input[type="checkbox"]
     margin-right: 3%;
 }
 
-#post .fa 
+#postHeader .btn
+{
+    margin-right: 0;
+}
+
+#post .fa, #postDetail .fa
 {
     margin-right: 5%;
 }
@@ -709,7 +724,7 @@ input[type="checkbox"]
     margin-right: 1%;
 }
 
-#post .fa-calendar
+#post .fa-calendar, #postDetail .fa-calendar
 {
     margin-right: 1%;
 }
@@ -729,6 +744,11 @@ input[type="checkbox"]
     color: #337ab7;
 }
 
+#post .fa-map-marker
+{
+    margin-right: 1%;
+}
+
 .postDate
 {
     color: black;
@@ -742,6 +762,11 @@ input[type="checkbox"]
 .postDate:visited
 {
     color: black;
+}
+
+.fromNow 
+{
+    font-size: 14px;
 }
 
 .img-responsive {
@@ -758,113 +783,46 @@ input[type="checkbox"]
     font-weight: bolder;
 }
 
-/* ?????????               */
+#postDetail .btn
+{
+    margin-right: 5%;
+}
 
-form.comment input[type="text"], form.login input[type="password"]
+#postDetailHeader .btn 
+{
+    margin-right: 0;
+}
+
+#postDetailBody .btn-danger
+{
+    margin-right: 20%;
+}
+
+.modal-footer 
+{
+    text-align: center;
+}
+
+/* Comments -------------- */
+
+.commentsTextarea 
 {
     width: 100%;
-    margin: 0;
-    padding: 5px 10px;
-    background: 0;
-    border: 0;
-    border-bottom: 1px solid #FFFFFF;
-    outline: 0;
+    max-width: 100%;
+
     font-style: italic;
     font-size: 12px;
     font-weight: 400;
     letter-spacing: 1px;
-    margin-bottom: 5px;
-    color: black;
     outline: 0;
 }
 
-.pie
+#postDetailFooter .btn
 {
-    padding-top: 1%;
+    margin-right: 0;
 }
 
-.likes
+#insertComment
 {
-    padding: 2%;
-    margin: 1%;
-    border-top: 2px solid rgba(0, 0, 0, 0.8);
-    margin-top: 8%;
-    padding-top: 6%;
-    font-size: 1.2em;
+    background-color: #ECECEC;
 }
-
-.likescom
-{
-    padding: 2%;
-    padding-bottom: 6%;
-    margin: 1%;
-    border-bottom: 2px solid rgba(0, 0, 0, 0.8);
-    margin-bottom: 6%;
-    font-size: 1em;
-}
-
-.likescom .glyphicon
-{
-    font-size: 1.8em ;
-}
-
-.nome
-{
-    font-weight: bolder;
-    color: #0088CC;
-}
-
-
-.commenti
-{
-    padding: 5%;
-}
-
-.commenti h1
-{
-    color: white;
-    text-align: center;
-    font-weight: bolder;
-}
-
-.divcomm
-{
-    max-height: 200px;
-    overflow-y: scroll;
-}
-
-
-.row .commento #comment_body
-{
-    margin-top: 2%;
-    padding-top: 5%;
-    border-bottom-color: rgba(0, 0, 0, 0.8);
-    color: black;
-}
-
-.row .commento #comment_body placeholder
-{
-    color: rgba(0, 0, 0, 0.8);
-}
-
-.scelta
-{
-    margin: 2%;
-}
-
-.likecomm
-{
-    color: green;
-}
-
-.dislikecomm
-{
-    color: red;
-}
-
-.commento
-{
-    margin-top: 5%;
-}
-
-/* -----------  */
