@@ -1,21 +1,10 @@
-Post = new Mongo.Collection('post');
+Comments = new Mongo.Collection('comments');
 
-LocationSchema = new SimpleSchema({
-	type : {
-		type : String,
-		autoValue: function() {
-		  return "Point";
-		}
+CommentsSchema = new SimpleSchema({
+	postId: {
+		type: String,
+		regEx: SimpleSchema.RegEx.Id,
 	},
-	coordinates: {
-		type: [Number],
-	    decimal: true,
-	    minCount: 2,
-	    maxCount: 2
-	}
-});
-
-PostSchema = new SimpleSchema({
 	userId: {
 		type: String,
 		regEx: SimpleSchema.RegEx.Id,
@@ -27,10 +16,6 @@ PostSchema = new SimpleSchema({
 	},
 	dateTime: {
 		type: Date,
-	},
-	location: {
-		type: LocationSchema,
-		index: '2dsphere',
 	},
 	text: {
 		type: String
@@ -63,9 +48,9 @@ PostSchema = new SimpleSchema({
     }
 });
 
-Post.attachSchema(PostSchema);
+Comments.attachSchema(CommentsSchema);
 
-Post.allow({
+Comments.allow({
 	insert: function (userId, doc) {
 	    // the user must be logged in, and the document must be owned by the current user
 	    return (userId && doc.userId === userId);
@@ -74,7 +59,7 @@ Post.allow({
 	    // can only change your own documents
 	    return doc.userId === userId;
 	},
-	remove: function (userId, doc) {
+	remove: function (userId, doc) { // e quando l'autore del post rimuove il post??
 	    // can only remove your own documents
 	    return doc.userId === userId;
 	},
@@ -82,9 +67,9 @@ Post.allow({
 	fetch: ['userId']
 });
 
-Post.deny({
+Comments.deny({
 	update: function (userId, doc, fields, modifier) {
-		// can't change owners
-		return _.contains(fields, 'userId');
-	}
+	    // can't change owners and post
+	    return _.contains(fields, 'userId') && _.contains(fields, 'postId');
+  	}
 });

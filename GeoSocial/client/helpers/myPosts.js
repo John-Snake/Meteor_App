@@ -1,18 +1,21 @@
 var MAP_ZOOM = 10;
 
-Template.myPost.onRendered = function () {
+Template.myPosts.onRendered = function () {
 	GoogleMaps.load();
 };
 
-Template.myPost.helpers({
+Template.myPosts.helpers({
 	// Extract a row for each entry in the Post db
 	'post' : function (){
-		//Meteor.subscribe('myPost');
 		return Post.find( {}, { sort: { dateTime: -1} } );
 	},
 	'anonymous': function() {
 		var anonymous = this.anonymous;
 		return anonymous == 1;
+	},
+	'commentsCounter': function() {
+		Meteor.subscribe('thisPostComments', this._id);
+		return Comments.find({postId: this._id}).count();
 	},
 	// Create a non reactive version that will initialise the map & the marker centred on the coordinates.
 	mapOptions: function() { 
@@ -45,7 +48,7 @@ Template.myPost.helpers({
 	}
 });
 
-Template.myPost.events({
+Template.myPosts.events({
 	'click #deletePost': function() {
 		Session.set('postId', this._id);
 		Modal.show('deletePost');

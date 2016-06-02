@@ -35,7 +35,7 @@ Template.newPost.events({
                 if(error){
                     console.log(error.invalidKeys);
                 } else {
-                    Router.go("/myPost");
+                    Router.go("/myPosts");
                 }
           }
         );

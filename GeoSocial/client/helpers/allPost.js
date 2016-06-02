@@ -1,6 +1,6 @@
 var MAP_ZOOM = 10;
 
-Template.myPost.onRendered = function () {
+Template.allPosts.onRendered = function () {
 	GoogleMaps.load();
 };
 
@@ -30,7 +30,11 @@ Template.allPosts.helpers({
 	'anonymous': function() {
 		var anonymous = this.anonymous;
 		return anonymous == 1;
-	},	
+	},
+	'commentsCounter': function() {
+		Meteor.subscribe('thisPostComments', this._id);
+		return Comments.find({postId: this._id}).count();
+	},
 	// Create a non reactive version that will initialise the map & the marker centred on the coordinates.
 	mapOptions: function() { 
 		post_id = this._id;

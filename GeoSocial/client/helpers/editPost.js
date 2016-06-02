@@ -36,7 +36,7 @@ Template.editPost.events({
 		               		console.log(error.reason);
 		                    console.log(error.invalidKeys);
 		                }  else {
-		                    Router.go("/myPost");
+		                    Router.go("/myPosts");
 		                }
 		            }
         	);

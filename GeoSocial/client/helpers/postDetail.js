@@ -24,6 +24,16 @@ Template.postDetail.helpers({
 			return false;
 		}
 	},
+	'commentsCounter': function() {
+		var postId = Session.get('postId');
+		Meteor.subscribe('thisPostComments', postId);
+		return Comments.find({postId: postId}).count();
+	},
+	'comments': function() {
+		var postId = Session.get('postId');
+		Meteor.subscribe('thisPostComments', postId);
+		return Comments.find({postId: postId}, {sort: {dateTime: -1}});
+	}
 });
 
 Template.postDetail.events({
@@ -31,7 +41,7 @@ Template.postDetail.events({
 		delete Session.keys.editPost;
 	},
 	'click #editPost': function() {
-		var route = $('#thisPostId').val();
+		var route = Session.get('postId');
 		route = "/editPost/"+route;
 
 		Modal.hide('postDetail');
@@ -39,7 +49,7 @@ Template.postDetail.events({
 		Router.go(route);
 	},
 	'click #deletePost': function() {
-		var id = $('#thisPostId').val();
+		var id = Session.get('postId');
 		Modal.hide('postDetail');
 
 		setTimeout(function(){
@@ -66,6 +76,40 @@ Template.postDetail.events({
 			icon.removeClass('fa-user-secret');
 			icon.addClass('fa-user');
 		}
+	},
+	'click #comment': function(event) {
+		event.preventDefault();
+
+		var id = Meteor.userId();
+		var postId = Session.get('postId');
+	    var dateTime = new Date();
+        var text = $('#commentTextarea').val();
+        var anonymous = $('#comment_anonymous:checked').val();
+
+       	if(anonymous===undefined) {
+       		anonymous = 0;
+       	}
+
+       	Comments.insert({
+       			postId: postId,
+                userId: id,
+        		anonymous: anonymous,
+        		dateTime: dateTime,
+        		text: text
+        }, function(error){
+            	if(error){
+                    console.log(error.invalidKeys);
+                }
+          	}
+        );
+
+       	$('#commentTextarea').val(null);
+       	$('#comment_anonymous').prop('checked', false);
+       	if(anonymous==1) {
+       		$('#commentProfileIcon').removeClass('fa-user-secret');
+       		$('#commentProfileIcon').addClass('fa-user');
+       	}
+       	
 	}
 });
 

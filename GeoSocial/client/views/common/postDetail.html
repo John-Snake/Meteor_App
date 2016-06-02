@@ -6,8 +6,6 @@
 
                 <div class="modal-header" id="postDetailHeader">
 
-                	<input type="text" id="thisPostId" value="{{thisPost._id}}" hidden>
-
                 	<div class="row text-center">
 						  
 						<div class="col-md-2">
@@ -26,7 +24,7 @@
 		                    <div class="col-md-4 text-right" style="padding-right: 0;">
 	            	  			<button class="btn btn-primary btn-sm" id="editPost"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</button>
 		               		 	<button class="btn btn-danger btn-sm" id="deletePost"><i class="fa fa-trash-o" title="Delete" aria-hidden="true"></i>Delete</button>
-		               			<button type="button" class="btn btn-default" data-dismiss="modal" id="close"><i class="fa fa-times" aria-hidden="true"></i></button>
+		               			<button type="button" class="btn btn-default" data-dismiss="modal" id="close" style="border: 0;"><i class="fa fa-times" aria-hidden="true"></i></button>
 		                    </div>
 		                {{else}}
 	                    	<div class="col-md-6 text-left" style="padding-left: 0;"> 
@@ -36,6 +34,9 @@
 		                    		<h3><a id="usersProfile" href="/profile/{{thisPost.userId}}">{{username thisPost.userId}}</a></h3>
 		                    	{{/if}}
 	                    		<a class="postDate" href="" id="postDetail"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i>{{formatDatePost(thisPost.dateTime)}}</a>
+		                    </div>
+		                    <div class="col-md-4 text-right" style="padding-right: 0;">
+		               			<button type="button" class="btn btn-default" data-dismiss="modal" id="close" style="border: 0;"><i class="fa fa-times" aria-hidden="true"></i></button>
 		                    </div>
 	                    {{/if}}
 
@@ -51,34 +52,35 @@
 					<div class="likes">
                     	<i class="fa fa-thumbs-up fa-2x" aria-hidden="true">{{thisPost.like}}</i>
                     	<i class="fa fa-thumbs-down fa-2x" aria-hidden="true">{{thisPost.dislike}}</i>
-                    	<i class="fa fa-comments fa-2x" aria-hidden="true">0</i>
+                    	<i class="fa fa-comments fa-2x" aria-hidden="true">{{commentsCounter}}</i>
                   	</div>
                   	
                   	{{#if alreadyLiked thisPost._id}}
-	                    <button class="btn btn-success btn-sm" id="like" onclick="like('{{thisPost._id}}','{{thisPost.like}}','{{thisPost.dislike}}', 1)" disabled="{{alreadyLiked thisPost._id}}">Like</button> 
-	                    <button class="btn btn-danger btn-sm" id="dislike" onclick="dislike('{{thisPost._id}}','{{thisPost.like}}','{{thisPost.dislike}}', -1)" disabled="{{alreadyDisliked thisPost._id}}">Dislike</button>
+	                    <button class="btn btn-success btn-sm" id="like" onclick="like('{{thisPost._id}}', 1)" disabled="{{alreadyLiked thisPost._id}}">Like</button> 
+	                    <button class="btn btn-danger btn-sm" id="dislike" onclick="dislike('{{thisPost._id}}', -1)" disabled="{{alreadyDisliked thisPost._id}}">Dislike</button>
                     {{else}}
                     	{{#if alreadyDisliked thisPost._id}}
-                		<button class="btn btn-success btn-sm" id="like" onclick="like('{{thisPost._id}}','{{thisPost.like}}','{{thisPost.dislike}}', -1)" disabled="{{alreadyLiked thisPost._id}}">Like</button> 
-                    	<button class="btn btn-danger btn-sm" id="dislike" onclick="dislike('{{thisPost._id}}','{{thisPost.like}}','{{thisPost.dislike}}', 1)" disabled="{{alreadyDisliked thisPost._id}}">Dislike</button>
+                		<button class="btn btn-success btn-sm" id="like" onclick="like('{{thisPost._id}}', -1)" disabled="{{alreadyLiked thisPost._id}}">Like</button> 
+                    	<button class="btn btn-danger btn-sm" id="dislike" onclick="dislike('{{thisPost._id}}', 1)" disabled="{{alreadyDisliked thisPost._id}}">Dislike</button>
                 		{{else}}
-                			<button class="btn btn-success btn-sm" id="like" onclick="like('{{thisPost._id}}','{{thisPost.like}}','{{thisPost.dislike}}', 0)" disabled="{{alreadyLiked thisPost._id}}">Like</button> 
-                    		<button class="btn btn-danger btn-sm" id="dislike" onclick="dislike('{{thisPost._id}}','{{thisPost.like}}','{{thisPost.dislike}}', 0)" disabled="{{alreadyDisliked thisPost._id}}">Dislike</button>
+                			<button class="btn btn-success btn-sm" id="like" onclick="like('{{thisPost._id}}', 0)" disabled="{{alreadyLiked thisPost._id}}">Like</button> 
+                    		<button class="btn btn-danger btn-sm" id="dislike" onclick="dislike('{{thisPost._id}}', 0)" disabled="{{alreadyDisliked thisPost._id}}">Dislike</button>
                 		{{/if}}
                     {{/if}}
 
                 </div>
 
+
                 <div id="postDetailFooter">
 
-                	<div class="modal-footer" id="insertComment">
+                	<div class="modal-footer" id="insertComment" style="margin-bottom: 2%;">
                 
 	                	<div class="row text-center">
 	                		<div class="col-md-1">
 	                			<i class="fa fa-user fa-3x" id="commentProfileIcon" aria-hidden="true"></i>
 	                		</div>
 	                		<div class="col-md-11">
-	                		<textarea class="commentsTextarea" oninput="autoGrow(this)" required></textarea>
+	                		<textarea class="commentTextarea" id="commentTextarea" oninput="autoGrow(this)" placeholder="Write a comment here..." required></textarea>
 	                		</div>
 	                	</div>
 	                	<div class="row text-right">
@@ -92,18 +94,75 @@
 	                	</div>
                 	</div>
                 
+                	{{#each comments}}
+		                <div class="modal-footer" id="showComments">
+		                	
+	                		<div class="row text-center">
 
-	                <div class="modal-footer" id="showComments">
-	                	tutti i commenti qua stile twitter!
-	                	<div >
-	                		<div class="row text-center" id="commentsTop">
+	                			<div class="col-md-1">
+		                			{{#if anonymous}}
+										<i class="fa fa-user-secret fa-3x" aria-hidden="true"></i>
+			                    	{{else}}
+										<i class="fa fa-user fa-3x" aria-hidden="true"></i>
+			                    	{{/if}}
+		                		</div>
+		                		<div class="col-md-11" style="padding-left: 5%;">
+		                			<div class="row text-left">
+			                			{{#if permission userId}}
+			                				<div class="col-md-9" style="padding-left: 0%;">
+			                					<h4><a href="/profile">{{currentUser.username}}</a></h4><span> - {{formatDateCommentFromNow(dateTime)}}</span>
+			                				</div>
+			                				<div class="col-md-3 text-right" style="padding-right: 1%;">
+			                					<button class="btn btn-primary btn-xs" id="editComment"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</button>
+				               		 			<button class="btn btn-danger btn-xs" id="deleteComment"><i class="fa fa-trash-o" title="Delete" aria-hidden="true"></i>Delete</button>
+		                					</div>
+			                			{{else}}
+			                				<div class="col-md-9" style="padding-left: 0%;">
+		                						{{#if anonymous}}
+			                						<h4><a href="">anonymous</a></h4><span> - {{formatDateCommentFromNow(dateTime)}}</span>
+		                						{{else}}
+		                							<h4><a id="usersProfile" href="/profile/{{userId}}">{{username userId}}</a></h4><span> - {{formatDateCommentFromNow(dateTime)}}</span>
+		                						{{/if}}
+			                				</div>
+			                			{{/if}}
+   		                			</div>
 
-	                		</div>
+		                			<div class="row text-left" style="padding-right: 2%;">
+										<span class="pre">{{text}}</span>
+									</div>
+									<div class="row tex-center" id="commentsLike">
+				                		<div>
+					                		<i class="fa fa-thumbs-up" aria-hidden="true">{{like}}</i>
+				                    		<i class="fa fa-thumbs-down" aria-hidden="true">{{dislike}}</i>
+			                    		</div>
 
-	                	</div>
-	                	
+		                    		{{#if alreadyLikedComment}}
+			                    		<button class="btn btn-success btn-xs" id="likeComment" onclick="likeComment('{{_id}}', 1)" disabled="{{alreadyLikedComment}}">Like</button> 
+				                    	<button class="btn btn-danger btn-xs" id="dislikeComment"  onclick="dislikeComment('{{_id}}', -1)" disabled="{{alreadyDislikedComment}}">Dislike</button>
+				                	{{else}}
+				                		{{#if alreadyDislikedComment}}
+				                			<button class="btn btn-success btn-xs" id="likeComment" onclick="likeComment('{{_id}}', -1)" disabled="{{alreadyLikedComment}}">Like</button> 
+				                    		<button class="btn btn-danger btn-xs" id="dislikeComment"  onclick="dislikeComment('{{_id}}', 1)" disabled="{{alreadyDislikedComment}}">Dislike</button>
+				                		{{else}}
+				                			<button class="btn btn-success btn-xs" id="likeComment" onclick="likeComment('{{_id}}', 0)" disabled="{{alreadyLikedComment}}">Like</button> 
+				                    		<button class="btn btn-danger btn-xs" id="dislikeComment"  onclick="dislikeComment('{{_id}}', 0)" disabled="{{alreadyDislikedComment}}">Dislike</button>
+				                		{{/if}}
+				                	{{/if}}
+
+				                	</div>
+
+		                		</div>
+
+		                	</div>
+
+		                </div>
+	                {{/each}}
+
+	                <div style="height: 1%;">
 	                </div>
+
                 </div>
+
 
             </div>
         </div>

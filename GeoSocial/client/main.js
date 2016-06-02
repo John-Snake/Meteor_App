@@ -32,6 +32,11 @@ Template.registerHelper('formatDatePostFromNow', function (date) {
 	return "Posted here "+moment(date).fromNow();
 })
 
+// Format date using Moment.js [Example: '2 h ago' ]
+Template.registerHelper('formatDateCommentFromNow', function (date) {
+	return moment(date).fromNow();
+})
+
 // Auto grow text area with verron:autosize
 autoGrow = function (element) {
     autosize(element);
@@ -84,7 +89,7 @@ Template.registerHelper('alreadyDisliked', function (id) {
 	}
 });
 
-like = function(post_id, like, dislike, counter) {
+like = function(post_id, counter) {
 	var temp = counter;
 	var post = Post.findOne({ _id: post_id });
 	
@@ -117,7 +122,7 @@ like = function(post_id, like, dislike, counter) {
 
 }
 
-dislike = function(post_id, like, dislike, counter) {
+dislike = function(post_id, counter) {
 	var temp = counter;
 	var post = Post.findOne({ _id: post_id });
 
@@ -149,4 +154,97 @@ dislike = function(post_id, like, dislike, counter) {
 
 }
 
-/* -------------------------- */
+/* Comments ----------------------- */
+
+Template.registerHelper('alreadyLikedComment', function () {
+	var comment = Comments.findOne({ _id: this._id });
+
+	if(comment) {
+		// Already liked the comment
+		if (_.contains(comment.votersLike, Meteor.userId())) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+});
+
+Template.registerHelper('alreadyDislikedComment', function () {
+	var comment = Comments.findOne({ _id: this._id });
+
+	if(comment) {
+		// Already disliked the comment
+		if (_.contains(comment.votersDislike, Meteor.userId())) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+});
+
+likeComment = function(comment_id, counter) {
+	var temp = counter;
+	var comment = Comments.findOne({ _id: comment_id });
+	
+	if(comment) {
+
+		// Already liked the comment
+		if (_.contains(comment.votersLike, Meteor.userId())) {
+			return;
+		}
+		else {
+
+			if(temp === 0) { // Add 1 like
+				Meteor.call('likeComment', comment_id, 1, function (error) {
+                	if(error){
+                        console.log(error.reason);
+                	}
+                });
+			}
+			else if (temp === -1) { // Add 1 like, remove 1 dislike
+				Meteor.call('likeComment', comment_id, -1, function (error) {
+                	if(error){
+                        console.log(error.reason);
+                	}
+                });
+			}
+
+		}
+
+	}
+
+}
+
+dislikeComment = function(comment_id, counter) {
+	var temp = counter;
+	var comment = Comments.findOne({ _id: comment_id });
+
+	if(comment) {
+
+		// Already disliked the comment
+		if (_.contains(comment.votersDislike, Meteor.userId())) {
+			return;
+		}
+		else {
+
+			if(temp === 0) { // Add 1 dislike
+				Meteor.call('dislikeComment', comment_id, 1, function (error) {
+                	if(error){
+                        console.log(error.reason);
+                	}
+                });
+			}
+			else if (temp === -1) { // Add 1 dislike, remove 1 like
+				Meteor.call('dislikeComment', comment_id, -1, function (error) {
+                	if(error){
+                        console.log(error.reason);
+                	}
+                });
+			}
+
+		}
+	}
+
+}

@@ -260,6 +260,11 @@ input[type="file"]
     display: block;
 }
 
+textarea 
+{
+    resize: none;
+}
+
 .btn-file 
 {
     position: relative;
@@ -805,11 +810,10 @@ input[type="checkbox"]
 
 /* Comments -------------- */
 
-.commentsTextarea 
+.commentTextarea 
 {
     width: 100%;
     max-width: 100%;
-
     font-style: italic;
     font-size: 12px;
     font-weight: 400;
@@ -825,4 +829,24 @@ input[type="checkbox"]
 #insertComment
 {
     background-color: #ECECEC;
+}
+
+#postDetailFooter h4 
+{
+    margin: 0;
+    font-weight: bolder;
+    display: inline;
+}
+
+#commentsLike
+{
+    border-top: 1.5px solid rgba(0, 0, 0, 0.1);
+    margin-top: 2%;
+    padding-top: 2%;
+}
+
+#commentsLike .fa
+{
+    font-size: 1.25em;
+    margin-right: 2%;
 }

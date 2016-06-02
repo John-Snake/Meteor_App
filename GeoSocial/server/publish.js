@@ -8,7 +8,7 @@ Meteor.publish("usersUsername", function () {
     return Meteor.users.find({}, {fields: {"username": 1}});
 });
 
-Meteor.publish('myPost', function(){
+Meteor.publish('myPosts', function(){
 	return Post.find({userId: this.userId});
 });
 
@@ -31,4 +31,8 @@ Meteor.publish('allPostsAtDistance', function(distanceMeters, lng, lat){
 // non si rispetta il livello di privacy scelto dall'utente: tutti i suoi dati sono stati pubblicati e sono vulnerabili da altri client
 Meteor.publish('usersProfilesNoPrivacy', function(id){
 	return Meteor.users.find({_id: id}, {fields: {"profile": 1, "emails.address": 1, "username": 1}});
+});
+
+Meteor.publish('thisPostComments', function(postId){
+	return Comments.find({postId: postId});
 });

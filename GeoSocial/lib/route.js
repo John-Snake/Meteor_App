@@ -32,17 +32,17 @@ Router.route('/profile');
 Router.route('/editProfile');
 Router.route('/newPost');
 
-Router.route('/myPost', {
+Router.route('/myPosts', {
     // this template will be rendered until the subscriptions are ready
     loadingTemplate: 'loadingTemplate',
 
     waitOn: function () {
         // return one handle, a function, or an array
-        return Meteor.subscribe('myPost');
+        return Meteor.subscribe('myPosts');
     },
 
     action: function () {
-        this.render('myPost');
+        this.render('myPosts');
     }
 });
 
@@ -52,7 +52,7 @@ Router.route('/editPost/:_id', {
 
     waitOn: function () {
         // return one handle, a function, or an array
-        return Meteor.subscribe('myPost');
+        return Meteor.subscribe('myPosts');
     },
 
     action: function () {
