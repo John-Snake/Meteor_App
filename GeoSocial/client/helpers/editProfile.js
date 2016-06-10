@@ -29,8 +29,11 @@ Template.editProfile.events({
             function(error){
                if(error){
                     console.log(error.reason);
-                } else {
+                    Bert.alert( error.reason, 'danger', 'growl-top-right' );
+                }
+                else {
                     Router.go("/profile");
+                    Bert.alert( "User edited successfully.", 'success', 'growl-top-right' );
                 }
             } 
         );
@@ -46,9 +49,11 @@ Template.editProfile.events({
             Meteor.call('changeEmail', oldEmail, email, function (error) {
                 if(error){
                         console.log(error.reason);
+                        Bert.alert( error.reason, 'danger', 'growl-top-right' );
                 }
                 else {
                     Router.go("/profile");
+                    Bert.alert( "User edited successfully.", 'success', 'growl-top-right' );
                 }
             });
         }
@@ -68,9 +73,11 @@ Template.editProfile.events({
             Meteor.call('changeUsername', username, function (error) {
                 if(error){
                         console.log(error.reason);
+                        Bert.alert( error.reason, 'danger', 'growl-top-right' );
                 }
                 else {
                     Router.go("/profile");
+                    Bert.alert( "User edited successfully.", 'success', 'growl-top-right' );
                 }
             });
         }
@@ -92,11 +99,14 @@ Template.editProfile.events({
                         if(error.reason == 'Incorrect password') {
                             //console.log(error.reason);
                             //console.log("Password corrente sbagliata.")
-                            $('#alert').show();
-                            $('#alert').html("Password corrente sbagliata.");
+                            //$('#alert').show();
+                            //$('#alert').html("Password corrente sbagliata.");
+                            Bert.alert( "Password corrente sbagliata.", 'danger', 'growl-top-right' );
                         }
-                    } else {
+                    }
+                    else {
                         Router.go("/profile");
+                        Bert.alert( "User edited successfully.", 'success', 'growl-top-right' );
                     }
                 }
             );

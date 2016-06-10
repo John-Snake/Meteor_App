@@ -33,8 +33,11 @@ Template.signUp.events({
             function(error){
         	   if(error){
                 	console.log(error.reason);
-            	} else {
+                    Bert.alert( error.reason, 'danger', 'growl-top-right' );
+            	}
+                else {
                 	Router.go("/");
+                    Bert.alert( 'Your registration was successful!<br>You are logged in!', 'success', 'growl-top-right' );
             	}
 	        }  
 	    );

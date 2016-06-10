@@ -1,0 +1,43 @@
+<template name="editComment">
+ 	<div class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit comment</h4>
+                </div>
+
+                <div class="modal-body">
+                	<div class="row text-center">
+                        <div class="col-md-1">
+                            {{#if thisComment.anonymous}}
+                                <i class="fa fa-user-secret fa-3x" id="commentProfileIcon" aria-hidden="true"></i>
+                            {{else}}
+                                <i class="fa fa-user fa-3x" id="commentProfileIcon" aria-hidden="true"></i>
+                            {{/if}}
+                        </div>
+                        <div class="col-md-11">
+                            <textarea class="commentTextarea" id="commentTextarea" oninput="autoGrow(this)" placeholder="Write a comment here..." value="{{thisComment.text}}" required></textarea>
+                        </div>
+                    </div>
+                    <div class="row text-center">
+                        <div>
+                            <label for="comment_anonymous">Anonymous</label>
+                            {{#if thisComment.anonymous}}
+                                <input type="checkbox" value="1" name="comment_anonymous" id="comment_anonymous" checked="true" />
+                            {{else}}
+                                <input type="checkbox" value="1" name="comment_anonymous" id="comment_anonymous" />
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                	<button class="btn btn-primary btn-sm" id="editComment"><i class="fa fa-pencil fa-fw" aria-hidden="true"></i>Edit comment</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="close">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</template>

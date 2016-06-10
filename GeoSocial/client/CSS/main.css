@@ -54,6 +54,13 @@ header .dropdown-menu > li > a
     color: rgba(92, 184, 92, 1);
 }
 
+/* themeteorchef:bert -------- */
+
+.bert-alert 
+{  
+    margin-top: 40px;
+}
+
 /* Form -------------------- */
 
 .wrap
@@ -147,15 +154,6 @@ form.signIn input[type="submit"], form.signUp input[type="submit"]
 form.signIn input[type="submit"]:hover, form.signUp input[type="submit"]:hover
 {
     transition: background-color 0.5s ease;
-}
-
-form.signIn .remember-forgot
-{
-    float: left;
-    width: 100%;
-    margin: 10px 0 0 0;
-    padding-left: 5%;
-    padding-right: 5%; 
 }
 
 form.signIn .forgot-pass-content
@@ -466,7 +464,7 @@ textarea
     position: fixed;
 }
 
-/* Choice--------------- */
+/* Choicebody --------------- */
 
 .choicebody 
 {
@@ -525,6 +523,32 @@ textarea
     background-color: rgba(0, 0, 0, 0.7);
     border: none;
 }
+
+/* ChoicebodyAllPosts ------------ */
+
+.choicebodyAllPosts .well
+{
+    background-color: rgba(245, 245, 245, 0.7);
+    border-radius: 0px;
+    margin-bottom: 0;
+    border: 0;
+    -webkit-box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.5);
+    -moz-box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.5);
+    box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.5);
+    color: black;
+}
+
+.choicebodyAllPosts h3
+{
+    color: black;
+}
+
+.choicebodyAllPosts input[type="number"]
+{
+    border-bottom: 1px solid black;
+    color: black;
+}
+
 
 /* NewPost -------------------- */
 

@@ -1,12 +1,3 @@
-Template.editPost.helpers({
-	'checked': function () {
-		var postAnonymous = Post.findOne({_id: Router.current().params._id}, {fields: {"anonymous": 1}});
-		if (postAnonymous.anonymous == 1) {
-			return "checked";
-		}
-	}
-});
-
 Template.editPost.events({
 	'submit #edit_post': function(event){
         event.preventDefault();
@@ -35,8 +26,10 @@ Template.editPost.events({
 		               	if(error){
 		               		console.log(error.reason);
 		                    console.log(error.invalidKeys);
-		                }  else {
+		                }  
+                        else {
 		                    Router.go("/myPosts");
+                            Bert.alert( "Post edited successfully.", 'success', 'growl-top-right' );
 		                }
 		            }
         	);
@@ -68,7 +61,8 @@ Template.editPost.events({
 		               	if(error){
 		               		console.log(error.reason);
 		                    console.log(error.invalidKeys);
-		                }  else {
+		                }  
+                        else {
 		                    Router.go("/myPost");
 		                }
 		            }

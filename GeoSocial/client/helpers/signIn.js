@@ -6,10 +6,13 @@ Template.signIn.events({
         Meteor.loginWithPassword(email, password, function(error){
 		    if(error){
 		        //console.log(error.reason);
-		        $('#alert').show();
-            	$('#alert').html(error.reason);
-		    } else {
+		        //$('#alert').show();
+            	//$('#alert').html(error.reason);
+            	Bert.alert( error.reason, 'danger', 'growl-top-right' );
+		    }
+		    else {
 		        Router.go("/");
+		        Bert.alert( 'You are logged in!', 'success', 'growl-top-right' );
 		    }
 		});
     }

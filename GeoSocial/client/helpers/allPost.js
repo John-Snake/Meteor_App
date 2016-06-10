@@ -12,7 +12,7 @@ Template.allPosts.helpers({
 		var lng = Session.get('currentUser_longitude');
 		var lat = Session.get('currentUser_latitude');
 		Meteor.subscribe('allPostsAtDistance', distanceMeters, lng, lat);
-	
+		
 		return Post.find({}, {sort: {dateTime: -1}});
 	},
 	// Show the right username for every post
@@ -25,11 +25,6 @@ Template.allPosts.helpers({
 	'permission': function() {
 		var user = Meteor.users.findOne(this.userId);
 		return user._id == Meteor.userId();
-	},
-	// Show the author of the post: anonymous or username
-	'anonymous': function() {
-		var anonymous = this.anonymous;
-		return anonymous == 1;
 	},
 	'commentsCounter': function() {
 		Meteor.subscribe('thisPostComments', this._id);
@@ -67,6 +62,10 @@ Template.allPosts.helpers({
 });
 
 Template.allPosts.events({
+	'click #aroundMe': function () {
+		var distanceKm = $('#distance').val();
+		Router.go("/allPosts/"+distanceKm);
+	},
 	'click #deletePost': function() {
 		Session.set('postId', this._id);
 		Modal.show('deletePost');

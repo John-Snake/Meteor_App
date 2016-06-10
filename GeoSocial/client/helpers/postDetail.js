@@ -37,9 +37,6 @@ Template.postDetail.helpers({
 });
 
 Template.postDetail.events({
-	'click #close': function() {
-		delete Session.keys.editPost;
-	},
 	'click #editPost': function() {
 		var route = Session.get('postId');
 		route = "/editPost/"+route;
@@ -58,11 +55,9 @@ Template.postDetail.events({
 	    }, 500);
 	},
 	'click #personalProfile': function() {
-		delete Session.keys.postId;
 		Modal.hide('postDetail');
 	},
 	'click #usersProfile': function() {
-		delete Session.keys.postId;
 		Modal.hide('postDetail');
 	},
 	'click #comment_anonymous': function() {
@@ -99,6 +94,10 @@ Template.postDetail.events({
         }, function(error){
             	if(error){
                     console.log(error.invalidKeys);
+                    Bert.alert( error.reason, 'danger', 'growl-top-right' );
+                }
+                else {
+                	Bert.alert( "Comment published successfully.", 'success', 'growl-top-right' );
                 }
           	}
         );
@@ -110,6 +109,30 @@ Template.postDetail.events({
        		$('#commentProfileIcon').addClass('fa-user');
        	}
        	
+	},
+	'click #deleteComment': function() {
+		var postId = Session.get('postId');
+		var id = this._id;
+		Session.set('commentId', id);
+
+		Modal.hide('postDetail');
+
+		setTimeout(function(){
+			Session.set('postId', postId);
+	        Modal.show('deleteComment')
+	    }, 500);
+	},
+	'click #editComment': function() {
+		var postId = Session.get('postId');
+		var id = this._id;
+		Session.set('commentId', id);
+
+		Modal.hide('postDetail');
+
+		setTimeout(function(){
+			Session.set('postId', postId);
+	        Modal.show('editComment');
+	    }, 500);
 	}
 });
 

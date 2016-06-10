@@ -47,6 +47,12 @@ privacyInfoUpdate = function (inputRange) {
 	document.getElementById('label_user_privacy').innerHTML='Privacy: livello '+inputRange.value;
 }
 
+// Format the input field removing any unwanted characters/formatting
+formatUsername = function(element) {
+	var input = element.value.replace( /[^A-Za-z0-9\s]/g, '' ).toLowerCase().trim();
+	element.value = input;
+}
+
 /* Post -------------------- */
 
 Template.registerHelper('alreadyLiked', function (id) {

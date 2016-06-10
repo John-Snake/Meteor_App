@@ -34,8 +34,11 @@ Template.newPost.events({
         }, function(error){
                 if(error){
                     console.log(error.invalidKeys);
-                } else {
+                    Bert.alert( error.reason, 'danger', 'growl-top-right' );
+                } 
+                else {
                     Router.go("/myPosts");
+                    Bert.alert( "Post published successfully.", 'success', 'growl-top-right' );
                 }
           }
         );

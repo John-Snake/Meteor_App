@@ -9,10 +9,6 @@ Template.myPosts.helpers({
 	'post' : function (){
 		return Post.find( {}, { sort: { dateTime: -1} } );
 	},
-	'anonymous': function() {
-		var anonymous = this.anonymous;
-		return anonymous == 1;
-	},
 	'commentsCounter': function() {
 		Meteor.subscribe('thisPostComments', this._id);
 		return Comments.find({postId: this._id}).count();
