@@ -6,7 +6,7 @@
 			<div class="field">
 				<label for="post_text">Text</label><br>
 				<script>autosize(document.querySelectorAll('textarea'));</script>
-				<textarea name="post_text" id="post_text" oninput="autoGrow(this)" oncreate="autoGrow(this)" value="{{text}}" autofocus required></textarea>
+				<textarea name="post_text" id="post_text" oninput="autoGrow(this)" oncreate="autoGrow(this)" value="{{text}}" required></textarea>
 			</div>
 
 			<div class="field">
@@ -20,15 +20,15 @@
 
 			
 			<div class="field">
-					<label for="post_oldPosition">Do you want to keep the old position?</label>
-					<input type="checkbox" value="1" name="post_oldPosition" id="post_oldPosition" checked/>
-					<input type="text" id="oldLatitude" value="{{latitude}}" hidden >
-					<input type="text" id="oldLongitude" value="{{longitude}}" hidden >
+				<label for="post_oldPosition">Do you want to keep the old position?</label>
+				<input type="checkbox" value="1" name="post_oldPosition" id="post_oldPosition" checked/>
+				<input type="text" id="oldLatitude" value="{{latitude}}" hidden >
+				<input type="text" id="oldLongitude" value="{{longitude}}" hidden >
 			</div>
 
 			<div class="field">
-					<label for="post_location">Use your current location</label>
-					<input type="checkbox" value="1" name="post_location" id="post_location" />
+				<label for="post_location">Use your current location</label>
+				<input type="checkbox" value="1" name="post_location" id="post_location" />
 				{{> googleAutocomplete}}
 			</div>
 			

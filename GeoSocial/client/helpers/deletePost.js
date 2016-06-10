@@ -3,6 +3,7 @@ Template.deletePost.events({
 		Post.remove(Session.get('postId'), function(error){
             if(error){
                 console.log(error);
+                console.log(error.invalidKeys);
                 Bert.alert( error.reason, 'danger', 'growl-top-right' );
             } 
             else {
