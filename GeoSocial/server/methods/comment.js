@@ -10,7 +10,7 @@ Meteor.methods({
 		if (type == 1) {
 			Comments.update( { _id : comment_id },
 					{ 
-						$addToSet: { votersLike: Meteor.userId() } ,
+						$addToSet: { votersLike: this.userId } ,
 						$inc: { like: 1 } 
 					},
 		 		    function(error){
@@ -24,8 +24,8 @@ Meteor.methods({
 		else if (type == -1) {
 			Comments.update( { _id : comment_id },
 					{ 
-						$addToSet: { votersLike: Meteor.userId() },
-						$pull: { votersDislike: Meteor.userId() },
+						$addToSet: { votersLike: this.userId },
+						$pull: { votersDislike: this.userId },
 						$inc: { like : 1, dislike: -1 } 
 					},
 		 		    function(error){
@@ -49,7 +49,7 @@ Meteor.methods({
 	    if (type == 1) {
 	    	Comments.update( { _id : comment_id }, 
 					{ 
-						$addToSet: { votersDislike: Meteor.userId() },
+						$addToSet: { votersDislike: this.userId },
 						$inc: { dislike : 1 } 
 					},
 		 		    function(error){
@@ -63,7 +63,7 @@ Meteor.methods({
 	    else if (type == -1) {
 	    	Comments.update( { _id : comment_id },
 					{ 
-						$addToSet: { votersDislike: Meteor.userId() },
+						$addToSet: { votersDislike: this.userId },
 						$pull: { votersLike: Meteor.userId() },
 						$inc: { like : -1, dislike: 1 } 
 					},

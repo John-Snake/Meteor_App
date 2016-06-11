@@ -29,7 +29,7 @@
         <input type="submit" value="Change username" class="btn btn-success btn-sm">
     </form>
 
-    <form class="signUp" id="editProfile" style="margin-bottom:0;">
+    <form class="signUp" id="editProfile">
         <p class="form-title">Edit profile</p>
         <label for="name">Nome : </label>
         <div><input type="text" name="name" id="name" value="{{currentUser.profile.name}}"></div>
@@ -77,10 +77,11 @@
 
         <input type="submit" value="Edit Profile" class="btn btn-success btn-sm">
     </form>
-
-    <form class="button_to" id="cancelAccount">
-        <input class="btn btn-danger btn-sm" type="submit" value="Cancel my account" />
-    </form>
-                    
+           
+    <form class="signUp text-center">
+        <p class="form-title">Delete account</p>
+        <p style="font-size:1.2em;">Warning, this operation cannot be undone!<br>It will also delete all your posts and comments.</p>
+        <input class="btn btn-danger btn-sm" type="button" id="deleteAccount" value="Delete account" />
+    </form>     
 
 </template>

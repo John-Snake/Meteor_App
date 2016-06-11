@@ -10,13 +10,14 @@ Meteor.methods({
 		if (type == 1) {
 			Post.update( { _id : post_id },
 					{ 
-						$addToSet: { votersLike: Meteor.userId() } ,
+						$addToSet: { votersLike: this.userId } ,
 						$inc: { like: 1 } 
 					},
 		 		    function(error){
 		               	if(error){
 		               		console.log(error.reason);
 		                    console.log(error.invalidKeys);
+		                    Bert.alert( error.reason, 'danger', 'growl-top-right' );
 		                }
 		            }
         	);
@@ -24,14 +25,15 @@ Meteor.methods({
 		else if (type == -1) {
 			Post.update( { _id : post_id },
 					{ 
-						$addToSet: { votersLike: Meteor.userId() },
-						$pull: { votersDislike: Meteor.userId() },
+						$addToSet: { votersLike: this.userId },
+						$pull: { votersDislike: this.userId },
 						$inc: { like : 1, dislike: -1 } 
 					},
 		 		    function(error){
 		               	if(error){
 		               		console.log(error.reason);
 		                    console.log(error.invalidKeys);
+		                    Bert.alert( error.reason, 'danger', 'growl-top-right' );
 		                }
 		            }
         	);
@@ -49,7 +51,7 @@ Meteor.methods({
 	    if (type == 1) {
 	    	Post.update( { _id : post_id }, 
 					{ 
-						$addToSet: { votersDislike: Meteor.userId() },
+						$addToSet: { votersDislike: this.userId },
 						$inc: { dislike : 1 } 
 					},
 		 		    function(error){
@@ -63,8 +65,8 @@ Meteor.methods({
 	    else if (type == -1) {
 	    	Post.update( { _id : post_id },
 					{ 
-						$addToSet: { votersDislike: Meteor.userId() },
-						$pull: { votersLike: Meteor.userId() },
+						$addToSet: { votersDislike: this.userId },
+						$pull: { votersLike: this.userId },
 						$inc: { like : -1, dislike: 1 } 
 					},
 		 		    function(error){
@@ -76,6 +78,36 @@ Meteor.methods({
 	        );
 	    }
 
-	}
+	},
+	commentsChainDeletion : function (post_id) {
+		if (! this.userId) {
+      		throw new Meteor.Error("not-logged-in", "Must be logged in to dislike this post.");
+	    }
 
+		Comments.remove({postId: post_id}, function(error){
+            if(error){
+                console.log(error);
+                console.log(error.invalidKeys);
+            } 
+        });
+	},
+	postsCommentsChainDeletion : function () {
+		if (! this.userId) {
+      		throw new Meteor.Error("not-logged-in", "Must be logged in to dislike this post.");
+	    }
+
+	    Comments.remove({userId: this.userId}, function(error){
+            if(error){
+                console.log(error);
+                console.log(error.invalidKeys);
+            } 
+        });
+	    /*
+	    Post.remove({userId: this.userId}, function(error){
+            if(error){
+                console.log(error);
+                console.log(error.invalidKeys);
+            } 
+        });*/
+	}
 });

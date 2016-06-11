@@ -1,4 +1,7 @@
 Template.editProfile.events({
+    'click #deleteAccount': function(){
+        Modal.show('deleteAccount');
+    },
     'submit #editProfile': function(event){
         event.preventDefault();
         var name = $('[name=name]').val();

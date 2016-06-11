@@ -111,6 +111,7 @@ like = function(post_id, counter) {
 				Meteor.call('like', post_id, 1, function (error) {
                 	if(error){
                         console.log(error.reason);
+                        Bert.alert( error.reason, 'danger', 'growl-top-right' );
                 	}
                 });
 			}
@@ -118,6 +119,7 @@ like = function(post_id, counter) {
 				Meteor.call('like', post_id, -1, function (error) {
                 	if(error){
                         console.log(error.reason);
+                        Bert.alert( error.reason, 'danger', 'growl-top-right' );
                 	}
                 });
 			}
@@ -144,6 +146,7 @@ dislike = function(post_id, counter) {
 				Meteor.call('dislike', post_id, 1, function (error) {
                 	if(error){
                         console.log(error.reason);
+                        Bert.alert( error.reason, 'danger', 'growl-top-right' );
                 	}
                 });
 			}
@@ -151,6 +154,7 @@ dislike = function(post_id, counter) {
 				Meteor.call('dislike', post_id, -1, function (error) {
                 	if(error){
                         console.log(error.reason);
+                        Bert.alert( error.reason, 'danger', 'growl-top-right' );
                 	}
                 });
 			}
@@ -206,6 +210,7 @@ likeComment = function(comment_id, counter) {
 				Meteor.call('likeComment', comment_id, 1, function (error) {
                 	if(error){
                         console.log(error.reason);
+                        Bert.alert( error.reason, 'danger', 'growl-top-right' );
                 	}
                 });
 			}
@@ -213,6 +218,7 @@ likeComment = function(comment_id, counter) {
 				Meteor.call('likeComment', comment_id, -1, function (error) {
                 	if(error){
                         console.log(error.reason);
+                        Bert.alert( error.reason, 'danger', 'growl-top-right' );
                 	}
                 });
 			}
@@ -239,6 +245,7 @@ dislikeComment = function(comment_id, counter) {
 				Meteor.call('dislikeComment', comment_id, 1, function (error) {
                 	if(error){
                         console.log(error.reason);
+                        Bert.alert( error.reason, 'danger', 'growl-top-right' );
                 	}
                 });
 			}
@@ -246,6 +253,7 @@ dislikeComment = function(comment_id, counter) {
 				Meteor.call('dislikeComment', comment_id, -1, function (error) {
                 	if(error){
                         console.log(error.reason);
+                        Bert.alert( error.reason, 'danger', 'growl-top-right' );
                 	}
                 });
 			}

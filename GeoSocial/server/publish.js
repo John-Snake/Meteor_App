@@ -12,6 +12,7 @@ Meteor.publish('myPosts', function(){
 	return Post.find({userId: this.userId});
 });
 
+// Pubblico anche l'user id violando la richiesta di anonimato
 Meteor.publish('allPostsAtDistance', function(distanceMeters, lng, lat){
 	return Post.find({
 		location: {
@@ -33,6 +34,7 @@ Meteor.publish('usersProfilesNoPrivacy', function(id){
 	return Meteor.users.find({_id: id}, {fields: {"profile": 1, "emails.address": 1, "username": 1}});
 });
 
+// Pubblico anche l'user id violando la richiesta di anonimato
 Meteor.publish('thisPostComments', function(postId){
 	return Comments.find({postId: postId});
 });

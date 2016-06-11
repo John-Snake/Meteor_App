@@ -63,7 +63,8 @@ Template.editPost.events({
 		                    console.log(error.invalidKeys);
 		                }  
                         else {
-		                    Router.go("/myPost");
+		                    Router.go("/myPosts");
+                            Bert.alert( "Post edited successfully.", 'success', 'growl-top-right' );
 		                }
 		            }
         	);

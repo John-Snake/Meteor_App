@@ -181,6 +181,11 @@ form.signIn a:hover, form.signUp a:hover
     color: #2ecc71;
 }
 
+form.signUp p 
+{
+    color: white;
+}
+
 input[type=range] 
 {
   -webkit-appearance: none;
@@ -269,13 +274,6 @@ textarea
     overflow: hidden;
     background: #006dcc;
     border: none;
-}
-
-.button_to 
-{
-    background-color: rgba(0, 0, 0, 0);
-    margin-top: 0;
-    padding-top: 0;
 }
 
 .pr-wrap

@@ -17,7 +17,7 @@
                             {{/if}}
                         </div>
                         <div class="col-md-11">
-                            <textarea class="commentTextarea" id="commentTextarea" oninput="autoGrow(this)" autofocus required></textarea>
+                            <textarea class="commentTextarea" id="commentTextarea" oninput="autoGrow(this)" rows="2" autofocus required></textarea>
                             <input type="hidden" id="commentText" value="{{thisComment.text}}">
                             <script>$('#commentTextarea').val($('#commentText').val().split("\\n"))</script>
                         </div>
