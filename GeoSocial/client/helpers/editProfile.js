@@ -277,7 +277,7 @@ Template.editProfile.events({
 
     'mouseover #privacy' : function() { 
         $('#info').show();
-        $('#info').html("Select your level of privacy.<br>0 = low level, 2 = max level");
+        $('#info').html("Select your level of privacy.");
     },
 
     'mouseout #privacy': function() { 
@@ -321,6 +321,39 @@ Template.editProfile.helpers({
             if (check === "Transgender"){
                 return 'checked';
             }
+        }
+    },
+    privacyColor : function(privacyValue) {
+        if (privacyValue == 0) {
+            return 'red';
+        }
+        else if (privacyValue == 1) {
+            return 'orange';
+        }
+        else if (privacyValue == 2) {
+            return 'green';
+        }
+    },
+    privacyValue : function(privacyValue) {
+        if (privacyValue == 0) {
+            return 'LOW';
+        }
+        else if (privacyValue == 1) {
+            return 'AVERAGE';
+        }
+        else if (privacyValue == 2) {
+            return 'HIGH';
+        }
+    },
+    privacyInfo : function(privacyValue) {
+        if (privacyValue == 0) {
+            return 'LOW level: Everyone can see all of your information.';
+        }
+        else if (privacyValue == 1) {
+            return 'AVERAGE level: Everyone can see your username, name, surname, email and other contacts.';
+        }
+        else if (privacyValue == 2) {
+            return 'HIGH level: Everyone can see only your username.';
         }
     }
 });

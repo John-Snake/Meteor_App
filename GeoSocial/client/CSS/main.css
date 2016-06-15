@@ -139,7 +139,8 @@ form.signIn input[type="checkbox"]
     margin-left: 0;
 }
 
-form.signIn input[type="submit"], form.signUp input[type="submit"]
+form.signIn input[type="submit"], form.signUp input[type="submit"],
+form.signUp input[type="button"]
 {
     width: 100%;
     font-size: 14px;

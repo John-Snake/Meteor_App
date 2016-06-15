@@ -183,7 +183,7 @@ Template.signUp.events({
 
     'mouseover #privacy' : function() { 
         $('#info').show();
-        $('#info').html("Select your level of privacy.<br>0 = low level, 2 = max level");
+        $('#info').html("Select your level of privacy.");
     },
 
     'mouseout #privacy': function() { 

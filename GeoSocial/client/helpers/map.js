@@ -1,4 +1,4 @@
-var MAP_ZOOM = 15;
+var MAP_ZOOM = 14;
 
 // Load the maps library
 Meteor.startup(function() {  
@@ -27,6 +27,8 @@ Template.map.helpers({
 // Reactively update both the marker position and map position
 Template.map.onCreated(function() {  
 	var self = this;
+
+	var ignore = false;
 
 	GoogleMaps.ready('map', function(map) {
 		var marker;
@@ -58,6 +60,35 @@ Template.map.onCreated(function() {
 		  	// Center and zoom the map view onto the current position.
 		  	map.instance.setCenter(marker.getPosition());
 		  	map.instance.setZoom(MAP_ZOOM);
+
+		  	// Create a editable circle on the map
+		  	var radius = new google.maps.Circle({
+      			strokeColor: 'black',
+				strokeOpacity: 0.8,
+				strokeWeight: 2,
+				fillColor: 'black',
+				fillOpacity: 0.35,
+				map: map.instance,
+				center: marker.getPosition(),
+				radius: 1000,
+				editable: true,
+		    });
+
+		  	// Update the distance input value as the map radius change
+		    google.maps.event.addListener(radius, 'radius_changed', function() {
+		  		$('#distance').val((radius.getRadius()/1000).toFixed(2));
+			});
+
+		    // Update the center of the radius if changed
+			google.maps.event.addListener(radius, 'center_changed', function() {
+				if (radius.getCenter() != marker.getPosition()) {
+					Bert.alert( 'You can\'t change the center of the circle on the map.', 'danger', 'growl-top-right' );
+					radius.setEditable(false);
+		      		radius.setCenter(marker.getPosition());
+		      		radius.setEditable(true);
+	      		}
+			});
+
 		});
 	});
 });

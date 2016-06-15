@@ -32,7 +32,11 @@ CommentsSchema = new SimpleSchema({
 	},
 	votersLike: {
       	type: Array,
-      	optional: true
+  	   	autoValue: function() {
+    		if (this.isInsert) {
+        		return [];
+        	}
+     	}
   	},
   	'votersLike.$':{
       	type: String,
@@ -40,7 +44,11 @@ CommentsSchema = new SimpleSchema({
     },
     votersDislike: {
       	type: Array,
-      	optional: true
+      	autoValue: function() {
+    		if (this.isInsert) {
+        		return [];
+        	}
+     	}
   	},
   	'votersDislike.$':{
       	type: String,
@@ -72,4 +80,19 @@ Comments.deny({
 	    // can't change owners and post
 	    return _.contains(fields, 'userId') && _.contains(fields, 'postId');
   	}
+});
+
+// Update the like and dislike counters after any update if the length of the arrays votersLike or votersDislike change, 
+// the new value is based on the length of those arrays.
+Comments.after.update(function (userId, doc, fieldNames, modifier, options) {
+	if(this.previous.votersLike.length !== doc.votersLike.length || this.previous.votersDislike.length !== doc.votersDislike.length) {
+		Comments.update({ _id: doc._id }, 
+			{ 
+				$set: { 
+					like: doc.votersLike.length, 
+					dislike: doc.votersDislike.length
+				} 
+			}
+		);
+	}
 });

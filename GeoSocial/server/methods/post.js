@@ -11,7 +11,6 @@ Meteor.methods({
 			Post.update( { _id : post_id },
 					{ 
 						$addToSet: { votersLike: this.userId } ,
-						$inc: { like: 1 } 
 					},
 		 		    function(error){
 		               	if(error){
@@ -27,7 +26,6 @@ Meteor.methods({
 					{ 
 						$addToSet: { votersLike: this.userId },
 						$pull: { votersDislike: this.userId },
-						$inc: { like : 1, dislike: -1 } 
 					},
 		 		    function(error){
 		               	if(error){
@@ -52,7 +50,6 @@ Meteor.methods({
 	    	Post.update( { _id : post_id }, 
 					{ 
 						$addToSet: { votersDislike: this.userId },
-						$inc: { dislike : 1 } 
 					},
 		 		    function(error){
 		               	if(error){
@@ -67,7 +64,6 @@ Meteor.methods({
 					{ 
 						$addToSet: { votersDislike: this.userId },
 						$pull: { votersLike: this.userId },
-						$inc: { like : -1, dislike: 1 } 
 					},
 		 		    function(error){
 		               	if(error){
@@ -91,11 +87,13 @@ Meteor.methods({
             } 
         });
 	},
-	postsCommentsChainDeletion : function () {
+	removeUserChainDeletion : function () {
 		if (! this.userId) {
       		throw new Meteor.Error("not-logged-in", "Must be logged in to dislike this post.");
 	    }
 
+	    //Comments.find ({ });
+	    /*
 	    Comments.remove({userId: this.userId}, function(error){
             if(error){
                 console.log(error);

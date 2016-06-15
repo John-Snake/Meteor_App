@@ -70,9 +70,11 @@
         <br>
 
        <div id= "privacy">
-            <label for="user_privacy" id="label_user_privacy">Privacy: livello {{currentUser.profile.privacy}}</label>
-            <input min="0" max="2" type="range" name="privacy" id="user_privacy" value="{{currentUser.profile.privacy}}" 
-                onchange="privacyInfoUpdate(this);"/>
+            <label for="user_privacy" id="label_user_privacy">
+                Privacy: <span style="color:{{privacyColor(currentUser.profile.privacy)}}">{{privacyValue(currentUser.profile.privacy)}} level</span>
+            </label>
+            <input min="0" max="2" type="range" name="privacy" id="user_privacy" value="{{currentUser.profile.privacy}}" onchange="privacyInfoUpdate(this);"/>
+            <p id="privacyInfo">{{privacyInfo(currentUser.profile.privacy)}}</p>
         </div>
 
         <input type="submit" value="Edit Profile" class="btn btn-success btn-sm">

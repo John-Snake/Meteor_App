@@ -42,9 +42,20 @@ autoGrow = function (element) {
     autosize(element);
 }
 
-// Change privacy input type range info
+// Change privacy input type range info and privacy info paragraphs
 privacyInfoUpdate = function (inputRange) {
-	document.getElementById('label_user_privacy').innerHTML='Privacy: livello '+inputRange.value;
+	if (inputRange.value == 0) {
+		document.getElementById('label_user_privacy').innerHTML='Privacy: <span style="color:red">LOW level</span>';
+		document.getElementById('privacyInfo').innerHTML='LOW level: Everyone can see all of your information.';
+	}
+	else if (inputRange.value == 1) {
+		document.getElementById('label_user_privacy').innerHTML='Privacy: <span style="color:orange">AVERAGE level</span>';
+		document.getElementById('privacyInfo').innerHTML='AVERAGE level: Everyone can see your username, name, surname, email and other contacts.';
+	}
+	else if (inputRange.value == 2) {
+		document.getElementById('label_user_privacy').innerHTML='Privacy: <span style="color:green">HIGH level</span>';
+		document.getElementById('privacyInfo').innerHTML='HIGH level: Everyone can see only your username.';
+	}
 }
 
 // Format the input field removing any unwanted characters/formatting

@@ -11,7 +11,6 @@ Meteor.methods({
 			Comments.update( { _id : comment_id },
 					{ 
 						$addToSet: { votersLike: this.userId } ,
-						$inc: { like: 1 } 
 					},
 		 		    function(error){
 		               	if(error){
@@ -26,7 +25,6 @@ Meteor.methods({
 					{ 
 						$addToSet: { votersLike: this.userId },
 						$pull: { votersDislike: this.userId },
-						$inc: { like : 1, dislike: -1 } 
 					},
 		 		    function(error){
 		               	if(error){
@@ -50,7 +48,6 @@ Meteor.methods({
 	    	Comments.update( { _id : comment_id }, 
 					{ 
 						$addToSet: { votersDislike: this.userId },
-						$inc: { dislike : 1 } 
 					},
 		 		    function(error){
 		               	if(error){
@@ -65,7 +62,6 @@ Meteor.methods({
 					{ 
 						$addToSet: { votersDislike: this.userId },
 						$pull: { votersLike: Meteor.userId() },
-						$inc: { like : -1, dislike: 1 } 
 					},
 		 		    function(error){
 		               	if(error){

@@ -30,6 +30,10 @@ Template.allPosts.helpers({
 		Meteor.subscribe('thisPostComments', this._id);
 		return Comments.find({postId: this._id}).count();
 	},
+	// Show the url param in the input distance value
+	'distance': function() {
+		return Router.current().params.distanceKm;
+	},
 	// Create a non reactive version that will initialise the map & the marker centred on the coordinates.
 	mapOptions: function() { 
 		post_id = this._id;

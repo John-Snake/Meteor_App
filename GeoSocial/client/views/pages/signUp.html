@@ -49,8 +49,10 @@
 
     		<br>
     		<div id= "privacy">
-    			<label for="user_privacy" id="label_user_privacy">Privacy: livello 1</label>
+    			<label for="user_privacy" id="label_user_privacy">Privacy: <span style="color:orange">AVERAGE level</span></label>
     			<input min="0" max="2" type="range" name="privacy" id="user_privacy" value="1" onchange="privacyInfoUpdate(this);"/>
+                <p id="privacyInfo">AVERAGE level: Everyone can see your username, name, surname, email and other contacts.</p>
+
     		</div>
 
             <input type="submit" value="Sign Up" class="btn btn-success btn-sm">
