@@ -18,15 +18,13 @@
 				{{/if}}
 			</div>
 
-			
 			<div class="field">
-				<label for="post_oldPosition">Do you want to keep the old position?</label>
+				<p>Choose one: </p>
+				<label for="post_oldPosition">Don't change the old location</label>
 				<input type="checkbox" value="1" name="post_oldPosition" id="post_oldPosition" checked/>
 				<input type="text" id="oldLatitude" value="{{latitude}}" hidden >
 				<input type="text" id="oldLongitude" value="{{longitude}}" hidden >
-			</div>
-
-			<div class="field">
+				<br><br>
 				<label for="post_location">Use your current location</label>
 				<input type="checkbox" value="1" name="post_location" id="post_location" />
 				{{> googleAutocomplete}}

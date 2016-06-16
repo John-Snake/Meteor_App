@@ -71,7 +71,7 @@ Template.map.onCreated(function() {
 				map: map.instance,
 				center: marker.getPosition(),
 				radius: 1000,
-				editable: true,
+				editable: true
 		    });
 
 		  	// Update the distance input value as the map radius change
