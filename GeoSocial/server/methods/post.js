@@ -86,26 +86,5 @@ Meteor.methods({
                 console.log(error.invalidKeys);
             } 
         });
-	},
-	removeUserChainDeletion : function () {
-		if (! this.userId) {
-      		throw new Meteor.Error("not-logged-in", "Must be logged in to dislike this post.");
-	    }
-
-	    //Comments.find ({ });
-	    /*
-	    Comments.remove({userId: this.userId}, function(error){
-            if(error){
-                console.log(error);
-                console.log(error.invalidKeys);
-            } 
-        });
-	    /*
-	    Post.remove({userId: this.userId}, function(error){
-            if(error){
-                console.log(error);
-                console.log(error.invalidKeys);
-            } 
-        });*/
 	}
 });

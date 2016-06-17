@@ -61,7 +61,7 @@ Meteor.methods({
 	    	Comments.update( { _id : comment_id },
 					{ 
 						$addToSet: { votersDislike: this.userId },
-						$pull: { votersLike: Meteor.userId() },
+						$pull: { votersLike: this.userId },
 					},
 		 		    function(error){
 		               	if(error){

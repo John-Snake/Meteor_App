@@ -8,6 +8,6 @@ Template.header.events({
 
         Meteor.logout();
         Router.go('/');
-        Bert.alert( 'You are logged out!', 'success', 'growl-top-right' );
+        Bert.alert( 'You have been logged out!', 'success', 'growl-top-right' );
     }
 });

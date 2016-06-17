@@ -101,7 +101,6 @@ Post.deny({
 // the new value is based on the length of those arrays.
 Post.after.update(function (userId, doc, fieldNames, modifier, options) {
 	if(this.previous.votersLike.length !== doc.votersLike.length || this.previous.votersDislike.length !== doc.votersDislike.length) {
-
 		Post.update({ _id: doc._id }, 
 			{ 
 				$set: { 

@@ -28,8 +28,6 @@ Template.map.helpers({
 Template.map.onCreated(function() {  
 	var self = this;
 
-	var ignore = false;
-
 	GoogleMaps.ready('map', function(map) {
 		var marker;
 
