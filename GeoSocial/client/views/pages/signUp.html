@@ -8,18 +8,17 @@
 
      	<form class="signUp">
         	<p class="form-title">Sign Up</p>
-            <div><input type="email" name="email" placeholder="Email" id="email" autocomplete="off" required></div>
-            <div><input type="password" name="password" placeholder="Password" id="password" required></div>
-            <div><input type="password" name="passwordConfirmation" placeholder="Password confirmation" id="passwordConfirmation" required></div>
-            <div><input type="text" name="username" placeholder="Username" id="username" onkeyup="formatUsername(this)" required></div>
+            <div><input type="email" placeholder="Email" id="email" autocomplete="off" required></div>
+            <div><input type="password" placeholder="Password" id="password" required></div>
+            <div><input type="password" placeholder="Password confirmation" id="passwordConfirmation" required></div>
+            <div><input type="text" placeholder="Username" id="username" onkeyup="formatUsername(this)" required></div>
             
             <br>
-            <div><input type="text" name="name" id="name" placeholder="Name"></div>
-            <div><input type="text" name="surname" id="surname" placeholder="Surname"></div>
-            <div><input type="text" name="telegram_username" id="telegram_username" placeholder="Telegram username"></div>
+            <div><input type="text" id="name" placeholder="Name"></div>
+            <div><input type="text" id="surname" placeholder="Surname"></div>
+            <div><input type="text" id="telegram_username" placeholder="Telegram username"></div>
             <div> {{> datePicker date=null}} </div>
 
-            
             <br>
             <label>Gender</label>
             <div id="gender">
@@ -50,7 +49,7 @@
     		<br>
     		<div id= "privacy">
     			<label for="user_privacy" id="label_user_privacy">Privacy: <span style="color:orange">AVERAGE level</span></label>
-    			<input min="0" max="2" type="range" name="privacy" id="user_privacy" value="1" onchange="privacyInfoUpdate(this);"/>
+    			<input min="0" max="2" type="range" id="user_privacy" value="1" onchange="privacyInfoUpdate(this);"/>
                 <p id="privacyInfo">AVERAGE level: Everyone can see your username, name, surname, email and other contacts.</p>
 
     		</div>

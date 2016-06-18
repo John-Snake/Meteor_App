@@ -1,13 +1,11 @@
 Template.signIn.events({
     'submit form': function(event){
         event.preventDefault();
-        var email = $('[name=email]').val();
-        var password = $('[name=password]').val();
+        var email = $('#email').val();
+        var password = $('#password').val();
         Meteor.loginWithPassword(email, password, function(error){
 		    if(error){
-		        //console.log(error.reason);
-		        //$('#alert').show();
-            	//$('#alert').html(error.reason);
+		        console.log(error.reason);
             	Bert.alert( error.reason, 'danger', 'growl-top-right' );
 		    }
 		    else {

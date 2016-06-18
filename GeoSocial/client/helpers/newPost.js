@@ -38,7 +38,7 @@ Template.newPost.events({
                 } 
                 else {
                     Router.go("/myPosts");
-                    Bert.alert( "Post published successfully.", 'success', 'growl-top-right' );
+                    Bert.alert( 'Post published successfully.', 'success', 'growl-top-right' );
                 }
           }
         );

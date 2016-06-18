@@ -15,7 +15,7 @@ Template.deletePost.events({
             } 
             else {
                 Modal.hide('deletePost');
-                Bert.alert( "Post deleted successfully.", 'success', 'growl-top-right' );
+                Bert.alert( 'Post deleted successfully.', 'success', 'growl-top-right' );
         	}
         });
 	}

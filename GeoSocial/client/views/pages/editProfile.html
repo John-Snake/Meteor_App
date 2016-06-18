@@ -7,36 +7,36 @@
     <form class="signUp" id="changeEmail">
         <p class="form-title">Change email</p>
         <label for="email">New Email : </label>
-        <div><input type="email" name="email" id="email" value="{{currentUser.emails.[0].address}}" autocomplete="off" required></div>
+        <div><input type="email" id="email" value="{{currentUser.emails.[0].address}}" autocomplete="off" required></div>
         <input type="submit" value="Change email" class="btn btn-success btn-sm">
     </form>
 
     <form class="signUp" id="changePassword">
         <p class="form-title">Change password</p>
-        <div><input type="password" name="oldPassword" id="oldPassword" placeholder="Current password" required></div>
+        <div><input type="password" id="oldPassword" placeholder="Current password" required></div>
         <div class="forgot-pass-content text-right">
-            <a href="#">Forgot password?</a><br><br>
+            <a href="/resetPassword">Forgot password?</a><br><br>
         </div>
-        <div><input type="password" name="newPassword" id="newPassword" placeholder="New password" required></div>
-        <div><input type="password" name="passwordConfirmation" id="passwordConfirmation" placeholder="Confirm new password" required></div>
+        <div><input type="password" id="newPassword" placeholder="New password" required></div>
+        <div><input type="password" id="passwordConfirmation" placeholder="Confirm new password" required></div>
         <input type="submit" value="Change password" class="btn btn-success btn-sm">
     </form>
 
     <form class="signUp" id="changeUsername">
         <p class="form-title">Change username</p>
         <label for="text">New username : </label>
-        <div><input type="text" name="username" id="username" value="{{currentUser.username}}" onkeyup="formatUsername(this)" required></div>
+        <div><input type="text" id="username" value="{{currentUser.username}}" onkeyup="formatUsername(this)" required></div>
         <input type="submit" value="Change username" class="btn btn-success btn-sm">
     </form>
 
     <form class="signUp" id="editProfile">
         <p class="form-title">Edit profile</p>
         <label for="name">Nome : </label>
-        <div><input type="text" name="name" id="name" value="{{currentUser.profile.name}}"></div>
+        <div><input type="text" id="name" value="{{currentUser.profile.name}}"></div>
         <label for="surname">Cognome : </label>
-        <div><input type="text" name="surname" id="surname" value="{{currentUser.profile.surname}}"></div>
+        <div><input type="text" id="surname" value="{{currentUser.profile.surname}}"></div>
         <label for="telegram_username">Telegram : </label>
-        <div><input type="text" name="telegram_username" id="telegram_username" value="{{currentUser.profile.telegram_username}}"></div>
+        <div><input type="text" id="telegram_username" value="{{currentUser.profile.telegram_username}}"></div>
         <label for="birth">Birth : </label>
         <div>{{> datePicker date=currentUser.profile.birth}}</div>
         

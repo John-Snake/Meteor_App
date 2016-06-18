@@ -14,7 +14,7 @@ Router.plugin('dataNotFound', {notFoundTemplate: 'notFound'});
 // Blocco accesso alle pagine disponibili solo per gli utenti loggati
 var requireLogin = function() { 
   if (! Meteor.user()) {
-   // If user is not logged in render /signIn
+   // If user is not logged in render the home template
    this.render('/home'); 
  } else {
    //if user is logged in render whatever route was requested
@@ -22,11 +22,9 @@ var requireLogin = function() {
  }
 }
 
-// Per gli utenti non loggati sono disponibili solo signIn e singUp (eccezione)
-Router.onBeforeAction(requireLogin, {except: ['signUp']});
+// Per gli utenti non loggati sono disponibili solo singUp e resetPassowrd
+Router.onBeforeAction(requireLogin, {except: ['signUp', 'resetPassword', 'resetPassword/:token']}); // funziona col token??
 
-
-// registro altre route
 Router.route('/signUp');
 Router.route('/profile');
 Router.route('/editProfile');
@@ -86,4 +84,10 @@ Router.route('/profile/:_id', {
         var usersProfile = Meteor.users.findOne({_id: this.params._id});
         this.render('usersProfiles', {data: usersProfile});
     }
+});
+
+Router.route('/resetPassword');
+
+Router.route('/resetPassword/:token', function () {
+  this.render('resetPassword');
 });
