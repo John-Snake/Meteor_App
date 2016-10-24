@@ -1,8 +1,8 @@
 var MAP_ZOOM = 10;
 
-Template.allPosts.onRendered = function () {
+Template.allPosts.onRendered(function() {  
 	GoogleMaps.load();
-};
+});
 
 Template.allPosts.helpers({
 	// Extract a row for each entry in the Post db at a chosen distance

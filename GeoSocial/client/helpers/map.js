@@ -1,31 +1,13 @@
 var MAP_ZOOM = 14;
 
 // Load the maps library
-Meteor.startup(function() {  
+Template.map.onRendered(function() {  
 	GoogleMaps.load();
-});
-
-// Create a non reactive version that will initialise the map centred on the current coordinates.
-Template.map.helpers({  
-	geolocationError: function() {
-		var error = Geolocation.error();
-		return error && error.message;
-	},
-	mapOptions: function() {
-		var latLng = Geolocation.latLng();
-
-		// Initialize the map once we have the latLng.
-		if (GoogleMaps.loaded() && latLng) {
-	  		return {
-	    		center: new google.maps.LatLng(latLng.lat, latLng.lng),
-	    		zoom: MAP_ZOOM
-	  		};
-		}
-	}
 });
 
 // Reactively update both the marker position and map position
 Template.map.onCreated(function() {  
+
 	var self = this;
 
 	GoogleMaps.ready('map', function(map) {
@@ -35,12 +17,12 @@ Template.map.onCreated(function() {
 		self.autorun(function() {
 	  		var latLng = Geolocation.latLng();
 
+	  		if (! latLng)
+		    	return;
+
 			// Create & update Session persistent variables for the currentUser position	
 			Session.setPersistent('currentUser_latitude', latLng.lat);
 			Session.setPersistent('currentUser_longitude', latLng.lng);
-
-		  	if (! latLng)
-		    	return;
 
 		  	// If the marker doesn't yet exist, create it.
 		  	if (! marker) {
@@ -59,6 +41,7 @@ Template.map.onCreated(function() {
 		  	map.instance.setCenter(marker.getPosition());
 		  	map.instance.setZoom(MAP_ZOOM);
 
+		  	
 		  	// Create a editable circle on the map
 		  	var radius = new google.maps.Circle({
       			strokeColor: 'black',
@@ -86,7 +69,26 @@ Template.map.onCreated(function() {
 		      		radius.setEditable(true);
 	      		}
 			});
-
+			
 		});
 	});
+});
+
+// Create a non reactive version that will initialise the map centred on the current coordinates.
+Template.map.helpers({  
+	geolocationError: function() {
+		var error = Geolocation.error();
+		return error && error.message ;
+	},
+	mapOptions: function() {
+		var latLng = Geolocation.latLng();
+
+		// Initialize the map once we have the latLng.
+		if (GoogleMaps.loaded() && latLng) {
+	  		return {
+	    		center: new google.maps.LatLng(latLng.lat, latLng.lng),
+	    		zoom: MAP_ZOOM
+	  		};
+		}
+	}
 });

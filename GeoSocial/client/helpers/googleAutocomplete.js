@@ -25,5 +25,5 @@ Template.googleAutocomplete.onRendered(function() {
 	        });
 
 	    }
-  });
+  	});
 });

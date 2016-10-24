@@ -89,5 +89,5 @@ Router.route('/profile/:_id', {
 Router.route('/resetPassword');
 
 Router.route('/resetPassword/:token', function () {
-  this.render('resetPassword');
+    this.render('resetPassword');
 });

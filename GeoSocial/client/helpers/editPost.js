@@ -112,4 +112,3 @@ Template.editPost.events({
         }
     }
 });
-
