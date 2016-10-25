@@ -14,16 +14,26 @@ Template.googleAutocomplete.onRendered(function() {
 	      		map: ".map_canvas",
 	      		mapOptions: {
 	      			center: latLng,
-				    zoom: 10,
+				    zoom: 14,
 				    scrollwheel: true,
 			 	},
 			 	markerOptions: {
-			 		position: latLng
+			 		position: latLng,
+			 		title: "Custom position"
 			 	},
 	          	details: "form",
 	          	types: ["geocode", "establishment"],
 	        });
 
+	        var map = $("#geocomplete").geocomplete("map");
+
+	        var marker = new google.maps.Marker({
+                position: latLng,
+                map: map,
+                title: "You're here!"
+            });
+
+            marker.setPosition(latLng);
 	    }
   	});
 });

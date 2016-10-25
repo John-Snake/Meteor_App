@@ -5,15 +5,16 @@ Template.map.onRendered(function() {
 	GoogleMaps.load();
 });
 
-// Reactively update both the marker position and map position
+// Reactively update both the marker position and map center position
 Template.map.onCreated(function() {  
 
 	var self = this;
 
 	GoogleMaps.ready('map', function(map) {
 		var marker;
+		var radius;
 
-		// Create and move the marker when latLng changes.
+		// Create and move the marker,radius and map center when latLng changes.
 		self.autorun(function() {
 	  		var latLng = Geolocation.latLng();
 
@@ -27,9 +28,9 @@ Template.map.onCreated(function() {
 		  	// If the marker doesn't yet exist, create it.
 		  	if (! marker) {
 		    	marker = new google.maps.Marker({
-		      	position: new google.maps.LatLng(latLng.lat, latLng.lng),
-		      	map: map.instance,
-		      	title: "You're here!"
+			      	position: new google.maps.LatLng(latLng.lat, latLng.lng),
+			      	map: map.instance,
+			      	title: "You're here!"
 		    	});
 	  		}
 			// The marker already exists, so we'll just change its position.
@@ -41,19 +42,25 @@ Template.map.onCreated(function() {
 		  	map.instance.setCenter(marker.getPosition());
 		  	map.instance.setZoom(MAP_ZOOM);
 
-		  	
-		  	// Create a editable circle on the map
-		  	var radius = new google.maps.Circle({
-      			strokeColor: 'black',
-				strokeOpacity: 0.8,
-				strokeWeight: 2,
-				fillColor: 'black',
-				fillOpacity: 0.35,
-				map: map.instance,
-				center: marker.getPosition(),
-				radius: 1000,
-				editable: true
-		    });
+		  	// If the radius doesn't yet exist, create it.
+		  	if (! radius) {
+			  	// Create a editable circle on the map
+			  	radius = new google.maps.Circle({
+	      			strokeColor: 'black',
+					strokeOpacity: 0.8,
+					strokeWeight: 2,
+					fillColor: 'black',
+					fillOpacity: 0.35,
+					map: map.instance,
+					center: marker.getPosition(),
+					radius: 1000,
+					editable: true
+			    });
+		   	}
+		   	// The marker already exists, so we'll just change its position.
+		   	else if (radius.getCenter() != marker.getPosition()) {
+		   		radius.setCenter(marker.getPosition());
+		   	}
 
 		  	// Update the distance input value as the map radius change
 		    google.maps.event.addListener(radius, 'radius_changed', function() {

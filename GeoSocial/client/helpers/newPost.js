@@ -51,18 +51,11 @@ Template.newPost.events({
             $('#geocomplete').prop('required',false);
             $('#geocomplete').val('');
             
-            var map = $("#geocomplete").geocomplete("map");
             var latLng = new google.maps.LatLng(Session.get('currentUser_latitude'), Session.get('currentUser_longitude'));
-            
+
+            var map = $("#geocomplete").geocomplete("map");
             map.setCenter(latLng);
-            
-            var marker = new google.maps.Marker({
-                position: latLng,
-                map: map,
-            });
-            
-            marker.setPosition(latLng);
-            
+            map.setZoom(14);
         }
         else if(choice===undefined) {
             $('#geocomplete').prop('readonly', false);

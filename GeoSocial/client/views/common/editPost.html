@@ -25,9 +25,11 @@
 				<input type="text" id="oldLatitude" value="{{latitude}}" hidden >
 				<input type="text" id="oldLongitude" value="{{longitude}}" hidden >
 				<br><br>
-				<label for="post_location">Use your current location</label>
-				<input type="checkbox" value="1" name="post_location" id="post_location" />
-				{{> googleAutocomplete}}
+				<div>
+					<label for="post_location">Use your current location</label>
+					<input type="checkbox" value="1" name="post_location" id="post_location" />
+					{{> googleAutocomplete}}
+				</div>
 			</div>
 			
 

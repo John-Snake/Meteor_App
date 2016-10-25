@@ -19,6 +19,7 @@ caching-compiler@1.0.0
 caching-html-compiler@1.0.2
 callback-hook@1.0.4
 check@1.1.0
+coffeescript@1.0.11
 dburles:google-maps@1.1.5
 ddp@1.2.2
 ddp-client@1.2.1
@@ -52,6 +53,7 @@ iron:url@1.0.11
 jeremy:geocomplete@1.7.0
 jquery@1.11.4
 launch-screen@1.0.4
+lepozepo:cloudinary@4.2.6
 livedata@1.0.15
 localstorage@1.0.5
 logging@1.0.8
