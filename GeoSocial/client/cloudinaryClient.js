@@ -1,2 +1,3 @@
-$.cloudinary.config
+$.cloudinary.config({
 	cloud_name:"geosocial"
+})

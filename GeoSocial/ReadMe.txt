@@ -1,19 +1,22 @@
 Da fare:
 
--- File upload (in locale. 3 immagini nella registrazione e modifica profilo, 1 immagne nel post e 1 nei commento.. cancellare foto con rimozione post/comnmento/user?)
+-- File upload (3 immagini nella registrazione e modifica profilo e 1 nei commento)
 
 -- Notifiche (like,dislike e commenti ai post dell'utente corrente)
 
 +- Remove user (cancellare foto? per i post/commenti aspettare Prof)
 
-?? Chat alternative [whatsapp link(fattibile senza numero di telefono?), poi, altro? ...]
+?? Chat alternative (whatsapp link(fattibile senza numero di telefono?), poi, altro? ...)
 
 ---------------------------------------
 
 Da rivedere:
 
--- GoogleMaps.load() inconsistente su browser e piattaforme diverse?
+-- GoogleMaps.load() inconsistente su browser e piattaforme diverse? (o è solo un problema mio?!)
 -- css su chrome?
+
+?? deleteUser [ => delete all user's post and comments] scelta condivisa?
+?? deletePost [ => delete all comment] e deleteComment come fare per le foto dei post e commenti? [Al momento non vengono cancellate.]
 
 +- forgot password (Da testare.. mandare email?)
 
@@ -23,13 +26,11 @@ Da rivedere:
 + Migliorare publish/subscribe per migliorare sicurezza e privacy
 
 +- Migliorare compatibilità browser (browser usato: Chrome)
-+- Aggiornare e migliorare stile usato nella prima del progetto 
++- Aggiornare,unificare e migliorare stile usato nella prima del progetto 
 
 ---------------------------------------
 
-Consigli Botta:
-
-+- migliorare (grafica+funzionalità) la scelta della posizione nel editPost e nel newPost ( unire i form con le checkbox nel editPost)
+Consigli Prof:
 
 - dati sensibili su altra collezione per migliorare privacy
 

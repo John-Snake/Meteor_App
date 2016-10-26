@@ -71,6 +71,10 @@
 							<span class="pre lead">{{text}}</span>
 						</div>
 
+						{{#if img_url}}
+							<img src="{{img_url}}" style="max-width: 100%; margin-top: 1%;">
+						{{/if}}
+
 	              		<div class="likes">
 	                    	<i class="fa fa-thumbs-up fa-2x" aria-hidden="true">{{like}}</i>
 	                    	<i class="fa fa-thumbs-down fa-2x" aria-hidden="true">{{dislike}}</i>

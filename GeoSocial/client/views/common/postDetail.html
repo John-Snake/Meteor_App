@@ -49,6 +49,10 @@
 						<span class="pre">{{thisPost.text}}</span>
 					</div>
 
+					{{#if thisPost.img_url}}
+						<img src="{{thisPost.img_url}}" style="max-width: 100%; margin-top: 1%;">
+					{{/if}}
+
 					<div class="likes">
                     	<i class="fa fa-thumbs-up fa-2x" aria-hidden="true">{{thisPost.like}}</i>
                     	<i class="fa fa-thumbs-down fa-2x" aria-hidden="true">{{thisPost.dislike}}</i>

@@ -140,11 +140,10 @@ form.signIn input[type="checkbox"]
 }
 
 form.signIn input[type="submit"], form.signUp input[type="submit"],
-form.signUp input[type="button"]
+form.signUp input[type="button"], form.signIn button, form.signUp button
 {
     width: 100%;
     font-size: 14px;
-    text-transform: uppercase;
     font-weight: 500;
     margin-top: 16px;
     outline: 0;
@@ -593,8 +592,13 @@ form.new_post
 
 .newpost .buttond
 {
- padding-top: 5%;
- padding-bottom: 5%;
+    padding-top: 5%;
+    padding-bottom: 12%;
+}
+
+.newpost .buttond :hover
+{
+    transition: background-color 0.5s ease;
 }
 
 .newpost .btn-file

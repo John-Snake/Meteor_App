@@ -7,6 +7,17 @@
 				<label for="post_text">Text</label><br>
 				<script>autosize(document.querySelectorAll('textarea'));</script>
 				<textarea name="post_text" id="post_text" oninput="autoGrow(this)" oncreate="autoGrow(this)" value="{{text}}" rows="2" required></textarea>
+
+				{{#if img_url}}
+					<img id="post_img" src="{{img_url}}" style="max-width: 100%">
+					<input type="text" id="img_public_id" hidden>
+					<input type="text" id="img_url" hidden>
+
+					<button id="delete_img" class="btn btn-danger col-md-4 col-md-offset-4" style="background: red; margin-top: 1%; margin-bottom: 1%;">
+						<i class="fa fa-trash-o" title="Delete" style="margin-right: 4%;" aria-hidden="true"></i>Delete photo
+					</button>
+				{{/if}}
+
 			</div>
 
 			<div class="field">
