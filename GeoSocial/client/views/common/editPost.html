@@ -10,14 +10,40 @@
 
 				{{#if img_url}}
 					<img id="post_img" src="{{img_url}}" style="max-width: 100%">
+					<input type="text" id="oldImg_public_id" value="{{img_public_id}}" hidden>
+					<input type="text" id="oldImg_url" value="{{img_url}}" hidden>
 					<input type="text" id="img_public_id" hidden>
 					<input type="text" id="img_url" hidden>
+					<div id="spinner" style="margin-top: 2%; display: none">{{> smallSpinner}}</div>
 
 					<button id="delete_img" class="btn btn-danger col-md-4 col-md-offset-4" style="background: red; margin-top: 1%; margin-bottom: 1%;">
 						<i class="fa fa-trash-o" title="Delete" style="margin-right: 4%;" aria-hidden="true"></i>Delete photo
 					</button>
-				{{/if}}
 
+					<div class="buttond">
+						<div class="btn btn-primary btn-file col-md-4 col-md-offset-4" id="button_uploadImage" disabled="true">
+							<label for="post_image"><i class="fa fa-camera" style="margin-right: 4%;" aria-hidden="true"></i>Add photo</label>
+							<input type="file" name="post_image" id="post_uploadImage" disabled="true"/>
+						</div>
+					</div>
+				{{else}}
+					<img id="post_img" src="" style="max-width: 100%" hidden>
+					<input type="text" id="img_public_id" hidden>
+					<input type="text" id="img_url" hidden>
+					<div id="spinner" style="margin-top: 2%; display: none">{{> smallSpinner}}</div>
+
+					<button id="delete_img" class="btn btn-danger col-md-4 col-md-offset-4" style="background: red; margin-top: 1%; margin-bottom: 1%; display: none">
+						<i class="fa fa-trash-o" title="Delete" style="margin-right: 4%;" aria-hidden="true"></i>Delete photo
+					</button>
+
+					<div class="buttond">
+						<div class="btn btn-primary btn-file col-md-4 col-md-offset-4" id="button_uploadImage">
+							<label for="post_image"><i class="fa fa-camera" style="margin-right: 4%;" aria-hidden="true"></i>Add photo</label>
+							<input type="file" name="post_image" id="post_uploadImage"/>
+						</div>
+					</div>
+				{{/if}}
+				
 			</div>
 
 			<div class="field">
@@ -45,15 +71,8 @@
 			
 
 			<div class="field">
-				<div class="buttond col-md-12">
-					<span class="btn btn-default btn-file col-md-4 col-md-offset-4">
-						<label for="post_image">Image</label>
-						<input type="file" name="post_image" id="post_image"/>
-					</span>
-				</div>
-
 				<div>
-					<input type="submit" name="commit" value="Modifica post" class="btn btn-success btn-lg" />
+					<input type="submit" id="commit" value="Modifica post" class="btn btn-success btn-lg" />
 				</div>
 			</div>
 
