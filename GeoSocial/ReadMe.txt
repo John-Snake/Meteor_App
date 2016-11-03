@@ -1,18 +1,19 @@
 Da fare:
 
--- File upload (3 immagini nella registrazione e modifica profilo e 1 nei commento)
+-- File upload (3 immagini nella modifica profilo)
 
 -- Notifiche (like,dislike e commenti ai post dell'utente corrente)
 
-+- Remove user (cancellare foto? per i post/commenti aspettare Prof)
++- Remove user (per i post/commenti aspettare Prof)
 
-?? Chat alternative (whatsapp link(fattibile senza numero di telefono?), poi, altro? ...)
+?? Chat/contatti alternativi: whatsapp link(solo con numero di telefono!), skype, altro?? ...
 
 ---------------------------------------
 
 Da rivedere:
 
 -- GoogleMaps.load() inconsistente su browser e piattaforme diverse? (o è solo un problema mio?!)
+-- Geocomplete in editPost inconsistente
 -- css su chrome?
 
 ?? deleteUser [ => delete all user's post and comments] scelta condivisa?

@@ -50,7 +50,7 @@ Template.editPost.events({
                         }  
                         else {
                             Router.go("/myPosts");
-                            Bert.alert( "Post edited successfully.", 'success', 'growl-top-right' );
+                            Bert.alert( 'Post edited successfully.', 'success', 'growl-top-right' );
                         }
                     }
                 );
@@ -73,7 +73,7 @@ Template.editPost.events({
                         }  
                         else {
                             Router.go("/myPosts");
-                            Bert.alert( "Post edited successfully.", 'success', 'growl-top-right' );
+                            Bert.alert( 'Post edited successfully.', 'success', 'growl-top-right' );
                         }
                     }
                 );
@@ -116,7 +116,7 @@ Template.editPost.events({
                         }  
                         else {
                             Router.go("/myPosts");
-                            Bert.alert( "Post edited successfully.", 'success', 'growl-top-right' );
+                            Bert.alert( 'Post edited successfully.', 'success', 'growl-top-right' );
                         }
                     }
                 );
@@ -143,7 +143,7 @@ Template.editPost.events({
                         }  
                         else {
                             Router.go("/myPosts");
-                            Bert.alert( "Post edited successfully.", 'success', 'growl-top-right' );
+                            Bert.alert( 'Post edited successfully.', 'success', 'growl-top-right' );
                         }
                     }
                 );
@@ -198,6 +198,7 @@ Template.editPost.events({
                 $('#button_uploadImage').attr("disabled", false);
                 $('#post_uploadImage').attr("disabled", false);
                 $('#commit').attr("disabled", false);
+                $('#spinner').hide();
                 
                 Bert.alert( 'Upload Error: '+err , 'danger', 'growl-top-right' );
             }

@@ -80,27 +80,56 @@ Template.postDetail.events({
 	    var dateTime = new Date();
         var text = $('#commentTextarea').val();
         var anonymous = $('#comment_anonymous:checked').val();
+        var img_public_id;
+        var img_url;
 
        	if(anonymous===undefined) {
        		anonymous = 0;
        	}
 
-       	Comments.insert({
-       			postId: postId,
-                userId: id,
-        		anonymous: anonymous,
-        		dateTime: dateTime,
-        		text: text
-        }, function(error){
-            	if(error){
-                    console.log(error.invalidKeys);
-                    Bert.alert( error.reason, 'danger', 'growl-top-right' );
-                }
-                else {
-                	Bert.alert( "Comment published successfully.", 'success', 'growl-top-right' );
-                }
-          	}
-        );
+       	if($("#img_public_id").val()!="" && $("#img_url").val()!="") {
+            img_public_id = $("#img_public_id").val();
+            img_url = $("#img_url").val();
+        }
+
+        if(!img_public_id && !img_url) {
+        	Comments.insert({
+	       			postId: postId,
+	                userId: id,
+	        		anonymous: anonymous,
+	        		dateTime: dateTime,
+	        		text: text
+		        }, function(error){
+		            	if(error){
+		                    console.log(error.invalidKeys);
+		                    Bert.alert( 'Text field cannot be empty.', 'danger', 'growl-top-right' );
+		                }
+		                else {
+		                	Bert.alert( 'Comment published successfully.', 'success', 'growl-top-right' );
+		                }
+		          	}
+	        );
+        }
+        else {
+        	Comments.insert({
+	       			postId: postId,
+	                userId: id,
+	        		anonymous: anonymous,
+	        		dateTime: dateTime,
+	        		text: text,
+	        		img_public_id: img_public_id,
+                    img_url: img_url
+		        }, function(error){
+		            	if(error){
+		                    console.log(error.invalidKeys);
+		                    Bert.alert( 'Text field cannot be empty.', 'danger', 'growl-top-right' );
+		                }
+		                else {
+		                	Bert.alert( 'Comment published successfully.', 'success', 'growl-top-right' );
+		                }
+		          	}
+	        );
+        }
 
        	$('#commentTextarea').val(null);
        	$('#comment_anonymous').prop('checked', false);
@@ -108,8 +137,70 @@ Template.postDetail.events({
        		$('#commentProfileIcon').removeClass('fa-user-secret');
        		$('#commentProfileIcon').addClass('fa-user');
        	}
+       	$("#post_img").hide();
+        $("#delete_img").hide();
+
+    	$("#post_img").attr("src", "");
+        $('#img_public_id').attr("value", "");
+        $('#img_url').attr("value", "");
        	
 	},
+	'change #post_uploadImage': function (event) {
+        $('#button_uploadImage').attr("disabled", true);
+        $('#post_uploadImage').attr("disabled", true);
+        $('#comment').attr("disabled", true);
+        $('#spinner').show();
+
+        Bert.alert( 'Uploading image...', 'success', 'growl-top-right' );
+
+        files = event.currentTarget.files;
+        
+        Cloudinary.upload(files,{}, function(error, res) {
+            if(error){
+                $('#button_uploadImage').attr("disabled", false);
+                $('#post_uploadImage').attr("disabled", false);
+                $('#comment').attr("disabled", false);
+                $('#spinner').hide();
+
+                Bert.alert( 'Upload Error: '+err , 'danger', 'growl-top-right' );
+            }
+            else {
+                Bert.alert( 'Image uploaded successfully.', 'success', 'growl-top-right' );
+
+                $("#post_img").attr("src", res.url);
+                $("#img_public_id").attr("value", res.public_id);
+                $("#img_url").attr("value", res.url);
+                $("#post_img").show();
+                $("#delete_img").show();
+                
+                $('#spinner').hide();
+                $('#comment').attr("disabled", false);
+            }
+        });
+    },
+    'click #delete_img': function (event) {
+        event.preventDefault();
+        var public_id = $("#img_public_id").val();
+        
+        Cloudinary.delete(public_id, function(error, res) {
+            if(error){
+                Bert.alert( 'Error deleting image: '+err , 'danger', 'growl-top-right' );
+            }
+            else {
+                $('#button_uploadImage').attr("disabled", false);
+                $('#post_uploadImage').attr("disabled", false);
+
+                Bert.alert( 'Image deleted successfully.', 'success', 'growl-top-right' );
+
+                $("#post_img").hide();
+                $("#delete_img").hide();
+
+                $("#post_img").attr("src", "");
+                $('#img_public_id').attr("value", "");
+                $('#img_url').attr("value", "");
+            }
+        });
+    },
 	'click #deleteComment': function() {
 		var postId = Session.get('postId');
 		var id = this._id;

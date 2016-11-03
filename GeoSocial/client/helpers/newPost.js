@@ -108,6 +108,7 @@ Template.newPost.events({
                 $('#button_uploadImage').attr("disabled", false);
                 $('#post_uploadImage').attr("disabled", false);
                 $('#commit').attr("disabled", false);
+                $('#spinner').hide();
 
                 Bert.alert( 'Upload Error: '+err , 'danger', 'growl-top-right' );
             }

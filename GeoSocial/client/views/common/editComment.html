@@ -4,7 +4,14 @@
             <div class="modal-content">
 
                 <div class="modal-header">
-                    <h4 class="modal-title">Edit comment</h4>
+                    <div class="row">
+                        <div class="col-md-11 text-left">
+                            <h4 class="modal-title">Edit comment</h4>
+                        </div>
+                        <div class="col-md-1">
+                            <button type="button" class="btn btn-default" data-dismiss="modal" id="close" style="border: 0;"><i class="fa fa-times" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="modal-body">
@@ -22,8 +29,53 @@
                             <script>$('#commentTextarea').val($('#commentText').val().split("\\n"))</script>
                         </div>
                     </div>
-                    <div class="row text-center">
-                        <div>
+
+                    <div class="row">
+                        <div class="col-md-11 col-md-offset-1">
+                            {{#if thisComment.img_url}}
+                                <img id="post_img" src="{{thisComment.img_url}}" style="max-width: 100%; margin-bottom: 1%;">
+                                <input type="text" id="oldImg_public_id" value="{{thisComment.img_public_id}}" hidden>
+                                <input type="text" id="oldImg_url" value="{{thisComment.img_url}}" hidden>
+                                <input type="text" id="img_public_id" hidden>
+                                <input type="text" id="img_url" hidden>
+                                <div id="spinner" style="margin-top: 3%; padding-bottom: 3%; display: none">{{> smallSpinner}}</div>
+                            {{else}}
+                                <img id="post_img" src="" style="max-width: 100%; margin-bottom: 1%;" hidden>
+                                <input type="text" id="img_public_id" hidden>
+                                <input type="text" id="img_url" hidden>
+                                <div id="spinner" style="margin-top: 3%; padding-bottom: 3%; display: none">{{> smallSpinner}}</div>
+                            {{/if}}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-1 text-left">
+                            {{#if thisComment.img_url}}
+                                <div class="buttond">
+                                    <div class="btn btn-primary btn-sm btn-file col-md-4" id="button_uploadImage" style="padding-bottom: 0.6%" disabled="true">
+                                        <label for="post_image" style="font-weight: normal; margin-top: 1%;"><i class="fa fa-camera" style="margin-right: 4%;" aria-hidden="true"></i>Add photo</label>
+                                        <input type="file" name="post_image" id="post_uploadImage" disabled="true"/>
+                                    </div>
+                                </div>
+
+                                <button id="delete_img" class="btn btn-danger btn-sm" style="margin-left: 1%;">
+                                    <i class="fa fa-trash-o" title="Delete" style="margin-right: 4%;" aria-hidden="true"></i>Delete photo
+                                </button>
+                            {{else}}
+                                <div class="buttond">
+                                    <div class="btn btn-primary btn-sm btn-file col-md-4" id="button_uploadImage" style="padding-bottom: 0.6%">
+                                        <label for="post_image" style="font-weight: normal; margin-top: 1%;"><i class="fa fa-camera" style="margin-right: 4%;" aria-hidden="true"></i>Add photo</label>
+                                        <input type="file" name="post_image" id="post_uploadImage"/>
+                                    </div>
+                                </div>
+
+                                <button id="delete_img" class="btn btn-danger btn-sm" style="margin-left: 1%; display: none">
+                                    <i class="fa fa-trash-o" title="Delete" style="margin-right: 4%;" aria-hidden="true"></i>Delete photo
+                                </button>
+                            {{/if}}
+                        </div>
+
+                        <div class="col-md-5 text-right" style="padding-top: 0.5%;">
                             <label for="comment_anonymous">Anonymous</label>
                             {{#if thisComment.anonymous}}
                                 <input type="checkbox" value="1" name="comment_anonymous" id="comment_anonymous" checked="true" />
@@ -31,7 +83,9 @@
                                 <input type="checkbox" value="1" name="comment_anonymous" id="comment_anonymous" />
                             {{/if}}
                         </div>
+                        
                     </div>
+
                 </div>
 
                 <div class="modal-footer">

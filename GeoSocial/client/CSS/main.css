@@ -1,6 +1,6 @@
 body 
 {
-    background: url('/images/World.jpg') no-repeat;
+    background: url('https://res.cloudinary.com/geosocial/image/upload/v1477492928/world.jpg') no-repeat;
     background-size: cover;
     margin: 0;
     padding: 0;
@@ -272,7 +272,6 @@ textarea
 {
     position: relative;
     overflow: hidden;
-    background: #006dcc;
     border: none;
 }
 
@@ -605,7 +604,6 @@ form.new_post
 {
     position: relative;
     overflow: hidden;
-    background: #006dcc;
     border: none;
 }
 

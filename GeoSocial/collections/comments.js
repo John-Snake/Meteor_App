@@ -20,6 +20,15 @@ CommentsSchema = new SimpleSchema({
 	text: {
 		type: String
 	},
+	img_public_id: {
+		type: String,
+		optional: true
+	},
+	img_url: {
+		type: String,
+		regEx: SimpleSchema.RegEx.Url,
+		optional: true
+	},
 	like: {
 		type: Number,
 		min: 0,
