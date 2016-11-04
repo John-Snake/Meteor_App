@@ -184,59 +184,11 @@ Template.editPost.events({
         }
     },
     'change #post_uploadImage': function (event) {
-        $('#button_uploadImage').attr("disabled", true);
-        $('#post_uploadImage').attr("disabled", true);
-        $('#commit').attr("disabled", true);
-        $('#spinner').show();
-
-        Bert.alert( 'Uploading image...', 'success', 'growl-top-right' );
-
-        files = event.currentTarget.files;
-        
-        Cloudinary.upload(files,{}, function(error, res) {
-            if(error){
-                $('#button_uploadImage').attr("disabled", false);
-                $('#post_uploadImage').attr("disabled", false);
-                $('#commit').attr("disabled", false);
-                $('#spinner').hide();
-                
-                Bert.alert( 'Upload Error: '+err , 'danger', 'growl-top-right' );
-            }
-            else {
-                Bert.alert( 'Image uploaded successfully.', 'success', 'growl-top-right' );
-
-                $("#post_img").attr("src", res.url);
-                $("#img_public_id").attr("value", res.public_id);
-                $("#img_url").attr("value", res.url);
-                $("#post_img").show();
-                $("#delete_img").show();
-                
-                $('#spinner').hide();
-                $('#commit').attr("disabled", false);
-            }
-        });
+        uploadImage(event, "#commit");
     },
     'click #delete_img': function (event) {
         event.preventDefault();
-        var public_id = $("#img_public_id").val();
-        
-        Cloudinary.delete(public_id, function(error, res) {
-            if(error){
-                Bert.alert( 'Error deleting image: '+err , 'danger', 'growl-top-right' );
-            }
-            else {
-                $('#button_uploadImage').attr("disabled", false);
-                $('#post_uploadImage').attr("disabled", false);
 
-                Bert.alert( 'Image deleted successfully.', 'success', 'growl-top-right' );
-
-                $("#post_img").hide();
-                $("#delete_img").hide();
-
-                $("#post_img").attr("src", "");
-                $('#img_public_id').attr("value", "");
-                $('#img_url').attr("value", "");
-            }
-        });
+        deleteImage();
     }
 });

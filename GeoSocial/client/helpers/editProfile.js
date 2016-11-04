@@ -253,6 +253,32 @@ Template.editProfile.events({
     },
     'click #deleteAccount': function() {
         Modal.show('deleteAccount');
+    },
+
+
+    'change #post_uploadImage1': function (event) {
+        uploadImageProfile(event, 1);
+    },
+    'change #post_uploadImage2': function (event) {
+        uploadImageProfile(event, 2);
+    },
+    'change #post_uploadImage3': function (event) {
+        uploadImageProfile(event, 3);
+    },
+    'click #delete_img1': function (event) {
+        event.preventDefault();
+
+        deleteImageProfile(1);
+    },
+    'click #delete_img2': function (event) {
+        event.preventDefault();
+
+        deleteImageProfile(2);
+    },
+    'click #delete_img3': function (event) {
+        event.preventDefault();
+
+        deleteImageProfile(3);
     }
 });
 

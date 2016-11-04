@@ -273,3 +273,166 @@ dislikeComment = function(comment_id, counter) {
 	}
 
 }
+
+/* Upload/delete posts' & comments' images  */
+
+uploadImage = function(event, buttonId) {
+	$('#button_uploadImage').attr("disabled", true);
+    $('#post_uploadImage').attr("disabled", true);
+    $(buttonId).attr("disabled", true);
+    
+    $('#spinner').show();
+
+    Bert.alert( 'Uploading image...', 'success', 'growl-top-right' );
+
+    files = event.currentTarget.files;
+    
+    Cloudinary.upload(files,{}, function(error, res) {
+        if(error) {
+        	Bert.alert( 'Upload Error: '+err , 'danger', 'growl-top-right' );
+            
+            $('#spinner').hide();
+
+            $('#button_uploadImage').attr("disabled", false);
+            $('#post_uploadImage').attr("disabled", false);
+            $(buttonId).attr("disabled", false);
+            
+        }
+        else {
+            Bert.alert( 'Image uploaded successfully.', 'success', 'growl-top-right' );
+
+            $('#post_img').attr("src", res.url);
+            $('#img_public_id').attr("value", res.public_id);
+            $('#img_url').attr("value", res.url);
+
+            setTimeout(function(){
+		        $('#post_img').show();
+            	$('#delete_img').show();
+            	$('#spinner').hide();
+		   	}, 500);
+            
+            $(buttonId).attr("disabled", false);
+        }
+    });
+}
+
+deleteImage = function() {
+	var public_id = $("#img_public_id").val();
+
+	Cloudinary.delete(public_id, function(error, res) {
+        if(error) {
+            Bert.alert( 'Error deleting image: '+err , 'danger', 'growl-top-right' );
+        }
+        else {
+            Bert.alert( 'Image deleted successfully.', 'success', 'growl-top-right' );
+            
+            $('#post_img').attr("src", "");
+            $('#img_public_id').attr("value", "");
+            $('#img_url').attr("value", "");
+
+            $('#post_img').hide();
+            $('#delete_img').hide();
+
+            $('#button_uploadImage').attr("disabled", false);
+            $('#post_uploadImage').attr("disabled", false);
+        }
+    });
+}
+
+/* Upload/delete profile's photo images ----*/
+
+uploadImageProfile = function(event, photoNumber) {
+	var button_uploadImage = "#button_uploadImage"+photoNumber;
+	var post_uploadImage = "#post_uploadImage"+photoNumber;
+	var delete_img = "#delete_img"+photoNumber;
+	var buttonId = "#button_changePhotos";
+	var spinner = "#spinner"+photoNumber;
+	var post_img = "#post_img"+photoNumber;
+	var img_public_id = "#img"+photoNumber+"_public_id";
+	var img_url = "#img"+photoNumber+"_url";
+
+	$(button_uploadImage).attr("disabled", true);
+    $(post_uploadImage).attr("disabled", true);
+    $(buttonId).attr("disabled", true);
+    
+    $(post_img).hide();
+    $(spinner).show();
+
+    Bert.alert( 'Uploading image...', 'success', 'growl-top-right' );
+
+    files = event.currentTarget.files;
+    
+    Cloudinary.upload(files,{}, function(error, res) {
+        if(error) {
+        	Bert.alert( 'Upload Error: '+err , 'danger', 'growl-top-right' );
+            
+            $(spinner).hide();
+
+            $(button_uploadImage).attr("disabled", false);
+            $(post_uploadImage).attr("disabled", false);
+            $(buttonId).attr("disabled", false);
+            
+        }
+        else {
+            Bert.alert( 'Image uploaded successfully.', 'success', 'growl-top-right' );
+
+            $(post_img).attr("src", res.url);
+            $(img_public_id).attr("value", res.public_id);
+            $(img_url).attr("value", res.url);
+
+            setTimeout(function(){
+		        $(post_img).show();
+            	$(delete_img).show();
+            	$(spinner).hide();
+		   	}, 500);
+            
+            $(buttonId).attr("disabled", false);
+        }
+    });
+}
+
+deleteImageProfile = function(photoNumber) {
+	var button_uploadImage = "#button_uploadImage"+photoNumber;
+	var post_uploadImage = "#post_uploadImage"+photoNumber;
+	var delete_img = "#delete_img"+photoNumber;
+	var post_img = "#post_img"+photoNumber;
+	var img_public_id = "#img"+photoNumber+"_public_id";
+	var img_url = "#img"+photoNumber+"_url";
+
+	var public_id = $(img_public_id).val();
+
+	if(public_id.indexOf("defaultProfile") !== -1) {
+		Bert.alert( 'You cannot delete default profile\'s photo. ' , 'danger', 'growl-top-right' );
+	}
+	else {
+		Cloudinary.delete(public_id, function(error, res) {
+	        if(error) {
+	            Bert.alert( 'Error deleting image: '+err , 'danger', 'growl-top-right' );
+	        }
+	        else {
+	            Bert.alert( 'Image deleted successfully.', 'success', 'growl-top-right' );
+	            
+	            if(photoNumber == 1) {
+		            $(post_img).attr("src", "http://res.cloudinary.com/geosocial/image/upload/v1477408663/defaultProfile1.jpg");
+		            $(img_public_id).attr("value", "defaultProfile1");
+		            $(img_url).attr("value", "http://res.cloudinary.com/geosocial/image/upload/v1477408663/defaultProfile1.jpg");
+		        }
+		        else if(photoNumber == 2) {
+		        	$(post_img).attr("src", "http://res.cloudinary.com/geosocial/image/upload/v1477408663/defaultProfile2.jpg");
+		            $(img_public_id).attr("value", "defaultProfile2");
+		            $(img_url).attr("value", "http://res.cloudinary.com/geosocial/image/upload/v1477408663/defaultProfile2.jpg");
+		        }
+		        else if(photoNumber == 3) {
+		        	$(post_img).attr("src", "http://res.cloudinary.com/geosocial/image/upload/v1477408663/defaultProfile3.jpg");
+		            $(img_public_id).attr("value", "defaultProfile3");
+		            $(img_url).attr("value", "http://res.cloudinary.com/geosocial/image/upload/v1477408663/defaultProfile3.jpg");
+		        }
+
+		        $(delete_img).hide();
+
+	            $(button_uploadImage).attr("disabled", false);
+	            $(post_uploadImage).attr("disabled", false);
+	        }
+	    });
+	}
+}

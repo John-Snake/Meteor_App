@@ -7,7 +7,7 @@ Template.deleteComment.events({
             } 
             else {
 				Modal.hide('deleteComment');
-				Bert.alert( 'Post deleted successfully.', 'success', 'growl-top-right' );
+				Bert.alert( 'Comment deleted successfully.', 'success', 'growl-top-right' );
         	}
         });
 	}

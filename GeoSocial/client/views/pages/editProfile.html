@@ -8,7 +8,7 @@
         <p class="form-title">Change email</p>
         <label for="email">New Email : </label>
         <div><input type="email" id="email" value="{{currentUser.emails.[0].address}}" autocomplete="off" required></div>
-        <input type="submit" value="Change email" class="btn btn-success btn-sm">
+        <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-envelope-o" style="margin-right: 2%;" aria-hidden="true"></i>Change email</button>
     </form>
 
     <form class="signUp" id="changePassword">
@@ -19,14 +19,14 @@
         </div>
         <div><input type="password" id="newPassword" placeholder="New password" required></div>
         <div><input type="password" id="passwordConfirmation" placeholder="Confirm new password" required></div>
-        <input type="submit" value="Change password" class="btn btn-success btn-sm">
+        <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-key" style="margin-right: 2%;" aria-hidden="true"></i>Change password</button>
     </form>
 
     <form class="signUp" id="changeUsername">
         <p class="form-title">Change username</p>
         <label for="text">New username : </label>
         <div><input type="text" id="username" value="{{currentUser.username}}" onkeyup="formatUsername(this)" required></div>
-        <input type="submit" value="Change username" class="btn btn-success btn-sm">
+        <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-user" style="margin-right: 2%;" aria-hidden="true"></i>Change username</button>
     </form>
 
     <form class="signUp" id="editProfile">
@@ -77,13 +77,76 @@
             <p id="privacyInfo">{{privacyInfo(currentUser.profile.privacy)}}</p>
         </div>
 
-        <input type="submit" value="Edit Profile" class="btn btn-success btn-sm">
+        <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-id-card-o" style="margin-right: 2%;" aria-hidden="true"></i>Edit Profile</button>
     </form>
-           
+    
+
+
+    <form class="signUp text-center" id="changePhotos">
+        <p class="form-title">Change your profile photos</p>
+
+        <label>Profile photo #1:</label>
+        <img id="post_img1" src="http://res.cloudinary.com/geosocial/image/upload/v1477408663/defaultProfile1.jpg" style="max-width: 100%; margin-bottom: 2%">
+        <input type="text" id="img1_public_id" hidden>
+        <input type="text" id="img1_url" hidden>
+        <div id="spinner1" style="margin-top: 5%; padding-bottom: 3%; display: none">{{> smallSpinner}}</div>
+
+        <button id="delete_img1" class="btn btn-danger" style="width: 33%; margin-top: 0; margin-bottom: 1%; letter-spacing: 0;  display: none">
+            <i class="fa fa-trash-o" title="Delete" style="margin-right: 4%;" aria-hidden="true"></i>Delete photo
+        </button>
+        <br>
+        <div class="buttond" style="margin-bottom: 2%">
+            <div class="btn btn-primary btn-file" id="button_uploadImage1" style="width: 33%; margin-right: 1%">
+                <label for="post_image" style="margin-bottom: 0;"><i class="fa fa-camera" style="margin-right: 4%;" aria-hidden="true"></i>Add photo</label>
+                <input type="file" name="post_image" id="post_uploadImage1"/>
+            </div>
+        </div>
+
+        <div style="border-top: 1.5px solid white; margin-bottom: 2%"></div>
+        <label>Profile photo #2:</label>
+        <img id="post_img2" src="http://res.cloudinary.com/geosocial/image/upload/v1477408663/defaultProfile2.jpg" style="max-width: 100%; margin-bottom: 2%">
+        <input type="text" id="img2_public_id" hidden>
+        <input type="text" id="img2_url" hidden>
+        <div id="spinner2" style="margin-top: 5%; padding-bottom: 3%; display: none">{{> smallSpinner}}</div>
+
+        <button id="delete_img2" class="btn btn-danger" style="width: 33%; margin-top: 0; margin-bottom: 1%; letter-spacing: 0; display: none">
+            <i class="fa fa-trash-o" title="Delete" style="margin-right: 4%;" aria-hidden="true"></i>Delete photo
+        </button>
+        <br>
+        <div class="buttond" style="margin-bottom: 2%">
+            <div class="btn btn-primary btn-file" id="button_uploadImage2" style="width: 33%; margin-right: 1%">
+                <label for="post_image" style="margin-bottom: 0;"><i class="fa fa-camera" style="margin-right: 4%;" aria-hidden="true"></i>Add photo</label>
+                <input type="file" name="post_image" id="post_uploadImage2"/>
+            </div>
+        </div>
+
+        <div style="border-top: 1.5px solid white; margin-bottom: 2%"></div>
+        <label>Profile photo #3:</label>
+        <img id="post_img3" src="http://res.cloudinary.com/geosocial/image/upload/v1477408663/defaultProfile3.jpg" style="max-width: 100%; margin-bottom: 2%">
+        <input type="text" id="img3_public_id" hidden>
+        <input type="text" id="img3_url" hidden>
+        <div id="spinner3" style="margin-top: 5%; padding-bottom: 3%; display: none">{{> smallSpinner}}</div>
+
+        <button id="delete_img3" class="btn btn-danger" style="width: 33%; margin-top: 0; margin-bottom: 1%; letter-spacing: 0; display: none">
+            <i class="fa fa-trash-o" title="Delete" style="margin-right: 4%;" aria-hidden="true"></i>Delete photo
+        </button>
+        <br>
+        <div class="buttond" style="margin-bottom: 2%">
+            <div class="btn btn-primary btn-file" id="button_uploadImage3" style="width: 33%; margin-right: 1%">
+                <label for="post_image" style="margin-bottom: 0;"><i class="fa fa-camera" style="margin-right: 4%;" aria-hidden="true"></i>Add photo</label>
+                <input type="file" name="post_image" id="post_uploadImage3"/>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-success btn-sm" id="button_changePhotos"><i class="fa fa-picture-o" style="margin-right: 2%;" aria-hidden="true"></i>Change photos</button>
+    </form>
+
+
+
     <form class="signUp text-center">
         <p class="form-title">Delete account</p>
         <p style="font-size:1.2em;">Warning, this operation cannot be undone!<br>It will also delete all your posts and comments.</p>
-        <input class="btn btn-danger btn-sm" type="button" id="deleteAccount" value="Delete account" />
+        <button type="button" class="btn btn-danger btn-sm" id="deleteAccount"><i class="fa fa-trash-o" style="margin-right: 2%;" aria-hidden="true"></i>Delete account</button>
     </form>     
 
 </template>
