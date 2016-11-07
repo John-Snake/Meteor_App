@@ -1,3 +1,12 @@
+Template.editPost.onRendered(function() {  
+    $("#img1_public_id").attr("value", $("#oldImg1_public_id").val());
+    $("#img1_url").attr("value", $("#oldImg1_url").val());
+    $("#img2_public_id").attr("value", $("#oldImg2_public_id").val());
+    $("#img2_url").attr("value", $("#oldImg2_url").val());
+    $("#img3_public_id").attr("value", $("#oldImg3_public_id").val());
+    $("#img3_url").attr("value", $("#oldImg3_url").val());
+});
+
 Template.editProfile.events({
     'submit #editProfile': function(event){
         event.preventDefault();
@@ -254,8 +263,6 @@ Template.editProfile.events({
     'click #deleteAccount': function() {
         Modal.show('deleteAccount');
     },
-
-
     'change #post_uploadImage1': function (event) {
         uploadImageProfile(event, 1);
     },

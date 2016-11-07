@@ -24,7 +24,12 @@ Template.signUp.events({
 
         var gender = $('[name=gender]:checked').val();
         var privacy = $('#user_privacy').val();
-        
+        var img1_public_id = "defaultProfile1";
+        var img1_url = "http://res.cloudinary.com/geosocial/image/upload/v1477408663/defaultProfile1.jpg";
+        var img2_public_id = "defaultProfile2";
+        var img2_url = "http://res.cloudinary.com/geosocial/image/upload/v1477408663/defaultProfile2.jpg";
+        var img3_public_id = "defaultProfile3";
+        var img3_url = "http://res.cloudinary.com/geosocial/image/upload/v1477408663/defaultProfile3.jpg";
         
         Accounts.createUser({
                 email: email,
@@ -36,7 +41,13 @@ Template.signUp.events({
                     telegram_username: telegram_username,
                     birth: formattedBirthDate,
                     gender: gender,
-                    privacy: privacy
+                    privacy: privacy,
+                    img1_public_id: img1_public_id,
+                    img1_url: img1_url,
+                    img2_public_id: img2_public_id,
+                    img2_url: img2_url,
+                    img3_public_id: img3_public_id,
+                    img3_url: img3_url
                 },
             }, 
             function(error){

@@ -86,7 +86,9 @@
         <p class="form-title">Change your profile photos</p>
 
         <label>Profile photo #1:</label>
-        <img id="post_img1" src="http://res.cloudinary.com/geosocial/image/upload/v1477408663/defaultProfile1.jpg" style="max-width: 100%; margin-bottom: 2%">
+        <img id="post_img1" src="{{currentUser.profile.img1_url}}" style="max-width: 100%; margin-bottom: 2%">
+        <input type="text" id="oldImg1_public_id" value="{{currentUser.profile.img1_public_id}}" hidden>
+        <input type="text" id="oldImg1_url" value="{{currentUser.profile.img1_url}}" hidden>
         <input type="text" id="img1_public_id" hidden>
         <input type="text" id="img1_url" hidden>
         <div id="spinner1" style="margin-top: 5%; padding-bottom: 3%; display: none">{{> smallSpinner}}</div>
@@ -104,7 +106,9 @@
 
         <div style="border-top: 1.5px solid white; margin-bottom: 2%"></div>
         <label>Profile photo #2:</label>
-        <img id="post_img2" src="http://res.cloudinary.com/geosocial/image/upload/v1477408663/defaultProfile2.jpg" style="max-width: 100%; margin-bottom: 2%">
+        <img id="post_img2" src="{{currentUser.profile.img2_url}}" style="max-width: 100%; margin-bottom: 2%">
+        <input type="text" id="oldImg2_public_id" value="{{currentUser.profile.img2_public_id}}" hidden>
+        <input type="text" id="oldImg2_url" value="{{currentUser.profile.img2_url}}" hidden>
         <input type="text" id="img2_public_id" hidden>
         <input type="text" id="img2_url" hidden>
         <div id="spinner2" style="margin-top: 5%; padding-bottom: 3%; display: none">{{> smallSpinner}}</div>
@@ -122,7 +126,9 @@
 
         <div style="border-top: 1.5px solid white; margin-bottom: 2%"></div>
         <label>Profile photo #3:</label>
-        <img id="post_img3" src="http://res.cloudinary.com/geosocial/image/upload/v1477408663/defaultProfile3.jpg" style="max-width: 100%; margin-bottom: 2%">
+        <img id="post_img3" src="{{currentUser.profile.img3_url}}" style="max-width: 100%; margin-bottom: 2%">
+        <input type="text" id="oldImg3_public_id" value="{{currentUser.profile.img3_public_id}}" hidden>
+        <input type="text" id="oldImg3_url" value="{{currentUser.profile.img3_url}}" hidden>
         <input type="text" id="img3_public_id" hidden>
         <input type="text" id="img3_url" hidden>
         <div id="spinner3" style="margin-top: 5%; padding-bottom: 3%; display: none">{{> smallSpinner}}</div>
