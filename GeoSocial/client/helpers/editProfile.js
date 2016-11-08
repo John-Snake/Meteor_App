@@ -1,4 +1,4 @@
-Template.editPost.onRendered(function() {  
+Template.editProfile.onRendered(function() {  
     $("#img1_public_id").attr("value", $("#oldImg1_public_id").val());
     $("#img1_url").attr("value", $("#oldImg1_url").val());
     $("#img2_public_id").attr("value", $("#oldImg2_public_id").val());
@@ -8,45 +8,6 @@ Template.editPost.onRendered(function() {
 });
 
 Template.editProfile.events({
-    'submit #editProfile': function(event){
-        event.preventDefault();
-        var _id = Meteor.userId();
-        var name = $('#name').val();
-        var surname = $('#surname').val();
-        var telegram_username = $('#telegram_username').val();
-        
-        var date = $('#datePicker').val();
-        var formattedBirthDate = '';
-        if (date != '') {
-            var birth = new Date(date);
-            formattedBirthDate = moment(birth).format("YYYY-MM-DD");
-        }
-
-        var gender = $('[name=gender]:checked').val();
-        var privacy = $('#user_privacy').val();
-
-        Meteor.users.update( _id, 
-            {   $set: {
-                    "profile.name": name,
-                    "profile.surname": surname,
-                    "profile.telegram_username": telegram_username,
-                    "profile.birth": formattedBirthDate,
-                    "profile.gender": gender,
-                    "profile.privacy": privacy
-                }
-            }, 
-            function(error){
-               if(error){
-                    console.log(error.reason);
-                    Bert.alert( error.reason, 'danger', 'growl-top-right' );
-                }
-                else {
-                    Router.go("/profile");
-                    Bert.alert( 'User edited successfully.', 'success', 'growl-top-right' );
-                }
-            } 
-        );
-    },
     'submit #changeEmail': function(event){
         event.preventDefault();
         var email = $('#email').val().toLowerCase();
@@ -121,6 +82,104 @@ Template.editProfile.events({
             console.log("Password già utilizzata.");
             Bert.alert( 'Password già utilizzata.', 'danger', 'growl-top-right' );
         }
+    },
+    'submit #editProfile': function(event){
+        event.preventDefault();
+        var _id = Meteor.userId();
+        var name = $('#name').val();
+        var surname = $('#surname').val();
+        var telegram_username = $('#telegram_username').val();
+        
+        var date = $('#datePicker').val();
+        var formattedBirthDate = '';
+        if (date != '') {
+            var birth = new Date(date);
+            formattedBirthDate = moment(birth).format("YYYY-MM-DD");
+        }
+
+        var gender = $('[name=gender]:checked').val();
+        var privacy = $('#user_privacy').val();
+
+        Meteor.users.update( _id, 
+            {   $set: {
+                    "profile.name": name,
+                    "profile.surname": surname,
+                    "profile.telegram_username": telegram_username,
+                    "profile.birth": formattedBirthDate,
+                    "profile.gender": gender,
+                    "profile.privacy": privacy
+                }
+            }, 
+            function(error){
+               if(error){
+                    console.log(error.reason);
+                    Bert.alert( error.reason, 'danger', 'growl-top-right' );
+                }
+                else {
+                    Router.go("/profile");
+                    Bert.alert( 'User edited successfully.', 'success', 'growl-top-right' );
+                }
+            } 
+        );
+    },
+    'submit #changePhotos': function(event) {
+        event.preventDefault();
+        var _id = Meteor.userId();
+        var img1_public_id = $("#img1_public_id").val();
+        var img1_url = $("#img1_url").val();
+        var img2_public_id = $("#img2_public_id").val();
+        var img2_url = $("#img2_url").val();
+        var img3_public_id = $("#img3_public_id").val();
+        var img3_url = $("#img3_url").val();
+
+        Meteor.users.update( _id, 
+            {   $set: {
+                    "profile.img1_public_id": img1_public_id,
+                    "profile.img1_url": img1_url,
+                    "profile.img2_public_id": img2_public_id,
+                    "profile.img2_url": img2_url,
+                    "profile.img3_public_id": img3_public_id,
+                    "profile.img3_url": img3_url
+                }
+            }, 
+            function(error){
+               if(error){
+                    console.log(error.reason);
+                    Bert.alert( error.reason, 'danger', 'growl-top-right' );
+                }
+                else {
+                    Router.go("/profile");
+                    Bert.alert( 'User edited successfully.', 'success', 'growl-top-right' );
+                }
+            } 
+        );
+    },
+    'change #post_uploadImage1': function (event) {
+        uploadImageProfile(event, 1);
+    },
+    'change #post_uploadImage2': function (event) {
+        uploadImageProfile(event, 2);
+    },
+    'change #post_uploadImage3': function (event) {
+        uploadImageProfile(event, 3);
+    },
+    'click #delete_img1': function (event) {
+        event.preventDefault();
+
+        deleteImageProfile(1);
+    },
+    'click #delete_img2': function (event) {
+        event.preventDefault();
+
+        deleteImageProfile(2);
+    },
+    'click #delete_img3': function (event) {
+        event.preventDefault();
+
+        deleteImageProfile(3);
+    },
+    'click #deleteAccount': function() {
+        Modal.show('deleteAccount');
     },
     //Check existing email address when a key is released.
     'keyup #email' : function() {
@@ -259,33 +318,6 @@ Template.editProfile.events({
     },
     'mouseout #privacy': function() { 
         $('#info').hide();
-    },
-    'click #deleteAccount': function() {
-        Modal.show('deleteAccount');
-    },
-    'change #post_uploadImage1': function (event) {
-        uploadImageProfile(event, 1);
-    },
-    'change #post_uploadImage2': function (event) {
-        uploadImageProfile(event, 2);
-    },
-    'change #post_uploadImage3': function (event) {
-        uploadImageProfile(event, 3);
-    },
-    'click #delete_img1': function (event) {
-        event.preventDefault();
-
-        deleteImageProfile(1);
-    },
-    'click #delete_img2': function (event) {
-        event.preventDefault();
-
-        deleteImageProfile(2);
-    },
-    'click #delete_img3': function (event) {
-        event.preventDefault();
-
-        deleteImageProfile(3);
     }
 });
 

@@ -1,8 +1,7 @@
 Da fare:
 
--- File upload (3 immagini nella modifica profilo)
-
 -- Notifiche (like,dislike e commenti ai post dell'utente corrente)
+
 
 +- Remove user (per i post/commenti aspettare Prof)
 
@@ -14,12 +13,13 @@ Da rivedere:
 
 -- GoogleMaps.load() inconsistente su browser e piattaforme diverse? (o è solo un problema mio?!)
 -- Geocomplete in editPost inconsistente
--- css su chrome?
 
 ?? deleteUser [ => delete all user's post and comments] scelta condivisa?
 ?? deletePost [ => delete all comment] e deleteComment come fare per le foto dei post e commenti? [Al momento non vengono cancellate.]
 
 +- forgot password (Da testare.. mandare email?)
+
+
 
 +- Aggiungere e migliorare controlli su input e parametri sia nel client sia nel server
 + Migliorare il feedback sul controllo input client prima del submit
