@@ -6,48 +6,23 @@
 			<div class="row well well-lg">
 				<h1 class="text-center">New notifications:</h1> 
 
-				<div class="col-md-8 col-md-offset-2" style="border: 1px solid rgba(255, 255, 255, .5); border-bottom: 0.5px solid rgba(255, 255, 255, .5); padding: 2%;">
-					<div class="row">
-						<div class="col-md-11">
-							<span>
-								<i class="fa fa-thumbs-up fa-fw" aria-hidden="true"></i>
-								<a>Alessandro</a> liked your 
-								<a style="cursor: pointer; cursor: hand;">post</a>. - 10 min ago
-							</span>
-						</div>
-						<div class="col-md-1 text-right" style="padding-right: 1%;">
-							<i class="fa fa-times fa-fw" aria-hidden="true" style="color: red; cursor: pointer; cursor: hand;"></i>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-8 col-md-offset-2" style="border: 1px solid rgba(255, 255, 255, .5); border-bottom: 0.5px solid rgba(255, 255, 255, .5); padding: 2%;">
-					<div class="row">
-						<div class="col-md-11">
-							<span>
-								<i class="fa fa-thumbs-down fa-fw" aria-hidden="true"></i>
-								<a>Alessandro</a> disliked your 
-								<a style="cursor: pointer; cursor: hand;">post</a>. - 10 min ago
-							</span>
-						</div>
-						<div class="col-md-1 text-right" style="padding-right: 1%;">
-							<i class="fa fa-times fa-fw" aria-hidden="true" style="color: red; cursor: pointer; cursor: hand;"></i>
+				{{#each unreadNotification}}
+					<div class="col-md-8 col-md-offset-2" style="border: 1px solid rgba(255, 255, 255, .5); border-bottom: 0.5px solid rgba(255, 255, 255, .5); padding: 2%;">
+						<div class="row">
+							<div class="col-md-11">
+								<span>
+									<i class="fa {{actionIcon}} fa-fw" aria-hidden="true"></i>
+									<a href="/profile/{{senderUserId}}">{{username}}</a> {{action}} your 
+									<a style="cursor: pointer;" id="postDetail">post</a>. 
+									- {{formatDateCommentFromNow(dateTime)}}
+								</span>
+							</div>
+							<div class="col-md-1 text-right" style="padding-right: 1%;">
+								<i class="fa fa-times fa-fw" aria-hidden="true" id="setRead" style="color: red; cursor: pointer;"></i>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="col-md-8 col-md-offset-2" style="border: 1px solid rgba(255, 255, 255, .5); border-bottom: 0.5px solid rgba(255, 255, 255, .5); padding: 2%;">
-					<div class="row">
-						<div class="col-md-11">
-							<span>
-								<i class="fa fa-comments fa-fw" aria-hidden="true"></i>
-								<a>Alessandro</a> commented your 
-								<a style="cursor: pointer; cursor: hand;">post</a>. - 10 min ago
-							</span>
-						</div>
-						<div class="col-md-1 text-right" style="padding-right: 1%;">
-							<i class="fa fa-times fa-fw" aria-hidden="true" style="color: red; cursor: pointer; cursor: hand;"></i>
-						</div>
-					</div>
-				</div>
+				{{/each}}
 
 				<div class="col-md-8 col-md-offset-2" style="border-top: 0.5px solid rgba(255, 255, 255, .5)"></div>
 			</div>
@@ -56,6 +31,24 @@
 			<div class="row well well-lg">
 				<h1 class="text-center">Old notifications:</h1>
 
+				{{#each readNotification}}
+					<div class="col-md-8 col-md-offset-2" style="border: 1px solid rgba(255, 255, 255, .5); border-bottom: 0.5px solid rgba(255, 255, 255, .5); padding: 2%;">
+						<div class="row">
+							<div class="col-md-12">
+								<span>
+									<i class="fa {{actionIcon}} fa-fw" aria-hidden="true"></i>
+									<a href="/profile/{{senderUserId}}">{{username}}</a> {{action}} your 
+									<a style="cursor: pointer;" id="postDetail">post</a>. 
+									- {{formatDatePost(dateTime)}}
+								</span>
+							</div>
+						</div>
+					</div>
+				{{/each}}
+
+				<div class="col-md-8 col-md-offset-2" style="border-top: 0.5px solid rgba(255, 255, 255, .5)"></div>
+
+				<!--
 				<div class="col-md-8 col-md-offset-2" style="border: 1px solid rgba(255, 255, 255, .5); border-bottom: 0.5px solid rgba(255, 255, 255, .5); padding: 2%;">
 					<div class="row">
 						<div class="col-md-11">
@@ -100,6 +93,7 @@
 				</div>
 
 				<div class="col-md-8 col-md-offset-2" style="border-top: 0.5px solid rgba(255, 255, 255, .5)"></div>
+				-->
 				
 			</div>
 		</div>

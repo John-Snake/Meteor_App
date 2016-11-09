@@ -76,7 +76,7 @@ Comments.allow({
 	    // can only change your own documents
 	    return doc.userId === userId;
 	},
-	remove: function (userId, doc) { // e quando l'autore del post rimuove il post??
+	remove: function (userId, doc) {
 	    // can only remove your own documents
 	    return doc.userId === userId;
 	},

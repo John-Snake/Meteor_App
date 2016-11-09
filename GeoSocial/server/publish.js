@@ -38,3 +38,15 @@ Meteor.publish('usersProfilesNoPrivacy', function(id){
 Meteor.publish('thisPostComments', function(postId){
 	return Comments.find({postId: postId});
 });
+
+Meteor.publish('unreadNotifications', function(){
+	return Notifications.find({observerUserId: this.userId, read: false});
+});
+
+Meteor.publish('allNotifications', function(){
+	return Notifications.find({observerUserId: this.userId});
+});
+
+Meteor.publish('notificationsPost', function(postId){
+	return Post.find({_id: postId});
+});

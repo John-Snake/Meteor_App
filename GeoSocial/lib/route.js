@@ -92,4 +92,15 @@ Router.route('/resetPassword/:token', function () {
     this.render('resetPassword');
 });
 
-Router.route('/notifications');
+Router.route('/notifications', {
+    // this template will be rendered until the subscriptions are ready
+    loadingTemplate: 'loadingTemplate',
+
+    waitOn: function () {
+        // return one handle, a function, or an array
+        return [Meteor.subscribe('allNotifications'), Meteor.subscribe('usersUsername')];
+    },
+    action: function () {
+        this.render('notifications');
+    }
+});

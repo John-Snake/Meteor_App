@@ -15,10 +15,14 @@
 					<li><a href="/"><i class="fa fa-home fa-lg" aria-hidden="true"></i></a></li>
 					<li>
 						<a href="/notifications">
-							<div style="position: relative; float: left;">
+							{{#if notificationsCounter}}
+								<div style="position: relative; float: left;">
+									<i class="fa fa-bell fa-lg icon-grey" aria-hidden="true"></i>
+									<span class="badge">{{notificationsCounter}}</span>
+								</div>
+							{{else}}
 								<i class="fa fa-bell fa-lg icon-grey" aria-hidden="true"></i>
-								<span class="badge">10</span>
-							</div>
+							{{/if}}
 						</a>
 					</li>
 					<li>
