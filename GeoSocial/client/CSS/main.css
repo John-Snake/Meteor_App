@@ -41,6 +41,17 @@ header .navbar-inverse .pie
     color: rgba(92, 184, 92, 1);
 }
 
+header .badge 
+{
+    background-color: red; 
+    font-size: 80%;
+    border-radius: 20%;
+    position: absolute;
+    top: -7px;
+    left: 11px;
+    padding: 4px;
+}
+
 /* Aggiunto per il dropdown */
 header .dropdown-menu 
 {

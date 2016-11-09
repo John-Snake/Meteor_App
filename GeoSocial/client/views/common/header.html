@@ -2,7 +2,7 @@
 	<div id="navbar_header" class="navbar navbar-inverse navbar-{{navbarClass}}-top">
 		<div class="container">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="/"><i class="fa fa-globe fa-fw" aria-hidden="true"></i>GeoSocial</a>
+				<a class="navbar-brand" href="/"><i class="fa fa-globe fa-lg fa-fw" aria-hidden="true"></i>GeoSocial</a>
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 						<span class="sr-only">Navigation</span>
 						<span class="icon-bar"></span>
@@ -12,9 +12,20 @@
 			</div>
 			<ul class="nav navbar-nav navbar-right collapse navbar-collapse">
 				{{#if currentUser}}
-					<li><a href="/"><i class="fa fa-home fa-fw" aria-hidden="true"></i>Home</a></li>
+					<li><a href="/"><i class="fa fa-home fa-lg" aria-hidden="true"></i></a></li>
 					<li>
-						<a href='#' data-toggle="dropdown"><i class="fa fa-bars fa-fw" aria-hidden="true"></i>Personal <span class="caret"></span></a>
+						<a href="/notifications">
+							<div style="position: relative; float: left;">
+								<i class="fa fa-bell fa-lg icon-grey" aria-hidden="true"></i>
+								<span class="badge">10</span>
+							</div>
+						</a>
+					</li>
+					<li>
+						<a href='#' data-toggle="dropdown">
+							<i class="fa fa-bars fa-lg" aria-hidden="true"></i>
+							<span class="caret"></span>
+						</a>
 						<ul class="dropdown-menu">
 							<li><a href="/profile"><i class="fa fa-user fa-fw" style="margin-right: 5%;" aria-hidden="true"></i>My profile</a></li>
 							<li><a href="/myPosts"><i class="fa fa-archive fa-fw" style="margin-right: 5%;" aria-hidden="true"></i>My posts</a></li>
@@ -25,8 +36,8 @@
 						</ul>
 					</li>
 				{{else}}
-					<li><a href="/"><i class="fa fa-sign-in fa-fw" aria-hidden="true"></i>Sign in</a></li>
-					<li><a href="/signUp"><i class="fa fa-user-plus fa-fw" aria-hidden="true"></i>Sign up</a></li>
+					<li><a href="/"><i class="fa fa-sign-in fa-lg fa-fw" aria-hidden="true"></i>Sign in</a></li>
+					<li><a href="/signUp"><i class="fa fa-user-plus fa-lg fa-fw" aria-hidden="true"></i>Sign up</a></li>
 				{{/if}}
 			</ul>
 		</div>

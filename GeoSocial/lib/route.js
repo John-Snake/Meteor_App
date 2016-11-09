@@ -91,3 +91,5 @@ Router.route('/resetPassword');
 Router.route('/resetPassword/:token', function () {
     this.render('resetPassword');
 });
+
+Router.route('/notifications');

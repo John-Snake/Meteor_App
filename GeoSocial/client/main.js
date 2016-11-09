@@ -396,6 +396,8 @@ deleteImageProfile = function(photoNumber) {
 	var post_uploadImage = "#post_uploadImage"+photoNumber;
 	var delete_img = "#delete_img"+photoNumber;
 	var post_img = "#post_img"+photoNumber;
+	var oldImg_public_id = "#oldImg"+photoNumber+"_public_id";
+	var oldImg_url = "#oldImg"+photoNumber+"_url";
 	var img_public_id = "#img"+photoNumber+"_public_id";
 	var img_url = "#img"+photoNumber+"_url";
 
@@ -412,21 +414,9 @@ deleteImageProfile = function(photoNumber) {
 	        else {
 	            Bert.alert( 'Image deleted successfully.', 'success', 'growl-top-right' );
 	            
-	            if(photoNumber == 1) {
-		            $(post_img).attr("src", "http://res.cloudinary.com/geosocial/image/upload/v1477408663/defaultProfile1.jpg");
-		            $(img_public_id).attr("value", "defaultProfile1");
-		            $(img_url).attr("value", "http://res.cloudinary.com/geosocial/image/upload/v1477408663/defaultProfile1.jpg");
-		        }
-		        else if(photoNumber == 2) {
-		        	$(post_img).attr("src", "http://res.cloudinary.com/geosocial/image/upload/v1477408663/defaultProfile2.jpg");
-		            $(img_public_id).attr("value", "defaultProfile2");
-		            $(img_url).attr("value", "http://res.cloudinary.com/geosocial/image/upload/v1477408663/defaultProfile2.jpg");
-		        }
-		        else if(photoNumber == 3) {
-		        	$(post_img).attr("src", "http://res.cloudinary.com/geosocial/image/upload/v1477408663/defaultProfile3.jpg");
-		            $(img_public_id).attr("value", "defaultProfile3");
-		            $(img_url).attr("value", "http://res.cloudinary.com/geosocial/image/upload/v1477408663/defaultProfile3.jpg");
-		        }
+	            $(post_img).attr("src", $(oldImg_url).val());
+	            $(img_public_id).attr("value", $(oldImg_public_id).val());
+	            $(img_url).attr("value", $(oldImg_url).val());
 
 		        $(delete_img).hide();
 
