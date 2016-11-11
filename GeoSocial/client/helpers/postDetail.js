@@ -33,6 +33,21 @@ Template.postDetail.helpers({
 		var postId = Session.get('postId');
 		Meteor.subscribe('thisPostComments', postId);
 		return Comments.find({postId: postId}, {sort: {dateTime: -1}});
+	},
+	'highlightComment': function() {
+		var commentId = Session.get('highlightComment');
+		if(this._id == commentId) {
+			return "border: 3px solid; background-color: lightgrey;";
+		}
+	},
+	'missingComment': function() {
+		var commentId = Session.get('highlightComment');
+		if(commentId) {
+			return Comments.findOne({_id: commentId});
+		}
+		else {
+			return true;
+		}
 	}
 });
 
@@ -225,4 +240,5 @@ Template.postDetail.events({
 
 Template.postDetail.destroyed = function() {
     delete Session.keys.postId;
+    delete Session.keys.highlightComment;
 };

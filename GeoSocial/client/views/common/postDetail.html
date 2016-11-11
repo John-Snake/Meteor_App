@@ -122,9 +122,18 @@
 	                	</div>
 
                 	</div>
-                
+                	
+                	{{#unless missingComment}}
+                		<div class="modal-footer" id="showComments" style="border: 3px solid; background-color: lightgrey;">
+                			<div class="row text-center">
+                				<h2>Error 404</h2>
+    							<p>Whoops! The comment was not found. :(</p>
+                			</div>
+            			</div>
+                	{{/unless}}
+
                 	{{#each comments}}
-		                <div class="modal-footer" id="showComments">
+		                <div class="modal-footer" id="showComments" style="{{highlightComment}}">
 		                	
 	                		<div class="row text-center">
 

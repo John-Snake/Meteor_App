@@ -1,3 +1,25 @@
+Template.header.onCreated(function() {
+	var initializing = false;
+		
+	Meteor.subscribe('unreadNotifications', function(){
+		initializing = true;
+	});
+
+	Tracker.autorun(function() {
+
+		Notifications.find({observerUserId: Meteor.userId(), read: false}).observe({
+		    added: function(doc) {
+		        if (initializing) {
+		        	console.log(doc.userId);
+		        	console.log(doc.action);
+		        	sAlert.info('New Notification!');
+		    	}
+		    }
+		});
+
+	});
+});
+
 Template.header.helpers({
 	/* Fix for carousel in the profile pages. 
 	   header navbar with the class 'navbar-fixed-top' only in the profile pages,

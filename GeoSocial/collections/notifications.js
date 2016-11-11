@@ -55,6 +55,6 @@ Notifications.deny({
 	update: function (userId, doc, fields, modifier) {
 	    // can't change postId, userId, observerUserId and commentId
 	    return _.contains(fields, 'postId') && _.contains(fields, 'userId') && _.contains(fields, 'observerUserId') 
-	    		&& _.contains(fields, 'commentId');
+	    		&& _.contains(fields, 'anonymous') && _.contains(fields, 'commentId');
   	}
 });

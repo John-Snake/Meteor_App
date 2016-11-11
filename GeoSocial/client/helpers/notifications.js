@@ -29,6 +29,12 @@ Template.notifications.events({
 		Session.set('postId', this.postId);
 		Modal.show('postDetail');
 	},
+	'click #highlightComment': function() {
+		Meteor.subscribe('notificationsPost', this.postId);
+		Session.set('postId', this.postId);
+		Session.set('highlightComment', this.commentId);
+		Modal.show('postDetail');
+	},
 	'click #setRead': function() {
 		Meteor.call('setRead', this._id, function (error) {
             if(error){

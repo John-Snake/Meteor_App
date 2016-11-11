@@ -1,3 +1,30 @@
+Meteor.startup(function () {
+    sAlert.config({
+        effect: 'stackslide',
+        position: 'bottom-right',
+        timeout: 5000,
+        html: true,
+        onRouteClose: true,
+        stack: {
+    	    spacing: 10, // in px
+        	limit: 5 // when fifth alert appears all previous ones are cleared
+        },
+        offset: 0, // in px - will be added to first alert (bottom or top - depends of the position in config)
+        beep: true,
+        beep: {
+            info: '/sounds/metal_gear_solid_call.mp3',
+        //     error: '/beep-error.mp3',
+        //     success: '/beep-success.mp3',
+        //     warning: '/beep-warning.mp3'
+        },
+        onClose: _.noop //
+        // examples:
+        // onClose: function() {
+        //     /* Code here will be executed once the alert closes. */
+        // }
+    });
+});
+
 Meteor.Spinner.options = {
     lines: 13, // The number of lines to draw
     length: 10, // The length of each line
