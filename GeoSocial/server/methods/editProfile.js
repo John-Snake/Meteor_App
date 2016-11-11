@@ -2,7 +2,7 @@ Meteor.methods({
   	changeUsername : function (newUsername) {
   		// check(value, pattern) || Match.test(value, pattern) controlli server
 
-    	if (! this.userId) {
+    	if (!this.userId) {
       		throw new Meteor.Error("not-logged-in", "Must be logged in to change username.");
 	    }
 
@@ -11,7 +11,7 @@ Meteor.methods({
   	changeEmail : function (oldEmail, newEmail) {
   		// check(value, pattern) || Match.test(value, pattern) controlli server
 
-    	if (! this.userId) {
+    	if (!this.userId) {
       		throw new Meteor.Error("not-logged-in", "Must be logged in to change email.");
 	    }
 
@@ -24,7 +24,7 @@ Meteor.methods({
 	    */
   	},
 	removeUserChainDeletion : function () {
-		if (! this.userId) {
+		if (!this.userId) {
       		throw new Meteor.Error("not-logged-in", "Must be logged in to dislike this post.");
 	    }
 

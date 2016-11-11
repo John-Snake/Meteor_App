@@ -1,11 +1,11 @@
 Notifications = new Mongo.Collection('notifications');
 
 NotificationsSchema = new SimpleSchema({
-	senderUserId: {
+	postId: {
 		type: String,
 		regEx: SimpleSchema.RegEx.Id
 	},
-	postId: {
+	userId: {
 		type: String,
 		regEx: SimpleSchema.RegEx.Id
 	},
@@ -15,8 +15,8 @@ NotificationsSchema = new SimpleSchema({
 	},
 	anonymous: {
 		type: Number,
-		min: 0,
-		max: 1
+		allowedValues: [0, 1],
+		defaultValue: 0
 	},
 	action: {
 		type: String,
@@ -39,21 +39,22 @@ NotificationsSchema = new SimpleSchema({
 Notifications.attachSchema(NotificationsSchema);
 
 Notifications.allow({
-	insert: function (senderUserId, doc) {
+	insert: function (userId, doc) {
 	    // the user must be logged in, and the document must be owned by the current user
-	    return (senderUserId && doc.senderUserId === senderUserId);
+	    return (userId && doc.userId === userId);
  	},
-	update: function (senderUserId, doc, fields, modifier) { //come setto il read=true ??
+	update: function (userId, doc, fields, modifier) { // it will only be possible for the observer to change read value from server-side code
 	    // can only change your own documents
-	    return doc.senderUserId === senderUserId;
+	    return doc.userId === userId;
 	},
 	// fetch only the field that are actually used by your functions
-	fetch: ['senderUserId']
+	fetch: ['userId']
 });
 
 Notifications.deny({
-	update: function (senderUserId, doc, fields, modifier) {
-	    // can't change owners and post
-	    return _.contains(fields, 'senderUserId') && _.contains(fields, 'postId');
+	update: function (userId, doc, fields, modifier) {
+	    // can't change postId, userId, observerUserId and commentId
+	    return _.contains(fields, 'postId') && _.contains(fields, 'userId') && _.contains(fields, 'observerUserId') 
+	    		&& _.contains(fields, 'commentId');
   	}
 });

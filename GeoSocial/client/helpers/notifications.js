@@ -1,9 +1,9 @@
 Template.notifications.helpers({
 	'unreadNotification': function (){
-		return Notifications.find({observerUserId: Meteor.userId(), read: false}, {sort: {date: -1}});
+		return Notifications.find({observerUserId: Meteor.userId(), read: false}, {sort: {dateTime: -1}});
 	},
 	'readNotification': function (){
-		return Notifications.find({observerUserId: Meteor.userId(), read: true}, {sort: {date: -1}});
+		return Notifications.find({observerUserId: Meteor.userId(), read: true}, {sort: {dateTime: -1}});
 	},
 	'actionIcon': function () {
 		if(this.action == "liked") {
@@ -18,7 +18,7 @@ Template.notifications.helpers({
 	},
 	// Show the right username for every post
 	'username': function () {
-		var user = Meteor.users.findOne(this.senderUserId);
+		var user = Meteor.users.findOne(this.userId);
 		return user.username;
 	}
 });
@@ -30,7 +30,30 @@ Template.notifications.events({
 		Modal.show('postDetail');
 	},
 	'click #setRead': function() {
-		console.log(this._id);
-		//setto read a true, ma servono i permessi sia per sender che observer
+		Meteor.call('setRead', this._id, function (error) {
+            if(error){
+                Bert.alert( error.reason, 'danger', 'growl-top-right' );
+            } 
+            else {
+                Bert.alert( 'Notification readed successfully.', 'success', 'growl-top-right' );
+            }
+       });
+	},
+	'click #setAllRead': function() {
+		var allElements = document.getElementsByTagName("*");
+		for(i = 0; i < allElements.length; i++){
+			if(allElements[i].id == 'notificationId'){
+			  	var element = allElements[i].value;
+		   		
+		   		Meteor.call('setRead', element, function (error) {
+		            if(error){
+		                Bert.alert( error.reason, 'danger', 'growl-top-right' );
+		            } 
+		            else {
+		                Bert.alert( 'All Notifications readed successfully.', 'success', 'growl-top-right' );
+		            }
+		       });
+		 	}
+		 }
 	}
 });

@@ -22,8 +22,7 @@ PostSchema = new SimpleSchema({
 	},
 	anonymous: {
 		type: Number,
-		min: 0,
-		max: 1
+		allowedValues: [0, 1]
 	},
 	dateTime: {
 		type: Date,

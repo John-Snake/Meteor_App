@@ -4,6 +4,7 @@
         <div class="modal-dialog">
             <div class="modal-content" id="postDetail">
 
+        	{{#if thisPost}}
                 <div class="modal-header" id="postDetailHeader">
 
                 	<div class="row text-center">
@@ -197,7 +198,21 @@
 	                </div>
 
                 </div>
-
+            {{else}}
+            	<div class="modal-header text-center">
+            		<div class="row">
+            			<div class="col-md-11 text-center">
+	            			<h2 style="margin-left: 10%;">Error 404</h2>
+            			</div>
+            			<div class="col-md-1">
+	            			<button type="button" class="btn btn-default" data-dismiss="modal" id="close" style="border: 0;"><i class="fa fa-times" aria-hidden="true"></i></button>
+            			</div>
+            		</div>
+            	</div>
+            	<div class="modal-body text-center">
+            		<p>Whoops! The post was not found. :(</p>
+            	</div>
+            {{/if}}
 
             </div>
         </div>

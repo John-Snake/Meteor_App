@@ -2,7 +2,7 @@ Template.newPost.events({
     'submit #new_post': function(event){
         event.preventDefault();
         var id = Meteor.userId();
-	    var dateTime = new Date();
+        var dateTime = new Date();
         var text = $('[name=post_text]').val();
         var anonymous = $('[name=post_anonymous]:checked').val();
         var img_public_id;

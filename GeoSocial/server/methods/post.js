@@ -3,7 +3,7 @@ Meteor.methods({
 		//check(post_id, Meteor.Collection.ObjectID);
 		//check(type, Number);
 
-		if (! this.userId) {
+		if (!this.userId) {
       		throw new Meteor.Error("not-logged-in", "Must be logged in to like this post.");
 	    }
 
@@ -16,7 +16,6 @@ Meteor.methods({
 		               	if(error){
 		               		console.log(error.reason);
 		                    console.log(error.invalidKeys);
-		                    Bert.alert( error.reason, 'danger', 'growl-top-right' );
 		                }
 		            }
         	);
@@ -31,7 +30,6 @@ Meteor.methods({
 		               	if(error){
 		               		console.log(error.reason);
 		                    console.log(error.invalidKeys);
-		                    Bert.alert( error.reason, 'danger', 'growl-top-right' );
 		                }
 		            }
         	);
@@ -42,7 +40,7 @@ Meteor.methods({
 		//check(post_id, Meteor.Collection.ObjectID);
 		//check(type, Number);
 
-		if (! this.userId) {
+		if (!this.userId) {
       		throw new Meteor.Error("not-logged-in", "Must be logged in to dislike this post.");
 	    }
 
@@ -76,7 +74,7 @@ Meteor.methods({
 
 	},
 	commentsChainDeletion : function (post_id) {
-		if (! this.userId) {
+		if (!this.userId) {
       		throw new Meteor.Error("not-logged-in", "Must be logged in to dislike this post.");
 	    }
 

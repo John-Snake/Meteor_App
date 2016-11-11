@@ -3,7 +3,7 @@ Meteor.methods({
 		//check(comment_id, Meteor.Collection.ObjectID);
 		//check(type, Number);
 
-		if (! this.userId) {
+		if (!this.userId) {
       		throw new Meteor.Error("not-logged-in", "Must be logged in to like this comment.");
 	    }
 
@@ -40,7 +40,7 @@ Meteor.methods({
 		//check(comment_id, Meteor.Collection.ObjectID);
 		//check(type, Number);
 
-		if (! this.userId) {
+		if (!this.userId) {
       		throw new Meteor.Error("not-logged-in", "Must be logged in to dislike this comment.");
 	    }
 

@@ -3,16 +3,15 @@ Comments = new Mongo.Collection('comments');
 CommentsSchema = new SimpleSchema({
 	postId: {
 		type: String,
-		regEx: SimpleSchema.RegEx.Id,
+		regEx: SimpleSchema.RegEx.Id
 	},
 	userId: {
 		type: String,
-		regEx: SimpleSchema.RegEx.Id,
+		regEx: SimpleSchema.RegEx.Id
 	},
 	anonymous: {
 		type: Number,
-		min: 0,
-		max: 1
+		allowedValues: [0, 1]
 	},
 	dateTime: {
 		type: Date,
@@ -87,7 +86,7 @@ Comments.allow({
 Comments.deny({
 	update: function (userId, doc, fields, modifier) {
 	    // can't change owners and post
-	    return _.contains(fields, 'userId') && _.contains(fields, 'postId');
+	    return _.contains(fields, 'postId') && _.contains(fields, 'userId');
   	}
 });
 

@@ -109,11 +109,12 @@ Template.registerHelper('alreadyDisliked', function (id) {
 like = function(post_id, counter) {
 	var temp = counter;
 	var post = Post.findOne({ _id: post_id });
+	var userId = Meteor.userId();
 	
 	if(post) {
 
 		// Already liked the post
-		if (_.contains(post.votersLike, Meteor.userId())) {
+		if (_.contains(post.votersLike, userId)) {
 			return;
 		}
 		else {
@@ -125,6 +126,21 @@ like = function(post_id, counter) {
                         Bert.alert( error.reason, 'danger', 'growl-top-right' );
                 	}
                 });
+
+				if(userId != post.userId) {
+					Notifications.insert({
+							postId: post_id,
+		                    userId: userId,
+		                    observerUserId: post.userId,
+		                    action: 'liked',
+		                    dateTime: new Date()
+		                }, function(error){
+		                    if(error){
+		                        console.log(error.invalidKeys);
+		                    }
+		                }
+	            	);
+				}
 			}
 			else if (temp === -1) { // Add 1 like, remove 1 dislike
 				Meteor.call('like', post_id, -1, function (error) {
@@ -133,6 +149,22 @@ like = function(post_id, counter) {
                         Bert.alert( error.reason, 'danger', 'growl-top-right' );
                 	}
                 });
+
+				/*
+                Notifications.update({ 
+                		postId: post_id,
+                		userId: userId,
+	                    observerUserId: post.userId,
+	                    action: 'disliked'
+                	}, { 
+                		$set: { action: 'liked' }
+	                }, function(error){
+	                    if(error){
+	                        console.log(error.invalidKeys);
+	                    }
+	                }
+            	);
+            	*/
 			}
 
 		}
@@ -144,11 +176,12 @@ like = function(post_id, counter) {
 dislike = function(post_id, counter) {
 	var temp = counter;
 	var post = Post.findOne({ _id: post_id });
+	var userId = Meteor.userId();
 
 	if(post) {
 
 		// Already disliked the post
-		if (_.contains(post.votersDislike, Meteor.userId())) {
+		if (_.contains(post.votersDislike, userId)) {
 			return;
 		}
 		else {
@@ -160,6 +193,21 @@ dislike = function(post_id, counter) {
                         Bert.alert( error.reason, 'danger', 'growl-top-right' );
                 	}
                 });
+
+				if(userId != post.userId) {
+	                Notifications.insert({
+							postId: post_id,
+		                    userId: userId,
+		                    observerUserId: post.userId,
+		                    action: 'disliked',
+		                    dateTime: new Date()
+		                }, function(error){
+		                    if(error){
+		                        console.log(error.invalidKeys);
+		                    }
+		                }
+	            	);
+	            }
 			}
 			else if (temp === -1) { // Add 1 dislike, remove 1 like
 				Meteor.call('dislike', post_id, -1, function (error) {
@@ -168,6 +216,22 @@ dislike = function(post_id, counter) {
                         Bert.alert( error.reason, 'danger', 'growl-top-right' );
                 	}
                 });
+
+				/*
+                Notifications.update({ 
+                		postId: post_id,
+                		userId: userId,
+	                    observerUserId: post.userId,
+	                    action: 'liked'
+                	}, { 
+                		$set: { action: 'disliked' }
+	                }, function(error){
+	                    if(error){
+	                        console.log(error.invalidKeys);
+	                    }
+	                }
+            	);
+            	*/
 			}
 
 		}
@@ -208,11 +272,12 @@ Template.registerHelper('alreadyDislikedComment', function () {
 likeComment = function(comment_id, counter) {
 	var temp = counter;
 	var comment = Comments.findOne({ _id: comment_id });
+	var userId = Meteor.userId();
 	
 	if(comment) {
 
 		// Already liked the comment
-		if (_.contains(comment.votersLike, Meteor.userId())) {
+		if (_.contains(comment.votersLike, userId)) {
 			return;
 		}
 		else {
@@ -224,6 +289,22 @@ likeComment = function(comment_id, counter) {
                         Bert.alert( error.reason, 'danger', 'growl-top-right' );
                 	}
                 });
+
+				if(userId != comment.userId) {
+	                Notifications.insert({
+							postId: comment.postId,
+		                    userId: userId,
+		                    observerUserId: comment.userId,
+		                    action: 'liked',
+		                    commentId: comment_id,
+		                    dateTime: new Date()
+		                }, function(error){
+		                    if(error){
+		                        console.log(error.invalidKeys);
+		                    }
+		                }
+	            	);
+	            }
 			}
 			else if (temp === -1) { // Add 1 like, remove 1 dislike
 				Meteor.call('likeComment', comment_id, -1, function (error) {
@@ -243,11 +324,12 @@ likeComment = function(comment_id, counter) {
 dislikeComment = function(comment_id, counter) {
 	var temp = counter;
 	var comment = Comments.findOne({ _id: comment_id });
+	var userId = Meteor.userId();
 
 	if(comment) {
 
 		// Already disliked the comment
-		if (_.contains(comment.votersDislike, Meteor.userId())) {
+		if (_.contains(comment.votersDislike, userId)) {
 			return;
 		}
 		else {
@@ -259,6 +341,22 @@ dislikeComment = function(comment_id, counter) {
                         Bert.alert( error.reason, 'danger', 'growl-top-right' );
                 	}
                 });
+
+				if(userId != comment.userId) {
+	                Notifications.insert({
+							postId: comment.postId,
+		                    userId: userId,
+		                    observerUserId: comment.userId,
+		                    action: 'disliked',
+		                    commentId: comment_id,
+		                    dateTime: new Date()
+		                }, function(error){
+		                    if(error){
+		                        console.log(error.invalidKeys);
+		                    }
+		                }
+	            	);
+	            }
 			}
 			else if (temp === -1) { // Add 1 dislike, remove 1 like
 				Meteor.call('dislikeComment', comment_id, -1, function (error) {

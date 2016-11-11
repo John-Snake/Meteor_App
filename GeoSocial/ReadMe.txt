@@ -2,6 +2,8 @@ Da fare:
 
 -- Notifiche (like,dislike e commenti ai post dell'utente corrente)
 
+- cambiare post in posts (quindi dopo o con reset del db..)
+
 
 +- Remove user (per i post/commenti aspettare Prof)
 
@@ -11,8 +13,10 @@ Da fare:
 
 Da rivedere:
 
--- GoogleMaps.load() inconsistente su browser e piattaforme diverse? (o è solo un problema mio?!)
--- Geocomplete in editPost inconsistente
+-- GoogleMaps.load() inconsistente su browser e piattaforme diverse? (o solo un mio problema?!)
+-- Geocomplete in editPost inconsistente (manca chiave api google?)
+
+-- JQuery Multiple Selector (cambio stile su tutto il progetto?)
 
 ?? deleteUser [ => delete all user's post and comments] scelta condivisa?
 ?? deletePost [ => delete all comment] e deleteComment come fare per le foto dei post e commenti? [Al momento non vengono cancellate.]

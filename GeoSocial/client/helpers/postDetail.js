@@ -76,8 +76,9 @@ Template.postDetail.events({
 		event.preventDefault();
 
 		var id = Meteor.userId();
+		var dateTime = new Date();
 		var postId = Session.get('postId');
-	    var dateTime = new Date();
+		var postUserId = Post.findOne({_id: postId}, {fields: {"userId": 1}}).userId;
         var text = $('#commentTextarea').val();
         var anonymous = $('#comment_anonymous:checked').val();
         var img_public_id;
@@ -99,7 +100,7 @@ Template.postDetail.events({
 	        		anonymous: anonymous,
 	        		dateTime: dateTime,
 	        		text: text
-		        }, function(error){
+		        }, function(error, result){
 		            	if(error){
 		                    console.log(error.invalidKeys);
 		                    Bert.alert( 'Text field cannot be empty.', 'danger', 'growl-top-right' );
@@ -112,6 +113,23 @@ Template.postDetail.events({
 					       	if(anonymous==1) {
 					       		$('#commentProfileIcon').removeClass('fa-user-secret');
 					       		$('#commentProfileIcon').addClass('fa-user');
+					       	}
+
+					       	if(id != postUserId) {
+					       		Notifications.insert({
+										postId: postId,
+					                    userId: id,
+					                    observerUserId: postUserId,
+					                    anonymous: anonymous,
+					                    action: 'commented',
+					                    commentId: result,
+					                    dateTime: dateTime
+					                }, function(error){
+					                    if(error){
+					                        console.log(error.invalidKeys);
+					                    }
+					                }
+			            		);
 					       	}
 		                }
 		          	}
@@ -126,7 +144,7 @@ Template.postDetail.events({
 	        		text: text,
 	        		img_public_id: img_public_id,
                     img_url: img_url
-		        }, function(error){
+		        }, function(error, result){
 		            	if(error){
 		                    console.log(error.invalidKeys);
 		                    Bert.alert( 'Text field cannot be empty.', 'danger', 'growl-top-right' );
@@ -149,11 +167,27 @@ Template.postDetail.events({
 					       	
 					       	$('#button_uploadImage').attr("disabled", false);
 					        $('#post_uploadImage').attr("disabled", false);
+
+					        if(id != postUserId) {
+					       		Notifications.insert({
+										postId: postId,
+					                    userId: id,
+					                    observerUserId: postUserId,
+					                    anonymous: anonymous,
+					                    action: 'commented',
+					                    commentId: result,
+					                    dateTime: dateTime
+					                }, function(error){
+					                    if(error){
+					                        console.log(error.invalidKeys);
+					                    }
+					                }
+			            		);
+					       	}
 		                }
 		          	}
 	        );
         }
-
 	},
 	'change #post_uploadImage': function (event) {
 		uploadImage(event, "#comment");
