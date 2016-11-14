@@ -12,6 +12,10 @@ Meteor.publish('myPosts', function(){
 	return Post.find({userId: this.userId});
 });
 
+Meteor.publish('thisPost', function(postId){
+	return Post.find({_id: postId});
+});
+
 // Pubblico anche l'user id violando la richiesta di anonimato
 Meteor.publish('allPostsAtDistance', function(distanceMeters, lng, lat){
 	return Post.find({

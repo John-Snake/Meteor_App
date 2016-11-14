@@ -38,30 +38,30 @@ Template.notifications.events({
 		Modal.show('postDetail');
 	},
 	'click #setRead': function() {
-		Meteor.call('setRead', this._id, function (error) {
+       	Notifications.update( { _id: this._id },
+			{ 	
+				$set: {	read: true }
+			},
+			    function(error){
+	           	if(error){
+	           		console.log(error.reason);
+	                console.log(error.invalidKeys);
+	                Bert.alert( error.reason, 'danger', 'growl-top-right' );
+	            }
+	            else {
+	            	Bert.alert( 'Notification readed successfully.', 'success', 'growl-top-right' );
+	            }
+	        }
+		);
+	},
+	'click #setAllRead': function() {
+		Meteor.call('setAllRead', function (error) {
             if(error){
                 Bert.alert( error.reason, 'danger', 'growl-top-right' );
             } 
             else {
-                Bert.alert( 'Notification readed successfully.', 'success', 'growl-top-right' );
+                Bert.alert( 'All Notifications readed successfully.', 'success', 'growl-top-right' );
             }
-       });
-	},
-	'click #setAllRead': function() {
-		var allElements = document.getElementsByTagName("*");
-		for(i = 0; i < allElements.length; i++){
-			if(allElements[i].id == 'notificationId'){
-			  	var element = allElements[i].value;
-		   		
-		   		Meteor.call('setRead', element, function (error) {
-		            if(error){
-		                Bert.alert( error.reason, 'danger', 'growl-top-right' );
-		            } 
-		            else {
-		                Bert.alert( 'All Notifications readed successfully.', 'success', 'growl-top-right' );
-		            }
-		       });
-		 	}
-		 }
+        });
 	}
 });

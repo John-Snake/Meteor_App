@@ -128,7 +128,7 @@ Template.editComment.events({
 					    		Notifications.remove({_id: oldId});
 							});
 
-							//createCommentNotification(postId, userId, observerUserId, anonymous, "commented", id);
+							createCommentNotification(postId, userId, observerUserId, anonymous, "commented", id);
 				        }
 	                }
 	            }

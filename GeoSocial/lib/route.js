@@ -50,7 +50,7 @@ Router.route('/editPost/:_id', {
 
     waitOn: function () {
         // return one handle, a function, or an array
-        return Meteor.subscribe('myPosts');
+        return Meteor.subscribe('thisPost', this.params._id);
     },
 
     action: function () {
@@ -65,7 +65,10 @@ Router.route('/allPosts/:distanceKm', {
 
     waitOn: function () {
         // return one handle, a function, or an array
-        return Meteor.subscribe('usersUsername');
+        var distanceMeters = this.params.distanceKm*1000;
+        var lng = Session.get('currentUser_longitude');
+        var lat = Session.get('currentUser_latitude');
+        return [Meteor.subscribe('allPostsAtDistance', distanceMeters, lng, lat), Meteor.subscribe('usersUsername')];
     },
     action: function () {
         this.render('allPosts');

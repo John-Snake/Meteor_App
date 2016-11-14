@@ -86,7 +86,7 @@ Comments.allow({
 Comments.deny({
 	update: function (userId, doc, fields, modifier) {
 	    // can't change owners and post
-	    return _.contains(fields, 'postId') && _.contains(fields, 'userId');
+	    return _.contains(fields, 'postId') || _.contains(fields, 'userId');
   	}
 });
 
