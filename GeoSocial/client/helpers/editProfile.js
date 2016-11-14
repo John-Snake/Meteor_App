@@ -205,7 +205,7 @@ Template.editProfile.events({
         $('#alert').hide();
         $('#confirmation').hide();
 
-        Meteor.subscribe('usersUsername');
+        //Meteor.subscribe('usersUsername');
 
         var input = $('#username').val();
         var check =  Meteor.users.findOne({'username': input });

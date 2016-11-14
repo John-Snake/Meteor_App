@@ -1,5 +1,5 @@
 Meteor.methods({
-  	changeUsername : function (newUsername) {
+  	changeUsername: function (newUsername) {
   		// check(value, pattern) || Match.test(value, pattern) controlli server
 
     	if (!this.userId) {
@@ -8,7 +8,7 @@ Meteor.methods({
 
 	    Accounts.setUsername(this.userId, newUsername);
  	},
-  	changeEmail : function (oldEmail, newEmail) {
+  	changeEmail: function (oldEmail, newEmail) {
   		// check(value, pattern) || Match.test(value, pattern) controlli server
 
     	if (!this.userId) {
@@ -23,7 +23,7 @@ Meteor.methods({
 	     *  Use Accounts.sendVerificationEmail to send an email with a link the user can use verify their email address. 
 	    */
   	},
-	removeUserChainDeletion : function () {
+	removeUserChainDeletion: function () {
 		if (!this.userId) {
       		throw new Meteor.Error("not-logged-in", "Must be logged in to dislike this post.");
 	    }

@@ -20,19 +20,21 @@ Template.notifications.helpers({
 	'username': function () {
 		var user = Meteor.users.findOne(this.userId);
 		return user.username;
+	},
+	'isComment': function () {
+		if(this.commentId && this.action != "commented") {
+			return true;
+		}
 	}
 });
 
 Template.notifications.events({
 	'click #postDetail': function() {
 		Meteor.subscribe('notificationsPost', this.postId);
+		if(this.commentId) {
+			Session.set('highlightComment', this.commentId);
+		}
 		Session.set('postId', this.postId);
-		Modal.show('postDetail');
-	},
-	'click #highlightComment': function() {
-		Meteor.subscribe('notificationsPost', this.postId);
-		Session.set('postId', this.postId);
-		Session.set('highlightComment', this.commentId);
 		Modal.show('postDetail');
 	},
 	'click #setRead': function() {

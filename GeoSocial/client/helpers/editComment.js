@@ -36,15 +36,21 @@ Template.editComment.events({
         var img_public_id;
         var img_url;
 
+        var postId = Session.get('postId');
+        var userId = Meteor.userId();
+        var observerUserId = Post.findOne({_id: postId}).userId;
+        var oldAnonymous = parseInt($('#anonymous').val());
+
         if(anonymous===undefined) {
        		anonymous = 0;
        	}
+       	anonymous = parseInt(anonymous);
 
        	if($("#img_public_id").val()!="" && $("#img_url").val()!="") {
             img_public_id = $("#img_public_id").val();
             img_url = $("#img_url").val();
         }
-
+        
         if(!img_public_id && !img_url) {
         	Comments.update( { _id : id },
 				{	$set: {
@@ -66,6 +72,23 @@ Template.editComment.events({
 	                else {
 	                	Modal.hide('editComment');
 	                    Bert.alert( 'Comment edited successfully.', 'success', 'growl-top-right' );
+
+	                    if(userId != observerUserId) {
+				        	Meteor.subscribe('updateNotifications', postId, observerUserId, "commented", id, function() {
+								var oldId = Notifications.findOne({
+						    		postId: postId,
+									userId: userId,
+									observerUserId: observerUserId,
+									anonymous: oldAnonymous,
+									action: "commented",
+									commentId: id
+					    		})._id;
+
+					    		Notifications.remove({_id: oldId});
+							});
+
+							createCommentNotification(postId, userId, observerUserId, anonymous, "commented", id);
+				        }
 	                }
 	            }
 	    	);
@@ -89,6 +112,24 @@ Template.editComment.events({
 	                else {
 	                	Modal.hide('editComment');
 	                    Bert.alert( 'Comment edited successfully.', 'success', 'growl-top-right' );
+
+						if(userId != observerUserId) {
+
+				        	Meteor.subscribe('updateNotifications', postId, observerUserId, "commented", id, function() {
+								var oldId = Notifications.findOne({
+						    		postId: postId,
+									userId: userId,
+									observerUserId: observerUserId,
+									anonymous: oldAnonymous,
+									action: "commented",
+									commentId: id
+					    		})._id;
+
+					    		Notifications.remove({_id: oldId});
+							});
+
+							//createCommentNotification(postId, userId, observerUserId, anonymous, "commented", id);
+				        }
 	                }
 	            }
 	    	);

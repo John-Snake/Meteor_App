@@ -54,6 +54,7 @@ header .badge
 }
 
 /* Aggiunto per il dropdown */
+
 header .dropdown-menu 
 {
     background-color: rgba(0, 0, 0, 0.7);
@@ -61,6 +62,7 @@ header .dropdown-menu
 }
 
 /* Aggiunto per il dropdown */
+
 header .dropdown-menu > li > a
 {
     color: rgba(92, 184, 92, 1);
@@ -71,6 +73,31 @@ header .dropdown-menu > li > a
 .bert-alert 
 {  
     margin-top: 40px;
+}
+
+/* tjuliancwirko:s-alert ----- */
+
+.s-alert-box
+{
+    max-width: 250px;
+    min-width: 250px;
+    text-align: center;
+}
+.s-alert-error.s-alert-effect-scale 
+{
+    background: #337ab7;
+    color: #fff;
+}
+
+.s-alert-effect-stackslide .s-alert-close
+{
+    top: 15%;
+    right: 1px;
+}
+
+.s-alert-box-inner
+{
+    cursor: pointer;
 }
 
 /* Form -------------------- */

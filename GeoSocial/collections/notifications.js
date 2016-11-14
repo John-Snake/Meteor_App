@@ -40,21 +40,13 @@ Notifications.attachSchema(NotificationsSchema);
 
 Notifications.allow({
 	insert: function (userId, doc) {
-	    // the user must be logged in, and the document must be owned by the current user
-	    return (userId && doc.userId === userId);
+	    // the user must be logged in, the document must be owned by the current user and read must be false
+	    return (userId && doc.userId === userId && doc.read == false);
  	},
-	update: function (userId, doc, fields, modifier) { // it will only be possible for the observer to change read value from server-side code
-	    // can only change your own documents
+	remove: function (userId, doc) {
+	    // can only remove your own documents
 	    return doc.userId === userId;
 	},
 	// fetch only the field that are actually used by your functions
-	fetch: ['userId']
-});
-
-Notifications.deny({
-	update: function (userId, doc, fields, modifier) {
-	    // can't change postId, userId, observerUserId and commentId
-	    return _.contains(fields, 'postId') && _.contains(fields, 'userId') && _.contains(fields, 'observerUserId') 
-	    		&& _.contains(fields, 'anonymous') && _.contains(fields, 'commentId');
-  	}
+	fetch: ['userId','read']
 });

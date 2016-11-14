@@ -50,3 +50,13 @@ Meteor.publish('allNotifications', function(){
 Meteor.publish('notificationsPost', function(postId){
 	return Post.find({_id: postId});
 });
+
+Meteor.publish('updateNotifications', function(postId, observerUserId, action, commentId){
+	return Notifications.find({
+		postId: postId,
+		userId: this.userId,
+		observerUserId: observerUserId,
+		action: action,
+		commentId: commentId
+	});
+});

@@ -1,5 +1,5 @@
 Meteor.methods({
-	likeComment : function (comment_id, type) {
+	likeComment: function (comment_id, type) {
 		//check(comment_id, Meteor.Collection.ObjectID);
 		//check(type, Number);
 
@@ -36,7 +36,7 @@ Meteor.methods({
 		}
 
 	},
-	dislikeComment : function (comment_id, type) {
+	dislikeComment: function (comment_id, type) {
 		//check(comment_id, Meteor.Collection.ObjectID);
 		//check(type, Number);
 

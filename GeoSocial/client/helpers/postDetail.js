@@ -5,7 +5,7 @@ Template.postDetail.helpers({
 		return Post.findOne({_id: Session.get('postId')});
 	},
 	'username': function (userId) { 
-		Meteor.subscribe('usersUsername'); // violo anonimato, pubblico tutti gli username anche quelli di chi ha il post come anonimo
+		//Meteor.subscribe('usersUsername'); // violo anonimato, pubblico tutti gli username anche quelli di chi ha il post come anonimo
 		var user = Meteor.users.findOne({_id: userId}, {fields: {"username": 1}});
 		if(user) {
 			return user.username;
@@ -15,7 +15,7 @@ Template.postDetail.helpers({
 		}
 	},
 	'permission': function(userId) {
-		Meteor.subscribe('usersUsername'); // violo anonimato, pubblico tutti gli username anche quelli di chi ha il post come anonimo
+		//Meteor.subscribe('usersUsername'); // violo anonimato, pubblico tutti gli username anche quelli di chi ha il post come anonimo
 		var user = Meteor.users.findOne(userId);
 		if(user) {
 			return user._id == Meteor.userId();
@@ -93,7 +93,7 @@ Template.postDetail.events({
 		var id = Meteor.userId();
 		var dateTime = new Date();
 		var postId = Session.get('postId');
-		var postUserId = Post.findOne({_id: postId}, {fields: {"userId": 1}}).userId;
+		var postUserId = Post.findOne({_id: postId}).userId;
         var text = $('#commentTextarea').val();
         var anonymous = $('#comment_anonymous:checked').val();
         var img_public_id;
@@ -102,6 +102,7 @@ Template.postDetail.events({
        	if(anonymous===undefined) {
        		anonymous = 0;
        	}
+       	anonymous = parseInt(anonymous);
 
        	if($("#img_public_id").val()!="" && $("#img_url").val()!="") {
             img_public_id = $("#img_public_id").val();
@@ -131,20 +132,7 @@ Template.postDetail.events({
 					       	}
 
 					       	if(id != postUserId) {
-					       		Notifications.insert({
-										postId: postId,
-					                    userId: id,
-					                    observerUserId: postUserId,
-					                    anonymous: anonymous,
-					                    action: 'commented',
-					                    commentId: result,
-					                    dateTime: dateTime
-					                }, function(error){
-					                    if(error){
-					                        console.log(error.invalidKeys);
-					                    }
-					                }
-			            		);
+					       		createCommentNotification(postId, id, postUserId, anonymous, 'commented', result);
 					       	}
 		                }
 		          	}
@@ -184,20 +172,7 @@ Template.postDetail.events({
 					        $('#post_uploadImage').attr("disabled", false);
 
 					        if(id != postUserId) {
-					       		Notifications.insert({
-										postId: postId,
-					                    userId: id,
-					                    observerUserId: postUserId,
-					                    anonymous: anonymous,
-					                    action: 'commented',
-					                    commentId: result,
-					                    dateTime: dateTime
-					                }, function(error){
-					                    if(error){
-					                        console.log(error.invalidKeys);
-					                    }
-					                }
-			            		);
+					       		createCommentNotification(postId, id, postUserId, anonymous, 'commented', result);
 					       	}
 		                }
 		          	}

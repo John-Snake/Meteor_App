@@ -17,7 +17,6 @@ Template.allPosts.helpers({
 	},
 	// Show the right username for every post
 	'username': function () {
-		//Meteor.subscribe('usersUsername');
 		var user = Meteor.users.findOne(this.userId);
 		return user.username;
 	},

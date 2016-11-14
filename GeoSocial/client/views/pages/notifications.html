@@ -18,8 +18,8 @@
 										<a href="/profile/{{userId}}">{{username}}</a>
 									{{/if}}
 									 {{action}} your 
-									{{#if commentId}}
-										<a href="" id="highlightComment">comment</a>. 
+									{{#if isComment}}
+										<a href="" id="postDetail">comment</a>. 
 									{{else}}
 										<a href="" id="postDetail">post</a>. 
 									{{/if}}
@@ -67,8 +67,8 @@
 										<a href="/profile/{{userId}}">{{username}}</a>
 									{{/if}}
 									 {{action}} your 
-									{{#if commentId}}
-										<a href="" id="highlightComment">comment</a>. 
+									{{#if isComment}}
+										<a href="" id="postDetail">comment</a>. 
 									{{else}}
 										<a href="" id="postDetail">post</a>. 
 									{{/if}}

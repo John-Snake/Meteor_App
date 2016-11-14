@@ -1,5 +1,5 @@
 Meteor.methods({
-	like : function (post_id, type) {
+	like: function (post_id, type) {
 		//check(post_id, Meteor.Collection.ObjectID);
 		//check(type, Number);
 
@@ -36,7 +36,7 @@ Meteor.methods({
 		}
 
 	},
-	dislike : function (post_id, type) {
+	dislike: function (post_id, type) {
 		//check(post_id, Meteor.Collection.ObjectID);
 		//check(type, Number);
 
@@ -73,7 +73,7 @@ Meteor.methods({
 	    }
 
 	},
-	commentsChainDeletion : function (post_id) {
+	commentsChainDeletion: function (post_id) {
 		if (!this.userId) {
       		throw new Meteor.Error("not-logged-in", "Must be logged in to dislike this post.");
 	    }

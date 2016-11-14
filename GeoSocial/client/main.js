@@ -155,18 +155,7 @@ like = function(post_id, counter) {
                 });
 
 				if(userId != post.userId) {
-					Notifications.insert({
-							postId: post_id,
-		                    userId: userId,
-		                    observerUserId: post.userId,
-		                    action: 'liked',
-		                    dateTime: new Date()
-		                }, function(error){
-		                    if(error){
-		                        console.log(error.invalidKeys);
-		                    }
-		                }
-	            	);
+					createPostNotification(post_id, userId, post.userId, 'liked');
 				}
 			}
 			else if (temp === -1) { // Add 1 like, remove 1 dislike
@@ -177,21 +166,23 @@ like = function(post_id, counter) {
                 	}
                 });
 
-				/*
-                Notifications.update({ 
-                		postId: post_id,
-                		userId: userId,
-	                    observerUserId: post.userId,
-	                    action: 'disliked'
-                	}, { 
-                		$set: { action: 'liked' }
-	                }, function(error){
-	                    if(error){
-	                        console.log(error.invalidKeys);
-	                    }
-	                }
-            	);
-            	*/
+				if(userId != post.userId) {
+
+					Meteor.subscribe('updateNotifications', post_id, post.userId, "disliked", null, function() {
+						var oldId = Notifications.findOne({
+				    		postId: post_id,
+							userId: userId,
+							observerUserId: post.userId,
+							anonymous: 0,
+							action: "disliked",
+							commentId: null
+			    		})._id;
+
+			    		Notifications.remove({_id: oldId});
+					});
+
+					createPostNotification(post_id, userId, post.userId, 'liked');
+				}
 			}
 
 		}
@@ -222,18 +213,7 @@ dislike = function(post_id, counter) {
                 });
 
 				if(userId != post.userId) {
-	                Notifications.insert({
-							postId: post_id,
-		                    userId: userId,
-		                    observerUserId: post.userId,
-		                    action: 'disliked',
-		                    dateTime: new Date()
-		                }, function(error){
-		                    if(error){
-		                        console.log(error.invalidKeys);
-		                    }
-		                }
-	            	);
+					createPostNotification(post_id, userId, post.userId, 'disliked');
 	            }
 			}
 			else if (temp === -1) { // Add 1 dislike, remove 1 like
@@ -244,21 +224,23 @@ dislike = function(post_id, counter) {
                 	}
                 });
 
-				/*
-                Notifications.update({ 
-                		postId: post_id,
-                		userId: userId,
-	                    observerUserId: post.userId,
-	                    action: 'liked'
-                	}, { 
-                		$set: { action: 'disliked' }
-	                }, function(error){
-	                    if(error){
-	                        console.log(error.invalidKeys);
-	                    }
-	                }
-            	);
-            	*/
+				if(userId != post.userId) {
+
+					Meteor.subscribe('updateNotifications', post_id, post.userId, "liked", null, function() {
+						var oldId = Notifications.findOne({
+				    		postId: post_id,
+							userId: userId,
+							observerUserId: post.userId,
+							anonymous: 0,
+							action: "liked",
+							commentId: null
+				    	})._id;
+
+				    	Notifications.remove({_id: oldId});
+					});
+
+					createPostNotification(post_id, userId, post.userId, 'disliked');
+	            }
 			}
 
 		}
@@ -318,19 +300,7 @@ likeComment = function(comment_id, counter) {
                 });
 
 				if(userId != comment.userId) {
-	                Notifications.insert({
-							postId: comment.postId,
-		                    userId: userId,
-		                    observerUserId: comment.userId,
-		                    action: 'liked',
-		                    commentId: comment_id,
-		                    dateTime: new Date()
-		                }, function(error){
-		                    if(error){
-		                        console.log(error.invalidKeys);
-		                    }
-		                }
-	            	);
+					createCommentNotification(comment.postId, userId, comment.userId, null, 'liked', comment_id);
 	            }
 			}
 			else if (temp === -1) { // Add 1 like, remove 1 dislike
@@ -340,6 +310,24 @@ likeComment = function(comment_id, counter) {
                         Bert.alert( error.reason, 'danger', 'growl-top-right' );
                 	}
                 });
+
+                if(userId != comment.userId) {
+
+                	Meteor.subscribe('updateNotifications', comment.postId, comment.userId, "disliked", comment_id, function() {
+						var oldId = Notifications.findOne({
+				    		postId: comment.postId,
+							userId: userId,
+							observerUserId: comment.userId,
+							anonymous: 0,
+							action: "disliked",
+							commentId: comment_id
+			    		})._id;
+
+			    		Notifications.remove({_id: oldId});
+					});
+					
+					createCommentNotification(comment.postId, userId, comment.userId, null, 'liked', comment_id);
+	            }
 			}
 
 		}
@@ -370,19 +358,7 @@ dislikeComment = function(comment_id, counter) {
                 });
 
 				if(userId != comment.userId) {
-	                Notifications.insert({
-							postId: comment.postId,
-		                    userId: userId,
-		                    observerUserId: comment.userId,
-		                    action: 'disliked',
-		                    commentId: comment_id,
-		                    dateTime: new Date()
-		                }, function(error){
-		                    if(error){
-		                        console.log(error.invalidKeys);
-		                    }
-		                }
-	            	);
+					createCommentNotification(comment.postId, userId, comment.userId, null, 'disliked', comment_id);
 	            }
 			}
 			else if (temp === -1) { // Add 1 dislike, remove 1 like
@@ -392,6 +368,24 @@ dislikeComment = function(comment_id, counter) {
                         Bert.alert( error.reason, 'danger', 'growl-top-right' );
                 	}
                 });
+
+                if(userId != comment.userId) {
+
+                	Meteor.subscribe('updateNotifications', comment.postId, comment.userId, "liked", comment_id, function() {
+						var oldId = Notifications.findOne({
+				    		postId: comment.postId,
+							userId: userId,
+							observerUserId: comment.userId,
+							anonymous: 0,
+							action: "liked",
+							commentId: comment_id
+			    		})._id;
+
+			    		Notifications.remove({_id: oldId});
+					});
+
+					createCommentNotification(comment.postId, userId, comment.userId, null, 'disliked', comment_id);
+	            }
 			}
 
 		}
@@ -549,5 +543,58 @@ deleteImageProfile = function(photoNumber) {
 	            $(post_uploadImage).attr("disabled", false);
 	        }
 	    });
+	}
+}
+
+/* Create notification ----------*/
+
+createPostNotification = function(postId, userId, observerUserId, action) {
+	Notifications.insert({
+			postId: postId,
+            userId: userId,
+            observerUserId: observerUserId,
+            action: action,
+            dateTime: new Date()
+        }, function(error){
+            if(error){
+            	console.log(error.reason);
+                console.log(error.invalidKeys);
+            }
+        }
+	);
+}
+
+createCommentNotification = function(postId, userId, observerUserId, anonymous, action, commentId) {
+	if(action == "commented" && anonymous) {
+		Notifications.insert({
+				postId: postId,
+	            userId: userId,
+	            observerUserId: observerUserId,
+	            anonymous: anonymous,
+	            action: action,
+	            commentId: commentId,
+	            dateTime: new Date()
+	        }, function(error){
+	            if(error){
+	            	console.log(error.reason);
+	                console.log(error.invalidKeys);
+	            }
+	        }
+		);
+	}
+	else {
+		Notifications.insert({
+				postId: postId,
+	            userId: userId,
+	            observerUserId: observerUserId,
+	            action: action,
+	            commentId: commentId,
+	            dateTime: new Date()
+	        }, function(error){
+	            if(error){
+	                console.log(error.invalidKeys);
+	            }
+	        }
+		);
 	}
 }

@@ -82,7 +82,7 @@ Template.signUp.events({
         $('#alert').hide();
         $('#confirmation').hide(); //Hide confirnation div
 
-        Meteor.subscribe('usersUsername');
+        //Meteor.subscribe('usersUsername');
 
         var input = $('#username').val();
         var check =  Meteor.users.findOne({'username': input });

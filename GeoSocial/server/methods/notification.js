@@ -1,6 +1,6 @@
 Meteor.methods({
-	setRead : function (notificationId) {
-
+	setRead: function (notificationId) {
+		// manca controllo che l'utente stia facendo update di una notifica che lui osserva
 		if (!this.userId) {
       		throw new Meteor.Error("not-logged-in", "Must be logged in to like this comment.");
 	    }

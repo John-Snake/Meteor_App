@@ -98,7 +98,7 @@ Router.route('/notifications', {
 
     waitOn: function () {
         // return one handle, a function, or an array
-        return [Meteor.subscribe('allNotifications'), Meteor.subscribe('usersUsername')];
+        return [Meteor.subscribe('allNotifications')];
     },
     action: function () {
         this.render('notifications');

@@ -1,3 +1,4 @@
+// The inizialize flag must be set this way so the tracker can observe just the new added notifications
 Template.header.onCreated(function() {
 	var initializing = false;
 		
@@ -5,14 +6,31 @@ Template.header.onCreated(function() {
 		initializing = true;
 	});
 
+	Meteor.subscribe('usersUsername');
+
 	Tracker.autorun(function() {
 
 		Notifications.find({observerUserId: Meteor.userId(), read: false}).observe({
 		    added: function(doc) {
 		        if (initializing) {
-		        	console.log(doc.userId);
-		        	console.log(doc.action);
-		        	sAlert.info('New Notification!');
+		        	var user;
+		        	var element;
+
+		        	if(doc.anonymous) {
+		        		user = "Anonymous";
+		        	}
+		        	else {
+		        		user = Meteor.users.findOne(doc.userId).username;
+		        	}
+
+		        	if(doc.commentId && doc.action != "commented") {
+		        		element = "comment";
+		        	}
+		        	else {
+		        		element = "post";
+		        	}
+
+		        	sAlert.info(user+' '+doc.action+' your '+element);
 		    	}
 		    }
 		});
